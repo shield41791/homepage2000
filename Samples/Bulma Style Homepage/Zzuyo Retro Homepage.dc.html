@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes blink{50%{opacity:0}}
+@keyframes marquee{from{transform:translateX(110%)}to{transform:translateX(-110%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+body{margin:0;padding:0;background:#ffffff;font-family:'굴림',Gulim,'돋움',Dotum,sans-serif}
+a{color:#2f6ab0;text-decoration:none}
+a:hover{color:#3399dd;text-decoration:underline}
+td{font-family:'굴림',Gulim,'돋움',Dotum,sans-serif}
+</style>
+</helmet>
+
+<canvas ref="{{ canvasRef }}" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999"></canvas>
+
+<div style="position:fixed;top:0;right:0;bottom:0;width:220px;z-index:0;background:#d6ecff url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ctext x='4' y='14' font-size='11' fill='%23ffffff'%3E✦%3C/text%3E%3C/svg%3E&quot;)"></div>
+
+<!-- ============ 대문 (splash gate) ============ -->
+<sc-if value="{{ !entered }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;z-index:1;min-height:100vh;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;padding:40px 20px;box-sizing:border-box">
+  <div style="border:2px solid #b6cfe0;padding:10px;background:#fff">
+    <div style="width:300px;height:240px;border:1px solid #dce9f2">{{ splashImgEl }}</div>
+  </div>
+  <div style="font-family:'굴림',Gulim,'돋움',Dotum,sans-serif;font-size:28px;font-weight:bold;color:#5a9fd6;letter-spacing:6px">쭈 요 의  홈 페 이 지</div>
+  <div style="font-family:'돋움',Dotum,sans-serif;font-size:13px;color:#789bb5">- 게임 · 영화 · 음악 · 책을 좋아하는 사람의 작은 방 -</div>
+  <div onClick="{{ handleEnter }}" style="font-family:'돋움',Dotum,sans-serif;font-size:14px;color:#2f6ab0;cursor:pointer;border:1px solid #b6cfe0;padding:5px 20px;background:#f6faff;animation:bob 1.6s ease-in-out infinite" style-hover="background:#e6f0ff">☞ enter 들어가기</div>
+  <div style="font-family:'돋움',Dotum,monospace;color:#8fa9c4;font-size:11px">TODAY 128 &nbsp;/&nbsp; TOTAL 004231 &nbsp;&nbsp; since 2002.03.14</div>
+  <div style="font-family:'돋움',Dotum,sans-serif;color:#9abae0;font-size:11px;position:absolute;bottom:30px">Copyright(c) 2002.03.14 zzuyo.lil.to , zzuyo.wo.to all right reserved</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ entered }}" hint-placeholder-val="{{ false }}">
+
+<!-- ============ DESKTOP ============ -->
+<sc-if value="{{ !isMobile }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;z-index:1;min-height:100vh">
+
+  <!-- banner -->
+  <div style="background:linear-gradient(180deg,#e1f0ff,#b9dcff);padding:14px 30px 8px;border-bottom:2px solid #4d9fe6">
+    <div style="display:flex;align-items:flex-end;gap:14px">
+      <div onClick="{{ goHome }}" style="border:2px solid #4f8fd9;padding:1px;background:#fff;cursor:pointer"><div style="width:58px;height:58px;border:1px solid #c4e0ff;background:repeating-linear-gradient(45deg,#d6e8f7,#d6e8f7 6px,#fff 6px,#fff 12px);display:flex;align-items:center;justify-content:center;font-size:9px;color:#4f7fb0;text-align:center">쭈요<br/>아이콘</div></div>
+      <div onClick="{{ goHome }}" style="font-family:'Comic Sans MS',cursive;font-size:40px;font-weight:bold;color:#7ab8f0;text-shadow:2px 2px 0 #2f6699;letter-spacing:2px;cursor:pointer">Zzuyo's HomePage</div>
+      <div style="font-family:'돋움',Dotum,serif;font-size:12px;color:#3d6ea6;padding-bottom:8px">。зzuyo.wo.to ✦˚</div>
+    </div>
+  </div>
+  <div style="background:#fff;color:#8fbde6;font-size:9px;letter-spacing:4px;padding:2px 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid #d9ecff">•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘•∘</div>
+  <div style="background:#2b0f2b;overflow:hidden;white-space:nowrap;padding:4px 0">
+    <span style="display:inline-block;font-family:'궁서','Times New Roman',serif;color:#5dff8f;font-size:13px;animation:marquee 15s linear infinite">☆＊。 어서오세요 ~ 쭈요네 홈페이지에 오신걸 환영합니다 ! 새 글은 메뉴 옆 [N] 표시를 확인하세요 ~ ♡ 요즘 새 프로젝트 작업중이에요 。＊☆</span>
+  </div>
+
+  <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse">
+    <tr style="vertical-align:top">
+      <!-- SIDEBAR -->
+      <td style="width:172px;background:#fff;padding:10px 6px 40px;border-right:1px solid #f0c4de">
+        <div style="border:2px solid #6a95c7;padding:1px;margin-bottom:12px"><div style="border:1px solid #c9e4ff;padding:6px;text-align:center">
+          <div style="width:100%;height:64px;background:repeating-linear-gradient(45deg,#d6e8f7,#d6e8f7 8px,#fff 8px,#fff 16px);border:1px solid #a9c9e6;margin-bottom:4px;font-size:9px;color:#4f7fb0;display:flex;align-items:center;justify-content:center">[미니홈 사진]</div>
+          <div style="font-family:'궁서',serif;font-size:12px;color:#0d5fc0;font-weight:bold">。 쭈 요 。</div>
+        </div></div>
+
+        <div style="border:2px solid #6a95c7;padding:1px;margin-bottom:11px"><div style="border:1px solid #c9e4ff">
+          <div style="background:#dfeeff;color:#0d5fc0;font-family:'궁서',serif;font-weight:bold;font-size:13px;text-align:center;padding:3px 0;border-bottom:1px dotted #9ec3e7">MENU</div>
+          <div style="padding:6px 8px 8px">
+            <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="7">
+              <sc-if value="{{ item.active }}" hint-placeholder-val="{{ false }}">
+                <div style="text-align:right;padding:2px 0"><span style="border:1px solid #5f8fff;background:#eef4ff;color:#2f5fb0;font-size:12px;font-weight:bold;padding:0 4px">{{ item.label }}</span><span style="color:#e04b8a;font-size:9px;font-weight:bold"> {{ item.newMark }}</span></div>
+              </sc-if>
+              <sc-if value="{{ !item.active }}" hint-placeholder-val="{{ true }}">
+                <div onClick="{{ item.onClick }}" style="text-align:right;padding:2px 2px;font-size:12px;color:#2f6ab0;cursor:pointer" style-hover="color:#3399dd">{{ item.label }}<span style="color:#e04b8a;font-size:9px;font-weight:bold"> {{ item.newMark }}</span></div>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div></div>
+
+        <div style="border:2px solid #7fbf3f;padding:1px;margin-top:14px"><table cellpadding="0" cellspacing="0" style="width:100%;font-family:'돋움',Dotum,monospace;font-size:11px">
+          <tr><td style="background:#eaf7d8;color:#5a8f28;padding:2px 5px">TODAY</td><td style="background:#000;color:#5dff5d;text-align:right;padding:2px 5px;letter-spacing:1px">128</td></tr>
+          <tr><td style="background:#eaf7d8;color:#5a8f28;padding:2px 5px;border-top:1px solid #cfe6a8">TOTAL</td><td style="background:#000;color:#5dff5d;text-align:right;padding:2px 5px;letter-spacing:1px;border-top:1px solid #333">004231</td></tr>
+        </table></div>
+        <div style="margin-top:14px;text-align:center;font-family:'돋움',Dotum,sans-serif;font-size:9px;color:#bbb;line-height:1.5">best view<br/>1024*768<br/>익스플로러 6.0</div>
+      </td>
+
+      <!-- CONTENT -->
+      <td style="background:#fff;padding:16px 26px 50px">
+
+        <!-- 홈 -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="border:2px solid #6a95c7;padding:1px;margin-bottom:14px"><div style="border:1px solid #c9e4ff;padding:14px;background:#fafdff">
+            <table cellpadding="0" cellspacing="0"><tr style="vertical-align:top">
+              <td style="width:200px;padding-right:16px"><div style="border:2px solid #6a95c7;padding:1px"><div style="width:100%;height:140px;border:1px solid #c9e4ff">{{ homeImgEl }}</div></div></td>
+              <td>
+                <div style="font-family:'Comic Sans MS',cursive;font-size:19px;color:#0088cc">환영합니다!! ^0^</div>
+                <div style="font-family:'굴림',Gulim,sans-serif;font-size:13px;line-height:1.9;color:#333;margin-top:6px">
+                  안녕하세요~ <b style="color:#0077cc">쭈요</b>입니다. 여긴 제가 좋아하는 게임/영화/음악/책 그리고<br/>
+                  제가 만들고 있는 것들을 끄적여두는 개인 홈페이지구요..<br/>
+                  아래에서 각 게시판 최근 소식을 확인하실 수 있어요! [N] 표시된 메뉴는 새 글이에요.
+                </div>
+              </td>
+            </tr></table>
+          </div></div>
+
+          <table cellpadding="0" cellspacing="0" style="width:100%"><tr style="vertical-align:top">
+            <sc-for list="{{ homeSections }}" as="sec" hint-placeholder-count="3">
+              <td style="width:33.3%;padding:0 6px">
+                <div style="border:2px solid #6a95c7;padding:1px"><div style="border:1px solid #c9e4ff">
+                  <div onClick="{{ sec.onClick }}" style="background:#dfeeff;color:#0d5fc0;font-weight:bold;font-size:12px;padding:3px 8px;font-family:'궁서',serif;cursor:pointer;display:flex;justify-content:space-between"><span>{{ sec.title }}</span><span style="font-weight:normal;color:#5a8f28">more▷</span></div>
+                  <div style="padding:6px 8px">
+                    <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="4">
+                      <div onClick="{{ it.onClick }}" style="font-size:12px;padding:3px 0;border-bottom:1px dotted #e6eefb;color:#333;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" style-hover="color:#3399dd">· {{ it.title }} <span style="color:#e04b8a;font-size:9px;font-weight:bold">{{ it.newMark }}</span></div>
+                    </sc-for>
+                  </div>
+                </div></div>
+              </td>
+            </sc-for>
+          </tr></table>
+        </sc-if>
+
+        <!-- 프로필 -->
+        <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-family:'궁서',serif;font-size:17px;color:#0d5fc0;font-weight:bold;margin-bottom:14px">。゚ 쭈요의 홈페이지 &gt; 프로필 ゚。</div>
+          <table cellpadding="0" cellspacing="0" style="width:100%"><tr style="vertical-align:top">
+            <td style="width:180px;padding-right:18px">
+              <div style="border:3px double #66a0cc;padding:2px;background:#fff"><div style="width:160px;height:160px">{{ profileImgEl }}</div></div>
+              <div style="text-align:center;margin-top:8px;font-size:11px"><a href="#">X(트위터)</a> · <a href="#">Insta</a><br/><a href="#">GitHub</a></div>
+            </td>
+            <td style="font-size:13px;line-height:1.9;color:#333">
+              <div style="background:#0d5fc0;color:#fff;font-family:'궁서',serif;font-size:13px;font-weight:bold;padding:3px 8px;margin-bottom:6px">▣ 자기소개</div>
+              &nbsp;&nbsp;낮에는 평범한 직장인, 밤에는 이것저것 만들어보는 사람 <b>쭈요</b>라고 해요. 완성하면 꼭 여기다 기록으로 남겨둡니다 :)
+              <div style="background:#0d5fc0;color:#fff;font-family:'궁서',serif;font-size:13px;font-weight:bold;padding:3px 8px;margin:12px 0 6px">▣ 관심사</div>
+              &nbsp;&nbsp;- 게임 / 영화 / 음악 / 독서 / 가끔 그림..
+              <div style="background:#0d5fc0;color:#fff;font-family:'궁서',serif;font-size:13px;font-weight:bold;padding:3px 8px;margin:12px 0 6px">▣ 좋아하는것들</div>
+              <table cellpadding="0" cellspacing="0" style="font-size:12px;line-height:1.9">
+                <tr><td style="color:#50789f;padding-right:14px;vertical-align:top">게임 ▷</td><td>스타듀밸리, 젤다의전설, 발더스게이트3</td></tr>
+                <tr><td style="color:#50789f;padding-right:14px;vertical-align:top">음악 ▷</td><td>시티팝, 로파이힙합, 90년대가요</td></tr>
+                <tr><td style="color:#50789f;padding-right:14px;vertical-align:top">장비 ▷</td><td>기계식키보드, 태블릿, 듀얼모니터</td></tr>
+              </table>
+            </td>
+          </tr></table>
+        </sc-if>
+
+        <!-- 공지사항 & 게시판 (board style) -->
+        <sc-if value="{{ isNotice }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-family:'궁서',serif;font-size:16px;color:#0d5fc0;font-weight:bold;margin-bottom:12px">부르마... 아니, 쭈요의 홈페이지 &gt; 공지사항</div>
+          <sc-if value="{{ !selectedPost }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:11px;color:#5a8f28;margin-bottom:3px;font-family:'돋움',Dotum,sans-serif">✿✿✿✿✿ &nbsp;&nbsp;TOTAL : {{ noticeCount }} &nbsp; PAGE : 1/1</div>
+            <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border-top:2px solid #79b62e;border-bottom:2px solid #79b62e">
+              <tr style="background:#79b62e;color:#fff;font-family:'돋움',Dotum,sans-serif;font-weight:bold"><td style="padding:5px 6px;width:34px;text-align:center">NO</td><td style="padding:5px 10px">SUBJECT</td><td style="padding:5px 6px;width:80px;text-align:center">NAME</td><td style="padding:5px 6px;width:80px;text-align:center">DATE</td><td style="padding:5px 6px;width:40px;text-align:center">HIT</td></tr>
+              <sc-for list="{{ noticePosts }}" as="post" hint-placeholder-count="4">
+                <tr onClick="{{ post.onClick }}" style="border-bottom:1px solid #dbead0;cursor:pointer" style-hover="background:#f4faec"><td style="padding:5px 6px;text-align:center;color:#999">{{ post.no }}</td><td style="padding:5px 10px;color:#333">{{ post.title }} <span style="color:#e04b8a;font-size:10px;font-weight:bold">{{ post.newMark }}</span></td><td style="padding:5px 6px;text-align:center;color:#5a8f28">쭈요</td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.date }}</td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.views }}</td></tr>
+              </sc-for>
+            </table>
+          </sc-if>
+          <sc-if value="{{ selectedPost }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closePost }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div>
+            <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #b9d98a">
+              <tr style="background:#eef6e2"><td style="padding:6px 10px;color:#333;font-weight:bold;border-bottom:1px solid #cfe6a8">{{ selectedPost.title }}</td></tr>
+              <tr style="background:#f7fbf1"><td style="padding:3px 10px;color:#888;font-size:11px;border-bottom:1px solid #cfe6a8">글쓴이: 쭈요 &nbsp;|&nbsp; {{ selectedPost.date }} &nbsp;|&nbsp; 조회 {{ selectedPost.views }}</td></tr>
+              <tr><td style="padding:16px 12px;font-family:'굴림',Gulim,sans-serif;font-size:13px;line-height:1.9;white-space:pre-line;color:#333;min-height:120px">{{ selectedPost.content }}</td></tr>
+            </table>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:3px;margin-bottom:8px">
+            <sc-for list="{{ boardCats }}" as="c" hint-placeholder-count="4">
+              <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}"><div style="background:#79b62e;color:#fff;padding:4px 12px;font-size:12px;font-weight:bold;font-family:'궁서',serif">{{ c.label }}</div></sc-if>
+              <sc-if value="{{ !c.active }}" hint-placeholder-val="{{ true }}"><div onClick="{{ c.onClick }}" style="background:#eef6e2;color:#5a8f28;padding:4px 12px;font-size:12px;border:1px solid #b9d98a;cursor:pointer;font-family:'궁서',serif">{{ c.label }} <span style="color:#e04b8a;font-size:9px;font-weight:bold">{{ c.newMark }}</span></div></sc-if>
+            </sc-for>
+          </div>
+          <sc-if value="{{ !selectedPost }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:11px;color:#5a8f28;margin-bottom:3px;font-family:'돋움',Dotum,sans-serif">✿✿✿✿✿ &nbsp;&nbsp;TOTAL : {{ postCount }} &nbsp; PAGE : 1/1</div>
+            <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border-top:2px solid #79b62e;border-bottom:2px solid #79b62e">
+              <tr style="background:#79b62e;color:#fff;font-family:'돋움',Dotum,sans-serif;font-weight:bold"><td style="padding:5px 6px;width:34px;text-align:center">NO</td><td style="padding:5px 10px">SUBJECT</td><td style="padding:5px 6px;width:80px;text-align:center">NAME</td><td style="padding:5px 6px;width:80px;text-align:center">DATE</td><td style="padding:5px 6px;width:40px;text-align:center">HIT</td></tr>
+              <sc-for list="{{ boardPosts }}" as="post" hint-placeholder-count="5">
+                <tr onClick="{{ post.onClick }}" style="border-bottom:1px solid #dbead0;cursor:pointer" style-hover="background:#f4faec"><td style="padding:5px 6px;text-align:center;color:#999">{{ post.no }}</td><td style="padding:5px 10px;color:#333">{{ post.title }} <span style="color:#e04b8a;font-size:10px;font-weight:bold">{{ post.newMark }}</span></td><td style="padding:5px 6px;text-align:center;color:#5a8f28">쭈요</td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.date }}</td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.views }}</td></tr>
+              </sc-for>
+            </table>
+            <div style="text-align:center;margin-top:10px;font-size:12px;color:#5a8f28">[<b>1</b>] [2] [3]</div>
+          </sc-if>
+          <sc-if value="{{ selectedPost }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closePost }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div>
+            <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #b9d98a">
+              <tr style="background:#eef6e2"><td style="padding:6px 10px;color:#333;font-weight:bold;border-bottom:1px solid #cfe6a8">{{ selectedPost.title }}</td></tr>
+              <tr style="background:#f7fbf1"><td style="padding:3px 10px;color:#888;font-size:11px;border-bottom:1px solid #cfe6a8">글쓴이: 쭈요 &nbsp;|&nbsp; {{ selectedPost.date }} &nbsp;|&nbsp; 조회 {{ selectedPost.views }}</td></tr>
+              <tr><td style="padding:16px 12px;font-family:'굴림',Gulim,sans-serif;font-size:13px;line-height:1.9;white-space:pre-line;color:#333;min-height:120px">{{ selectedPost.content }}</td></tr>
+            </table>
+          </sc-if>
+        </sc-if>
+
+        <!-- 사진첩 -->
+        <sc-if value="{{ isPhotos }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ !selectedPhoto }}" hint-placeholder-val="{{ true }}">
+            <div style="text-align:center;font-family:'궁서',serif;font-size:17px;color:#0d5fc0;font-weight:bold;margin-bottom:10px">。゚ 쭈요의 홈페이지 &gt; 사진첩 ゚。</div>
+            <div style="text-align:center;margin-bottom:12px;font-size:12px">
+              <sc-for list="{{ photoCats }}" as="c" hint-placeholder-count="5">
+                <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}"><span style="color:#0d5fc0;font-weight:bold">[{{ c.label }}]</span></sc-if>
+                <sc-if value="{{ !c.active }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="color:#2f6ab0;cursor:pointer">&nbsp;{{ c.label }}&nbsp;</span></sc-if>
+              </sc-for>
+            </div>
+            <div style="border:2px solid #6a95c7;padding:10px"><table cellpadding="0" cellspacing="0" style="width:100%"><tr>
+              <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="4">
+                <td style="width:25%;padding:5px" onClick="{{ ph.onClick }}"><div style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer" style-hover="border:1px solid #3399dd"><div style="width:100%;height:88px">{{ ph.thumbEl }}</div><div style="font-size:10px;color:#555;text-align:center;padding-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ph.title }} <span style="color:#e04b8a;font-weight:bold">{{ ph.newMark }}</span></div></div></td>
+              </sc-for>
+            </tr></table></div>
+          </sc-if>
+          <sc-if value="{{ selectedPhoto }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closePhoto }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div>
+            <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #9ec3e7">
+              <tr style="background:#dfeeff"><td style="padding:6px 10px;color:#0d5fc0;font-weight:bold;border-bottom:1px solid #c9e4ff">{{ selectedPhoto.title }}</td></tr>
+              <tr style="background:#fafdff"><td style="padding:3px 10px;color:#888;font-size:11px;border-bottom:1px solid #c9e4ff">쭈요 &nbsp;|&nbsp; {{ selectedPhoto.date }} &nbsp;|&nbsp; 조회 {{ selectedPhoto.views }} &nbsp;|&nbsp; {{ selectedPhoto.catLabel }}</td></tr>
+              <tr><td style="padding:16px 12px">{{ selectedPhoto.fullEl }}<div style="font-family:'굴림',Gulim,sans-serif;font-size:13px;line-height:1.9;color:#333">{{ selectedPhoto.desc }}</div></td></tr>
+            </table>
+          </sc-if>
+        </sc-if>
+
+        <!-- 동영상 -->
+        <sc-if value="{{ isVideos }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-family:'궁서',serif;font-size:17px;color:#0d5fc0;font-weight:bold;margin-bottom:12px">。゚ 쭈요의 홈페이지 &gt; 동영상 ゚。</div>
+          <div style="border:2px solid #6a95c7;padding:10px"><table cellpadding="0" cellspacing="0" style="width:100%"><tr>
+            <sc-for list="{{ videos }}" as="v" hint-placeholder-count="3">
+              <td style="width:33.3%;padding:6px" onClick="{{ v.onClick }}"><div style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer" style-hover="border:1px solid #3399dd"><div style="position:relative"><div style="width:100%;height:110px">{{ v.thumbEl }}</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;text-shadow:0 0 6px #000">▶</div></div><div style="font-size:12px;font-weight:bold;color:#0d5fc0;padding:4px 2px 0">{{ v.title }} <span style="color:#e04b8a;font-size:9px">{{ v.newMark }}</span></div><div style="font-size:10px;color:#888;padding:0 2px">{{ v.desc }}</div></div></td>
+            </sc-for>
+          </tr></table></div>
+          <sc-if value="{{ selectedVideo }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closeVideo }}" style="position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:10000">
+              <div onClick="{{ stopProp }}" style="background:#fff;border:3px double #4d9fe6;padding:10px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:13px;font-weight:bold;color:#0d5fc0">▶ {{ selectedVideo.title }}</span><span onClick="{{ closeVideo }}" style="cursor:pointer;color:#2f6ab0;font-size:13px">✕ 닫기</span></div>
+                <iframe width="560" height="315" src="{{ selectedVideo.embed }}" frameborder="0" allowfullscreen="true" style="display:block;border:1px solid #c9e4ff"></iframe>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- 프로젝트 -->
+        <sc-if value="{{ isProjects }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;font-family:'궁서',serif;font-size:17px;color:#0d5fc0;font-weight:bold;margin-bottom:12px">。゚ 쭈요의 홈페이지 &gt; 프로젝트 ゚。</div>
+          <div style="font-size:11px;color:#888;text-align:center;margin-bottom:12px">※ 섬네일을 클릭하면 새 창에서 프로젝트 페이지(사이트/깃허브)로 이동합니다.</div>
+          <div style="border:2px solid #6a95c7;padding:10px"><table cellpadding="0" cellspacing="0" style="width:100%"><tr>
+            <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+              <td style="width:25%;padding:6px;vertical-align:top">
+                <a href="{{ p.url }}" target="_blank" style="text-decoration:none"><div style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer" style-hover="border:1px solid #3399dd"><div style="width:100%;height:100px">{{ p.thumbEl }}</div><div style="font-size:12px;font-weight:bold;color:#0d5fc0;padding:5px 2px 0">◈ {{ p.title }} <span style="color:#e04b8a;font-size:9px">{{ p.newMark }}</span></div><div style="font-size:10px;color:#666;padding:2px 2px 4px">{{ p.tagline }}</div><div style="font-size:10px;color:#5a8f28;padding:0 2px 2px">↗ {{ p.host }}</div></div></a>
+              </td>
+            </sc-for>
+          </tr></table></div>
+        </sc-if>
+
+      </td>
+    </tr>
+  </table>
+
+  <!-- footer bar -->
+  <div style="position:relative;z-index:1;border-top:2px solid #4d9fe6;background:#fff;padding:8px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'돋움',Dotum,sans-serif;font-size:11px">
+    <div style="width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,#666,#111);flex:none;animation:{{ discAnim }}"></div>
+    <span style="color:#0d5fc0;font-weight:bold">zzuyo's home BGM Player</span>
+    <div style="width:230px;overflow:hidden;white-space:nowrap;color:#5a8f28"><span style="display:inline-block;animation:marquee 10s linear infinite">♪ now playing : 쭈요's 로파이 플레이리스트 - track 01 ♪</span></div>
+    <span onClick="{{ togglePlay }}" style="cursor:pointer;color:#2f6ab0">{{ playIcon }} 재생</span>
+    <span onClick="{{ toggleMute }}" style="cursor:pointer;color:#2f6ab0">{{ muteIcon }} 소리</span>
+    <span style="color:#ccc">|</span>
+    <span onClick="{{ toggleSettings }}" style="cursor:pointer;color:#2f6ab0">[화면효과 설정]</span>
+    <span style="margin-left:auto;color:#aaa">Copyright ⓒ 2002-2026 Zzuyo. All rights reserved.</span>
+  </div>
+  <sc-if value="{{ showSettings }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;z-index:1;background:#f2f8ff;border-top:1px solid #c9e4ff;padding:8px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'돋움',Dotum,sans-serif;font-size:12px">
+      <span style="color:#0d5fc0;font-weight:bold">화면효과 :</span>
+      <sc-for list="{{ effectOptions }}" as="eo" hint-placeholder-count="5"><label style="display:flex;gap:3px;align-items:center;cursor:pointer"><input type="radio" checked="{{ eo.checked }}" onChange="{{ eo.onSelect }}"/>{{ eo.label }}</label></sc-for>
+      <label style="display:flex;gap:3px;align-items:center;cursor:pointer;border-left:1px solid #cdddef;padding-left:12px"><input type="checkbox" checked="{{ reduceMotion }}" onChange="{{ toggleReduceMotion }}"/>효과 줄이기</label>
+      <span onClick="{{ toggleSettings }}" style="margin-left:auto;color:#2f6ab0;cursor:pointer">닫기 ✕</span>
+    </div>
+  </sc-if>
+
+</div>
+</sc-if>
+
+<!-- ============ MOBILE ============ -->
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:1;min-height:100vh;background:#fff">
+  <div style="background:linear-gradient(180deg,#e1f0ff,#b9dcff);padding:9px 12px;border-bottom:2px solid #4d9fe6;display:flex;align-items:center;gap:8px">
+    <div onClick="{{ goHome }}" style="border:2px solid #4f8fd9;padding:1px;background:#fff;flex:none;cursor:pointer"><div style="width:34px;height:34px;border:1px solid #c4e0ff;background:repeating-linear-gradient(45deg,#d6e8f7,#d6e8f7 5px,#fff 5px,#fff 10px)"></div></div>
+    <div style="flex:1;min-width:0"><div onClick="{{ goHome }}" style="font-family:'Comic Sans MS',cursive;font-size:22px;font-weight:bold;color:#7ab8f0;text-shadow:1px 1px 0 #2f6699;cursor:pointer">Zzuyo's HomePage</div><div style="font-family:'궁서',serif;font-size:9px;color:#3d6ea6">zzuyo.wo.to · since 2002</div></div>
+  </div>
+  <div style="background:#2b0f2b;overflow:hidden;white-space:nowrap;padding:3px 0"><span style="display:inline-block;font-family:'궁서',serif;color:#5dff8f;font-size:11px;animation:marquee 13s linear infinite">☆＊。 어서오세요 ~ 쭈요네 홈페이지 ! [N]은 새 글이에요 ~ 。＊☆</span></div>
+  <div style="border-bottom:2px solid #6a95c7;background:#dfeeff;overflow-x:auto;white-space:nowrap;padding:5px 6px">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="7">
+      <sc-if value="{{ item.active }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;border:1px solid #5f8fff;background:#eef4ff;color:#2f5fb0;font-size:12px;font-weight:bold;padding:2px 8px;margin-right:3px">{{ item.label }}<span style="color:#e04b8a;font-size:8px">{{ item.newMark }}</span></span></sc-if>
+      <sc-if value="{{ !item.active }}" hint-placeholder-val="{{ true }}"><span onClick="{{ item.onClick }}" style="display:inline-block;color:#2f6ab0;font-size:12px;padding:2px 8px;margin-right:3px;cursor:pointer">{{ item.label }}<span style="color:#e04b8a;font-size:8px">{{ item.newMark }}</span></span></sc-if>
+    </sc-for>
+  </div>
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:6px;padding:4px 10px;font-family:'돋움',Dotum,monospace;font-size:10px;border-bottom:1px solid #e6eefb"><span style="color:#3d6ea6">{{ timeStr }}</span><span style="border:1px solid #7fbf3f;background:#eaf7d8;color:#5a8f28;padding:0 4px">TODAY 128</span><span style="background:#000;color:#5dff5d;padding:1px 5px;letter-spacing:1px">004231</span></div>
+
+  <div style="padding:12px">
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div style="border:2px solid #6a95c7;padding:1px;margin-bottom:10px"><div style="border:1px solid #c9e4ff;padding:10px;background:#fafdff"><div style="font-family:'Comic Sans MS',cursive;font-size:16px;color:#0088cc;margin-bottom:5px">환영합니다!! ^0^</div><div style="font-size:12px;line-height:1.8;color:#333">안녕하세요~ <b style="color:#0077cc">쭈요</b>입니다. 게임/영화/음악/책 그리고 제가 만드는 것들을 끄적여두는 개인 홈페이지예요. [N] 표시된 메뉴에 새 글이 있어요!</div></div></div>
+      <sc-for list="{{ homeSections }}" as="sec" hint-placeholder-count="3">
+        <div style="border:2px solid #6a95c7;padding:1px;margin-bottom:10px"><div style="border:1px solid #c9e4ff">
+          <div onClick="{{ sec.onClick }}" style="background:#dfeeff;color:#0d5fc0;font-weight:bold;font-size:12px;padding:3px 8px;font-family:'궁서',serif;cursor:pointer;display:flex;justify-content:space-between"><span>{{ sec.title }}</span><span style="font-weight:normal;color:#5a8f28">more▷</span></div>
+          <div style="padding:6px 8px"><sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="4"><div onClick="{{ it.onClick }}" style="font-size:12px;padding:3px 0;border-bottom:1px dotted #e6eefb;color:#333;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">· {{ it.title }} <span style="color:#e04b8a;font-size:9px;font-weight:bold">{{ it.newMark }}</span></div></sc-for></div>
+        </div></div>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;font-family:'궁서',serif;font-size:14px;color:#0d5fc0;font-weight:bold;margin-bottom:10px">。゚ 프로필 ゚。</div>
+      <div style="border:3px double #66a0cc;padding:2px;margin-bottom:8px"><div style="width:100%;height:180px">{{ profileImgEl }}</div></div>
+      <div style="text-align:center;margin-bottom:10px;font-size:11px"><a href="#">X</a> · <a href="#">Insta</a> · <a href="#">GitHub</a></div>
+      <div style="background:#0d5fc0;color:#fff;font-family:'궁서',serif;font-size:12px;font-weight:bold;padding:3px 8px">▣ 자기소개</div>
+      <div style="font-size:12px;line-height:1.9;color:#333;padding:6px 4px 10px">낮에는 평범한 직장인, 밤에는 이것저것 만들어보는 사람 <b>쭈요</b>. 완성하면 꼭 여기다 기록으로 남겨둡니다 :)</div>
+      <div style="background:#0d5fc0;color:#fff;font-family:'궁서',serif;font-size:12px;font-weight:bold;padding:3px 8px">▣ 좋아하는것들</div>
+      <table cellpadding="0" cellspacing="0" style="font-size:12px;line-height:1.9;padding:4px"><tr><td style="color:#50789f;padding:2px 10px 2px 4px;vertical-align:top">게임 ▷</td><td>스타듀밸리, 젤다, 발더스게이트3</td></tr><tr><td style="color:#50789f;padding:2px 10px 2px 4px;vertical-align:top">음악 ▷</td><td>시티팝, 로파이힙합</td></tr></table>
+    </sc-if>
+
+    <sc-if value="{{ isNotice }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;font-family:'궁서',serif;font-size:14px;color:#0d5fc0;font-weight:bold;margin-bottom:10px">。゚ 공지사항 ゚。</div>
+      <sc-if value="{{ !selectedPost }}" hint-placeholder-val="{{ true }}">
+        <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:11px;border-top:2px solid #79b62e;border-bottom:2px solid #79b62e"><tr style="background:#79b62e;color:#fff;font-weight:bold"><td style="padding:4px 6px">SUBJECT</td><td style="padding:4px 6px;width:56px;text-align:center">DATE</td></tr><sc-for list="{{ noticePosts }}" as="post" hint-placeholder-count="4"><tr onClick="{{ post.onClick }}" style="border-bottom:1px solid #dbead0;cursor:pointer"><td style="padding:5px 6px;color:#333">{{ post.title }} <span style="color:#e04b8a;font-size:9px;font-weight:bold">{{ post.newMark }}</span></td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.date }}</td></tr></sc-for></table>
+      </sc-if>
+      <sc-if value="{{ selectedPost }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closePost }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div><table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #b9d98a"><tr style="background:#eef6e2"><td style="padding:6px 10px;color:#333;font-weight:bold;border-bottom:1px solid #cfe6a8">{{ selectedPost.title }}</td></tr><tr style="background:#f7fbf1"><td style="padding:3px 10px;color:#888;font-size:10px;border-bottom:1px solid #cfe6a8">쭈요 | {{ selectedPost.date }} | 조회 {{ selectedPost.views }}</td></tr><tr><td style="padding:12px 10px;font-size:12px;line-height:1.9;white-space:pre-line;color:#333">{{ selectedPost.content }}</td></tr></table></sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:3px;margin-bottom:8px;overflow-x:auto;white-space:nowrap"><sc-for list="{{ boardCats }}" as="c" hint-placeholder-count="4"><sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}"><span style="background:#79b62e;color:#fff;padding:3px 10px;font-size:11px;font-weight:bold;font-family:'궁서',serif">{{ c.label }}</span></sc-if><sc-if value="{{ !c.active }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="background:#eef6e2;color:#5a8f28;padding:3px 10px;font-size:11px;border:1px solid #b9d98a;cursor:pointer;font-family:'궁서',serif">{{ c.label }}<span style="color:#e04b8a;font-size:8px">{{ c.newMark }}</span></span></sc-if></sc-for></div>
+      <sc-if value="{{ !selectedPost }}" hint-placeholder-val="{{ true }}"><table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:11px;border-top:2px solid #79b62e;border-bottom:2px solid #79b62e"><tr style="background:#79b62e;color:#fff;font-weight:bold"><td style="padding:4px 6px">SUBJECT</td><td style="padding:4px 6px;width:56px;text-align:center">DATE</td></tr><sc-for list="{{ boardPosts }}" as="post" hint-placeholder-count="5"><tr onClick="{{ post.onClick }}" style="border-bottom:1px solid #dbead0;cursor:pointer"><td style="padding:5px 6px;color:#333">{{ post.title }} <span style="color:#e04b8a;font-size:9px;font-weight:bold">{{ post.newMark }}</span></td><td style="padding:5px 6px;text-align:center;color:#888">{{ post.date }}</td></tr></sc-for></table></sc-if>
+      <sc-if value="{{ selectedPost }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closePost }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div><table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #b9d98a"><tr style="background:#eef6e2"><td style="padding:6px 10px;color:#333;font-weight:bold;border-bottom:1px solid #cfe6a8">{{ selectedPost.title }}</td></tr><tr style="background:#f7fbf1"><td style="padding:3px 10px;color:#888;font-size:10px;border-bottom:1px solid #cfe6a8">쭈요 | {{ selectedPost.date }} | 조회 {{ selectedPost.views }}</td></tr><tr><td style="padding:12px 10px;font-size:12px;line-height:1.9;white-space:pre-line;color:#333">{{ selectedPost.content }}</td></tr></table></sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isPhotos }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ !selectedPhoto }}" hint-placeholder-val="{{ true }}">
+        <div style="text-align:center;font-family:'궁서',serif;font-size:14px;color:#0d5fc0;font-weight:bold;margin-bottom:8px">。゚ 사진첩 ゚。</div>
+        <div style="text-align:center;margin-bottom:10px;font-size:11px"><sc-for list="{{ photoCats }}" as="c" hint-placeholder-count="5"><sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}"><span style="color:#0d5fc0;font-weight:bold">[{{ c.label }}]</span></sc-if><sc-if value="{{ !c.active }}" hint-placeholder-val="{{ true }}"><span onClick="{{ c.onClick }}" style="color:#2f6ab0;cursor:pointer">&nbsp;{{ c.label }}&nbsp;</span></sc-if></sc-for></div>
+        <div style="border:2px solid #6a95c7;padding:6px"><table cellpadding="0" cellspacing="0" style="width:100%"><tr><sc-for list="{{ photos }}" as="ph" hint-placeholder-count="4"><td style="width:50%;padding:4px" onClick="{{ ph.onClick }}"><div style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer"><div style="width:100%;height:74px">{{ ph.thumbEl }}</div><div style="font-size:10px;color:#555;text-align:center;padding-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ph.title }}</div></div></td></sc-for></tr></table></div>
+      </sc-if>
+      <sc-if value="{{ selectedPhoto }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closePhoto }}" style="font-size:12px;color:#2f6ab0;cursor:pointer;margin-bottom:8px">◀ [ 목록으로 ]</div><div style="border:1px solid #9ec3e7"><div style="background:#dfeeff;padding:6px 10px;color:#0d5fc0;font-weight:bold;font-size:13px">{{ selectedPhoto.title }}</div><div style="padding:10px">{{ selectedPhoto.fullEl }}<div style="font-size:12px;line-height:1.8;color:#333">{{ selectedPhoto.desc }}</div></div></div></sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isVideos }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;font-family:'궁서',serif;font-size:14px;color:#0d5fc0;font-weight:bold;margin-bottom:10px">。゚ 동영상 ゚。</div>
+      <sc-for list="{{ videos }}" as="v" hint-placeholder-count="3"><div onClick="{{ v.onClick }}" style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer;margin-bottom:8px;display:flex;gap:8px;align-items:center"><div style="position:relative;flex:none"><div style="width:96px;height:60px">{{ v.thumbEl }}</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;text-shadow:0 0 5px #000">▶</div></div><div><div style="font-size:12px;font-weight:bold;color:#0d5fc0">{{ v.title }} <span style="color:#e04b8a;font-size:9px">{{ v.newMark }}</span></div><div style="font-size:10px;color:#888">{{ v.desc }}</div></div></div></sc-for>
+      <sc-if value="{{ selectedVideo }}" hint-placeholder-val="{{ false }}"><div onClick="{{ closeVideo }}" style="position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:10000;padding:12px"><div onClick="{{ stopProp }}" style="background:#fff;border:3px double #4d9fe6;padding:8px;width:100%;max-width:340px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:bold;color:#0d5fc0">▶ {{ selectedVideo.title }}</span><span onClick="{{ closeVideo }}" style="cursor:pointer;color:#2f6ab0;font-size:12px">✕</span></div><iframe width="100%" height="190" src="{{ selectedVideo.embed }}" frameborder="0" allowfullscreen="true" style="display:block;border:1px solid #c9e4ff"></iframe></div></div></sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isProjects }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;font-family:'궁서',serif;font-size:14px;color:#0d5fc0;font-weight:bold;margin-bottom:8px">。゚ 프로젝트 ゚。</div>
+      <div style="font-size:10px;color:#888;text-align:center;margin-bottom:10px">※ 클릭 시 새 창에서 사이트/깃허브로 이동</div>
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4"><a href="{{ p.url }}" target="_blank" style="text-decoration:none"><div style="border:1px solid #99b6cc;padding:3px;background:#fff;cursor:pointer;margin-bottom:8px;display:flex;gap:8px"><div style="width:80px;height:56px;flex:none">{{ p.thumbEl }}</div><div><div style="font-size:12px;font-weight:bold;color:#0d5fc0">◈ {{ p.title }}</div><div style="font-size:10px;color:#666">{{ p.tagline }}</div><div style="font-size:10px;color:#5a8f28">↗ {{ p.host }}</div></div></div></a></sc-for>
+    </sc-if>
+  </div>
+
+  <div style="border-top:2px solid #4d9fe6;background:#fff;padding:8px 12px;display:flex;align-items:center;gap:8px;font-family:'돋움',Dotum,sans-serif;font-size:11px">
+    <div style="width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,#666,#111);flex:none;animation:{{ discAnim }}"></div>
+    <div style="flex:1;overflow:hidden;white-space:nowrap;color:#5a8f28"><span style="display:inline-block;animation:marquee 9s linear infinite">♪ 쭈요's 로파이 플레이리스트 - track 01 ♪</span></div>
+    <span onClick="{{ togglePlay }}" style="cursor:pointer;color:#2f6ab0">{{ playIcon }}</span>
+    <span onClick="{{ toggleMute }}" style="cursor:pointer;color:#2f6ab0">{{ muteIcon }}</span>
+  </div>
+  <div style="text-align:center;background:#fff;padding:6px 0 12px;font-size:9px;color:#aaa">Copyright ⓒ 2002-2026 Zzuyo.</div>
+</div>
+</sc-if>
+
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    entered: false, isMobile: false, now: new Date(),
+    effect: 'snow', muted: false, playing: true, reduceMotion: false, showSettings: false,
+    page: 'home',
+    boardCategory: 'free',
+    photoCategory: 'all',
+    selectedPostId: null, selectedPostBoard: null,
+    selectedPhotoId: null,
+    selectedVideoId: null
+  };
+
+  img(label, h) {
+    return 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='320' height='240'><rect width='320' height='240' fill='hsl(${h},55%,90%)'/><rect x='0.5' y='0.5' width='319' height='239' fill='none' stroke='hsl(${h},35%,70%)'/><text x='160' y='126' font-size='15' fill='hsl(${h},35%,45%)' text-anchor='middle' font-family='sans-serif'>${label}</text></svg>`);
+  }
+
+  navMeta = [
+    { key: 'home', label: '홈' },
+    { key: 'profile', label: '프로필' },
+    { key: 'notice', label: '공지사항' },
+    { key: 'board', label: '게시판' },
+    { key: 'photos', label: '사진첩' },
+    { key: 'videos', label: '동영상' },
+    { key: 'projects', label: '프로젝트' }
+  ];
+
+  noticeData = [
+    { id: 'n1', no: 12, title: '홈페이지 리뉴얼 오픈했습니다!', date: '26.07.20', views: 342, isNew: true, content: '메뉴 구조를 새로 정리했습니다.\n공지사항 / 게시판 / 사진첩 / 동영상 / 프로젝트로 나눴어요. 자주 놀러와주세요!' },
+    { id: 'n2', no: 11, title: '동영상 자료실 복구 완료', date: '26.07.18', views: 210, isNew: true, content: '유실됐던 동영상들을 다시 올려두었습니다. 섬네일 클릭하면 바로 재생돼요.' },
+    { id: 'n3', no: 8, title: '방명록 스팸 관련 안내', date: '26.06.20', views: 128, isNew: false, content: '광고성 글은 삭제될 수 있습니다. 양해 부탁드려요.' },
+    { id: 'n4', no: 5, title: '홈페이지 오픈 인사드립니다', date: '26.06.01', views: 401, isNew: false, content: '안녕하세요, 쭈요입니다. 오랜 로망이던 개인 홈페이지를 드디어 열었어요!' }
+  ];
+
+  boardMeta = [
+    { key: 'free', label: '자유게시판' },
+    { key: 'diary', label: '일기' },
+    { key: 'travel', label: '여행기' },
+    { key: 'devlog', label: '개발일지' }
+  ];
+  boardData = {
+    free: [
+      { id: 'f1', no: 24, title: '요즘 즐기는 게임 이야기', date: '26.07.19', views: 88, isNew: true, content: '스타듀밸리를 또 시작했다. 이번엔 꼭 골든 클락을 사보자.' },
+      { id: 'f2', no: 20, title: '새 키보드 개봉기', date: '26.06.30', views: 156, isNew: false, content: '드디어 기계식 키보드를 질렀다. 타건감이 예술이다.' },
+      { id: 'f3', no: 15, title: '아무말 대잔치', date: '26.06.11', views: 63, isNew: false, content: '오늘은 그냥 기분이 좋다. 이유는 없다.' }
+    ],
+    diary: [
+      { id: 'i1', no: 18, title: '오늘 날씨가 좋았다', date: '26.07.12', views: 41, isNew: true, content: '오랜만에 산책을 했다. 날씨가 좋아서 기분도 좋았던 하루.' },
+      { id: 'i2', no: 9, title: '요즘 잠이 잘 안 온다', date: '26.05.28', views: 55, isNew: false, content: '밤에 자꾸 코딩 생각이 나서 잠을 설친다. 큰일이다.' }
+    ],
+    travel: [
+      { id: 't1', no: 14, title: '부산 여행 다녀왔어요', date: '26.05.20', views: 190, isNew: false, content: '2박 3일 부산 여행 기록. 해운대와 감천문화마을을 다녀왔다.' },
+      { id: 't2', no: 6, title: '제주도 혼자 여행기', date: '26.03.14', views: 233, isNew: false, content: '처음으로 혼자 떠난 여행. 생각보다 훨씬 좋았다.' }
+    ],
+    devlog: [
+      { id: 'd1', no: 22, title: '파티클 효과 구현기', date: '26.07.15', views: 210, isNew: true, content: 'Canvas로 눈/벚꽃/낙엽/비 효과를 구현하면서 겪은 삽질 기록.' },
+      { id: 'd2', no: 13, title: '이 홈페이지 컬러 정리', date: '26.06.18', views: 156, isNew: false, content: '파스텔 블루를 메인으로, 게시판은 그린 포인트로 통일했다.' }
+    ]
+  };
+
+  photoRaw = [
+    { id: 'ph1', cat: 'photo', title: '부산 해운대', date: '26.07.14', views: 90, isNew: true, h: 205, desc: '해운대 앞바다. 파도 소리가 아직도 귀에 맴돈다.' },
+    { id: 'ph2', cat: 'photo', title: '제주 오름', date: '26.05.11', views: 72, isNew: false, h: 120, desc: '오름 정상에서 내려다본 풍경. 다리는 아팠지만 값진 뷰.' },
+    { id: 'ph3', cat: 'illust', title: '캐릭터 드로잉', date: '26.07.10', views: 130, isNew: true, h: 320, desc: '오랜만에 그려본 오리지널 캐릭터. 채색은 아직 연습중.' },
+    { id: 'ph4', cat: 'illust', title: '배경 연습', date: '26.06.02', views: 66, isNew: false, h: 260, desc: '원근감 연습으로 그려본 골목 배경.' },
+    { id: 'ph5', cat: 'webtoon', title: '단편 웹툰 1화 표지', date: '26.07.01', views: 210, isNew: false, h: 15, desc: '연재 준비중인 단편 웹툰 표지. 곧 올릴게요!' },
+    { id: 'ph6', cat: 'webtoon', title: '단편 웹툰 2화 컷', date: '26.06.20', views: 155, isNew: false, h: 35, desc: '2화 주요 장면 컷.' },
+    { id: 'ph7', cat: 'screenshot', title: '무드보드 메이커 화면', date: '26.07.16', views: 98, isNew: true, h: 220, desc: '제작중인 무드보드 메이커 UI 스크린샷.' },
+    { id: 'ph8', cat: 'screenshot', title: '이 홈페이지 작업 화면', date: '26.07.05', views: 143, isNew: false, h: 235, desc: '지금 이 홈페이지를 만들던 에디터 화면.' }
+  ];
+
+  videoRaw = [
+    { id: 'v1', title: '작업실 브이로그', desc: '조회 1.2만', yt: 'ysz5S6PUM-U', isNew: true, h: 200 },
+    { id: 'v2', title: '레트로 홈피 제작기', desc: '조회 3,400', yt: 'aqz-KE-bpKQ', isNew: false, h: 30 },
+    { id: 'v3', title: '독서 브이로그', desc: '조회 890', yt: 'ScMzIvxBSi4', isNew: false, h: 260 }
+  ];
+
+  projectRaw = [
+    { id: 'p1', title: '무드보드 메이커', tagline: '색감으로 무드보드 자동생성', url: 'https://github.com', host: 'github.com', isNew: true, h: 210 },
+    { id: 'p2', title: '오늘의 플레이리스트 봇', tagline: '매일아침 취향기반 추천곡', url: 'https://github.com', host: 'github.com', isNew: false, h: 130 },
+    { id: 'p3', title: '레트로 홈페이지 빌더', tagline: '지금 이 홈페이지를 만든 도구', url: 'https://github.com', host: 'zzuyo.dev', isNew: false, h: 310 },
+    { id: 'p4', title: '독서 기록 아카이브', tagline: '읽은 책을 감상과 함께 기록', url: 'https://github.com', host: 'read.zzuyo.dev', isNew: false, h: 40 }
+  ];
+
+  canvasRef = (el) => { this.canvas = el; };
+
+  componentDidMount() {
+    try { const s = JSON.parse(localStorage.getItem('zzuyo-retro-settings') || '{}'); this.setState({ effect: s.effect || 'snow', muted: !!s.muted, reduceMotion: !!s.reduceMotion }); } catch (e) {}
+    this.mq = window.matchMedia('(max-width:600px)');
+    this.setState({ isMobile: this.mq.matches });
+    this._mqHandler = (e) => this.setState({ isMobile: e.matches });
+    this.mq.addEventListener('change', this._mqHandler);
+    this._clockTimer = setInterval(() => this.setState({ now: new Date() }), 1000);
+    this.trail = []; this.bursts = []; this.flakes = []; this._lastTrail = 0;
+    this._onMove = (e) => { const t = Date.now(); if (t - this._lastTrail > 45) { this._lastTrail = t; this.trail.push({ x: e.clientX, y: e.clientY, life: 1 }); if (this.trail.length > 40) this.trail.shift(); } };
+    this._onClick = (e) => { if (this.state.reduceMotion) return; for (let i = 0; i < 8; i++) { const a = Math.random() * Math.PI * 2, sp = 1.5 + Math.random() * 2; this.bursts.push({ x: e.clientX, y: e.clientY, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1 }); } };
+    window.addEventListener('mousemove', this._onMove);
+    window.addEventListener('click', this._onClick);
+    window.addEventListener('resize', this._onResize = () => this.resizeCanvas());
+    this.resizeCanvas();
+    this._raf = requestAnimationFrame(() => this.tick());
+  }
+  componentWillUnmount() {
+    clearInterval(this._clockTimer); cancelAnimationFrame(this._raf);
+    this.mq.removeEventListener('change', this._mqHandler);
+    window.removeEventListener('mousemove', this._onMove);
+    window.removeEventListener('click', this._onClick);
+    window.removeEventListener('resize', this._onResize);
+  }
+  resizeCanvas() { if (!this.canvas) return; this.canvas.width = window.innerWidth; this.canvas.height = window.innerHeight; }
+  saveSettings() { localStorage.setItem('zzuyo-retro-settings', JSON.stringify({ effect: this.state.effect, muted: this.state.muted, reduceMotion: this.state.reduceMotion })); }
+
+  tick() {
+    const ctx = this.canvas && this.canvas.getContext('2d');
+    if (ctx) {
+      const w = this.canvas.width, h = this.canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      const { effect, reduceMotion } = this.state;
+      if (!reduceMotion && effect !== 'off') {
+        if (this.flakes.length < 70 && Math.random() < 0.6) this.flakes.push({ x: Math.random() * w, y: -10, r: 2 + Math.random() * 3, sway: Math.random() * 2 - 1, sp: 0.6 + Math.random() * 1.4, rot: Math.random() * Math.PI });
+        for (let i = this.flakes.length - 1; i >= 0; i--) {
+          const f = this.flakes[i];
+          f.y += (effect === 'rain' ? f.sp * 6 : f.sp * 1.4);
+          f.x += Math.sin(f.y * 0.02) * f.sway * (effect === 'rain' ? 0.2 : 1);
+          f.rot += 0.02;
+          if (f.y > h + 10) { this.flakes.splice(i, 1); continue; }
+          ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.rot);
+          if (effect === 'snow') { ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.beginPath(); ctx.arc(0, 0, f.r, 0, 7); ctx.fill(); }
+          else if (effect === 'sakura') { ctx.fillStyle = 'rgba(255,183,221,.9)'; ctx.beginPath(); ctx.ellipse(0, 0, f.r * 1.4, f.r, 0, 0, 7); ctx.fill(); }
+          else if (effect === 'leaves') { ctx.fillStyle = 'rgba(230,140,40,.9)'; ctx.fillRect(-f.r, -f.r, f.r * 2, f.r * 2); }
+          else if (effect === 'rain') { ctx.strokeStyle = 'rgba(160,200,255,.6)'; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, 10); ctx.stroke(); }
+          ctx.restore();
+        }
+      }
+      if (!this.state.reduceMotion) {
+        for (let i = this.trail.length - 1; i >= 0; i--) { const p = this.trail[i]; p.life -= 0.035; if (p.life <= 0) { this.trail.splice(i, 1); continue; } ctx.fillStyle = `rgba(120,180,255,${p.life})`; ctx.beginPath(); ctx.arc(p.x, p.y, 3 * p.life, 0, 7); ctx.fill(); }
+        for (let i = this.bursts.length - 1; i >= 0; i--) { const b = this.bursts[i]; b.x += b.vx; b.y += b.vy; b.life -= 0.04; if (b.life <= 0) { this.bursts.splice(i, 1); continue; } ctx.fillStyle = `rgba(80,150,255,${b.life})`; ctx.beginPath(); ctx.arc(b.x, b.y, 2.5 * b.life, 0, 7); ctx.fill(); }
+      }
+    }
+    this._raf = requestAnimationFrame(() => this.tick());
+  }
+
+  goto(page) { this.setState({ page, selectedPostId: null, selectedPostBoard: null, selectedPhotoId: null, selectedVideoId: null }); }
+  openPost(board, id) { this.setState({ page: board === 'notice' ? 'notice' : 'board', boardCategory: board === 'notice' ? this.state.boardCategory : board, selectedPostBoard: board, selectedPostId: id }); }
+
+  renderVals() {
+    const s = this.state;
+    const pad = (n) => String(n).padStart(2, '0');
+    const timeStr = `${s.now.getFullYear()}.${pad(s.now.getMonth() + 1)}.${pad(s.now.getDate())} ${pad(s.now.getHours())}:${pad(s.now.getMinutes())}:${pad(s.now.getSeconds())}`;
+
+    // NEW flags per menu
+    const noticeNew = this.noticeData.some(p => p.isNew);
+    const boardNew = Object.values(this.boardData).some(arr => arr.some(p => p.isNew));
+    const photoNew = this.photoRaw.some(p => p.isNew);
+    const videoNew = this.videoRaw.some(v => v.isNew);
+    const projNew = this.projectRaw.some(p => p.isNew);
+    const newByKey = { home: false, profile: false, notice: noticeNew, board: boardNew, photos: photoNew, videos: videoNew, projects: projNew };
+
+    const navItems = this.navMeta.map((n, i) => ({ key: n.key, label: n.label, num: i + 1, active: s.page === n.key, newMark: newByKey[n.key] ? 'N' : '', onClick: () => this.goto(n.key) }));
+
+    const mkImg = (label, h) => React.createElement('img', { src: this.img(label, h), alt: label, style: { display: 'block', width: '100%', height: '100%', objectFit: 'cover' } });
+    const mkFull = (label, h) => React.createElement('img', { src: this.img(label, h), alt: label, style: { display: 'block', maxWidth: '100%', border: '1px solid #c9e4ff', marginBottom: '12px' } });
+
+    // notice
+    const noticePosts = this.noticeData.map(p => ({ ...p, newMark: p.isNew ? 'NEW' : '', onClick: () => this.setState({ selectedPostBoard: 'notice', selectedPostId: p.id }) }));
+
+    // board
+    const boardCats = this.boardMeta.map(c => ({ ...c, active: s.boardCategory === c.key, newMark: (this.boardData[c.key] || []).some(p => p.isNew) ? 'N' : '', onClick: () => this.setState({ boardCategory: c.key, selectedPostId: null, selectedPostBoard: null }) }));
+    const curBoard = this.boardData[s.boardCategory] || [];
+    const boardPosts = curBoard.map(p => ({ ...p, newMark: p.isNew ? 'NEW' : '', onClick: () => this.setState({ selectedPostBoard: s.boardCategory, selectedPostId: p.id }) }));
+
+    // selected post (notice or board)
+    let selectedPost = null;
+    if (s.selectedPostId) {
+      const src = s.selectedPostBoard === 'notice' ? this.noticeData : (this.boardData[s.selectedPostBoard] || []);
+      selectedPost = src.find(p => p.id === s.selectedPostId) || null;
+    }
+
+    // photos
+    const photoCatMeta = [{ key: 'all', label: 'ALL' }, { key: 'photo', label: '사진' }, { key: 'illust', label: '일러스트' }, { key: 'webtoon', label: '웹툰' }, { key: 'screenshot', label: '스크린샷' }];
+    const catLabel = (k) => (photoCatMeta.find(c => c.key === k) || {}).label || '';
+    const photoCats = photoCatMeta.map(c => ({ ...c, active: s.photoCategory === c.key, onClick: () => this.setState({ photoCategory: c.key, selectedPhotoId: null }) }));
+    const filtered = s.photoCategory === 'all' ? this.photoRaw : this.photoRaw.filter(p => p.cat === s.photoCategory);
+    const photos = filtered.map(p => ({ ...p, thumbEl: mkImg(p.title, p.h), newMark: p.isNew ? 'N' : '', catLabel: catLabel(p.cat), onClick: () => this.setState({ selectedPhotoId: p.id }) }));
+    const selPhotoRaw = s.selectedPhotoId ? this.photoRaw.find(p => p.id === s.selectedPhotoId) : null;
+    const selectedPhoto = selPhotoRaw ? { ...selPhotoRaw, fullEl: mkFull(selPhotoRaw.title, selPhotoRaw.h), catLabel: catLabel(selPhotoRaw.cat) } : null;
+
+    // videos
+    const videos = this.videoRaw.map(v => ({ ...v, thumbEl: mkImg(v.title, v.h), newMark: v.isNew ? 'N' : '', onClick: () => this.setState({ selectedVideoId: v.id }) }));
+    const selVidRaw = s.selectedVideoId ? this.videoRaw.find(v => v.id === s.selectedVideoId) : null;
+    const selectedVideo = selVidRaw ? { ...selVidRaw, embed: `https://www.youtube-nocookie.com/embed/${selVidRaw.yt}?rel=0` } : null;
+
+    // projects
+    const projects = this.projectRaw.map(p => ({ ...p, thumbEl: mkImg(p.title, p.h), newMark: p.isNew ? 'N' : '' }));
+
+    // home sections (latest)
+    const mkItem = (board, p) => ({ title: p.title, newMark: p.isNew ? 'NEW' : '', onClick: () => this.setState({ page: board === 'notice' ? 'notice' : 'board', boardCategory: board === 'notice' ? s.boardCategory : board, selectedPostBoard: board, selectedPostId: p.id }) });
+    const homeSections = [
+      { title: '공지사항', onClick: () => this.goto('notice'), items: this.noticeData.slice(0, 4).map(p => mkItem('notice', p)) },
+      { title: '게시판(자유)', onClick: () => this.goto('board'), items: (this.boardData.free || []).slice(0, 4).map(p => mkItem('free', p)) },
+      { title: '개발일지', onClick: () => this.goto('board'), items: (this.boardData.devlog || []).slice(0, 4).map(p => mkItem('devlog', p)) }
+    ];
+
+    const effectMeta = [{ key: 'snow', label: '눈' }, { key: 'sakura', label: '벚꽃' }, { key: 'leaves', label: '낙엽' }, { key: 'rain', label: '비' }, { key: 'off', label: '끄기' }];
+    const effectOptions = effectMeta.map(e => ({ ...e, checked: s.effect === e.key, onSelect: () => { this.setState({ effect: e.key }); setTimeout(() => this.saveSettings(), 0); } }));
+
+    return {
+      entered: s.entered, handleEnter: () => this.setState({ entered: true }),
+      goHome: () => this.goto('home'),
+      isMobile: s.isMobile, timeStr,
+      splashImgEl: mkImg('대표 이미지 : 쭈요 캐릭터', 210),
+      homeImgEl: mkImg('쭈요의 작업실', 210),
+      profileImgEl: mkImg('프로필 사진', 250),
+      navItems,
+      isHome: s.page === 'home', isProfile: s.page === 'profile', isNotice: s.page === 'notice',
+      isBoard: s.page === 'board', isPhotos: s.page === 'photos', isVideos: s.page === 'videos', isProjects: s.page === 'projects',
+      noticePosts, noticeCount: this.noticeData.length,
+      boardCats, boardPosts, postCount: curBoard.length,
+      selectedPost, closePost: () => this.setState({ selectedPostId: null, selectedPostBoard: null }),
+      photoCats, photos, selectedPhoto, closePhoto: () => this.setState({ selectedPhotoId: null }),
+      videos, selectedVideo, closeVideo: () => this.setState({ selectedVideoId: null }), stopProp: (e) => e.stopPropagation(),
+      projects,
+      homeSections,
+      canvasRef: this.canvasRef,
+      muted: s.muted, muteIcon: s.muted ? '🔇' : '🔊', toggleMute: () => { this.setState({ muted: !s.muted }); setTimeout(() => this.saveSettings(), 0); },
+      playing: s.playing, playIcon: s.playing ? '⏸' : '▶', togglePlay: () => this.setState({ playing: !s.playing }),
+      discAnim: s.playing ? 'spin 2.5s linear infinite' : 'none',
+      showSettings: s.showSettings, toggleSettings: () => this.setState({ showSettings: !s.showSettings }),
+      effectOptions,
+      reduceMotion: s.reduceMotion, toggleReduceMotion: () => { this.setState({ reduceMotion: !s.reduceMotion }); setTimeout(() => this.saveSettings(), 0); }
+    };
+  }
+}
+</script>
+</body>
+</html>
