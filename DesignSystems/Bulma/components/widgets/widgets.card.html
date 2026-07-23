@@ -1,0 +1,16 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Widgets: LCDCounter / FooterPlayer / EffectSettingsPanel" subtitle="Visitor LCD, BGM footer shell, weather-effect picker" -->
+<html><head><link rel="stylesheet" href="../../styles.css"><script src="../../_ds_bundle.js"></script></head>
+<body style="margin:0;background:#fff;font-family:var(--font-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { LCDCounter, FooterPlayer, EffectSettingsPanel } = window.Homepy2000DesignSystem_793dff;
+function Demo(){
+  return <div style={{padding:16,display:'flex',flexDirection:'column',gap:16}}>
+    <div style={{width:160}}><LCDCounter today="128" total="004231"/></div>
+    <FooterPlayer trackLabel="로파이 플레이리스트 - track 01" playing muted={false} copyright="Copyright ⓒ 2002-2026."/>
+    <EffectSettingsPanel effect="snow" reduceMotion={false}/>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>

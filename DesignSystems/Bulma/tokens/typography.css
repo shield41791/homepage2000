@@ -1,0 +1,22 @@
+:root{
+/* base font stacks — real 굴림/돋움/궁서 are Windows system fonts; Nanum Gothic/Myeongjo + Comic Neue are Google Fonts substitutes (flagged in README) */
+--font-body:'Gulim','굴림','Nanum Gothic','돋움',Dotum,sans-serif;
+--font-ui-mono:'Dotum','돋움','Nanum Gothic',monospace;
+--font-heading:'Gungsuh','궁서','Nanum Myeongjo','Batang',serif;
+--font-logo:'Comic Sans MS','Comic Neue',cursive;
+
+--text-caption:10px;
+--text-small:11px;
+--text-body:12px;
+--text-body-lg:13px;
+--text-heading-sm:14px;
+--text-heading:16px;
+--text-heading-lg:19px;
+--text-display:28px;
+--text-logo:40px;
+
+--line-body:1.9; /* @kind other */
+--line-tight:1.4; /* @kind other */
+--letter-wide:2px;
+--letter-wider:6px;
+}

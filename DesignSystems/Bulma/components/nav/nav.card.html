@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Nav: SidebarMenu / CategoryTabs / Pagination" subtitle="172px grouped sidebar, board category tabs, bracketed pager" -->
+<html><head><link rel="stylesheet" href="../../styles.css"><script src="../../_ds_bundle.js"></script></head>
+<body style="margin:0;background:#fff;font-family:var(--font-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { SidebarMenu, CategoryTabs, Pagination } = window.Homepy2000DesignSystem_793dff;
+function Demo(){
+  return <div style={{display:'flex',gap:20,padding:16}}>
+    <SidebarMenu profileLabel="。 OOO 。" groups={[
+      {title:'MENU', items:[{label:'홈'},{label:'프로필',active:true}]},
+      {title:'자료실', items:[{label:'사진첩',isNew:true},{label:'동영상'}]},
+    ]}/>
+    <div style={{display:'flex',flexDirection:'column',gap:14,flex:1}}>
+      <CategoryTabs tabs={[{label:'자유게시판',active:true},{label:'일기',isNew:true},{label:'여행기'}]}/>
+      <CategoryTabs size="sm" tabs={[{label:'ALL',active:true},{label:'사진'},{label:'일러스트'}]}/>
+      <Pagination page={1} total={5}/>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>

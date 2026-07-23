@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Core: Frame / Banner / Marquee / NewBadge" subtitle="Double-border containment, banner wordmark, scrolling marquee, new-post badge" -->
+<html><head><link rel="stylesheet" href="../../styles.css"><script src="../../_ds_bundle.js"></script></head>
+<body style="margin:0;background:#fff;font-family:var(--font-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { Frame, Banner, Marquee, NewBadge } = window.Homepy2000DesignSystem_793dff;
+function Demo(){
+  return <div>
+    <Banner title="OOO's HomePage" domain="yourname.wo.to" />
+    <Marquee text="☆＊。 어서오세요 ~ 새 글은 [N] 표시를 확인하세요 ~ ♡ 。＊☆" />
+    <div style={{display:'flex',gap:14,padding:16}}>
+      <Frame header="MENU" style={{width:200}}><div style={{fontSize:12,textAlign:'right',color:'#2f6ab0'}}>홈<br/>프로필 <NewBadge/></div></Frame>
+      <Frame header="공지사항" headerRight="more▷" accent="green" style={{width:220}}><div style={{fontSize:12}}>· 홈페이지 리뉴얼 오픈 <NewBadge/><br/>· 방명록 안내</div></Frame>
+      <Frame double style={{width:160}}><div style={{fontSize:11,textAlign:'center',color:'#888'}}>double border</div></Frame>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>

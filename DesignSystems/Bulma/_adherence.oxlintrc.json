@@ -1,0 +1,387 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/board/**",
+              "components/core/**",
+              "components/grid/**",
+              "components/nav/**",
+              "components/widgets/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Nanum Gothic|Nanum Myeongjo|Comic Neue))/i]",
+        "message": "Font not provided by the design system. Available: Nanum Gothic, Nanum Myeongjo, Comic Neue."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Banner'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|domain|onLogoClick|mobile|key|ref|className|style|children)$/]",
+        "message": "<Banner> doesn't accept that prop. Declared props: title, domain, onLogoClick, mobile."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BoardPost'] > JSXAttribute > JSXIdentifier[name!=/^(?:no|title|author|date|views|isNew|onClick|key|ref|className|style|children)$/]",
+        "message": "<BoardPost> doesn't accept that prop. Declared props: no, title, author, date, views, isNew, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CategoryTab'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|active|isNew|onClick|key|ref|className|style|children)$/]",
+        "message": "<CategoryTab> doesn't accept that prop. Declared props: label, active, isNew, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EffectSettingsPanel'] > JSXAttribute > JSXIdentifier[name!=/^(?:effect|onEffectChange|reduceMotion|onToggleReduceMotion|onClose|options|key|ref|className|style|children)$/]",
+        "message": "<EffectSettingsPanel> doesn't accept that prop. Declared props: effect, onEffectChange, reduceMotion, onToggleReduceMotion, onClose, options."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EnterGate'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|subtitle|onEnter|today|total|since|copyright|key|ref|className|style|children)$/]",
+        "message": "<EnterGate> doesn't accept that prop. Declared props: title, subtitle, onEnter, today, total, since, copyright."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FooterPlayer'] > JSXAttribute > JSXIdentifier[name!=/^(?:trackLabel|playing|muted|onTogglePlay|onToggleMute|onToggleSettings|copyright|mobile|key|ref|className|style|children)$/]",
+        "message": "<FooterPlayer> doesn't accept that prop. Declared props: trackLabel, playing, muted, onTogglePlay, onToggleMute, onToggleSettings, copyright, mobile."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Frame'] > JSXAttribute > JSXIdentifier[name!=/^(?:header|headerRight|accent|double|padded|children|style|key|ref|className|style|children)$/]",
+        "message": "<Frame> doesn't accept that prop. Declared props: header, headerRight, accent, double, padded, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Frame'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:blue|green)$/]",
+        "message": "<Frame> accent must be one of 'blue' | 'green'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LCDCounter'] > JSXAttribute > JSXIdentifier[name!=/^(?:today|total|key|ref|className|style|children)$/]",
+        "message": "<LCDCounter> doesn't accept that prop. Declared props: today, total."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Marquee'] > JSXAttribute > JSXIdentifier[name!=/^(?:text|dotted|speed|key|ref|className|style|children)$/]",
+        "message": "<Marquee> doesn't accept that prop. Declared props: text, dotted, speed."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NewBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:show|label|key|ref|className|style|children)$/]",
+        "message": "<NewBadge> doesn't accept that prop. Declared props: show, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Pagination'] > JSXAttribute > JSXIdentifier[name!=/^(?:page|total|onChange|key|ref|className|style|children)$/]",
+        "message": "<Pagination> doesn't accept that prop. Declared props: page, total, onChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Photo'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|thumb|isNew|onClick|key|ref|className|style|children)$/]",
+        "message": "<Photo> doesn't accept that prop. Declared props: title, thumb, isNew, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PostDetail'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|author|date|views|content|onBack|key|ref|className|style|children)$/]",
+        "message": "<PostDetail> doesn't accept that prop. Declared props: title, author, date, views, content, onBack."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Project'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|tagline|host|url|thumb|isNew|key|ref|className|style|children)$/]",
+        "message": "<Project> doesn't accept that prop. Declared props: title, tagline, host, url, thumb, isNew."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SidebarMenuItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|active|isNew|onClick|key|ref|className|style|children)$/]",
+        "message": "<SidebarMenuItem> doesn't accept that prop. Declared props: label, active, isNew, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Video'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|desc|thumb|isNew|onClick|key|ref|className|style|children)$/]",
+        "message": "<Video> doesn't accept that prop. Declared props: title, desc, thumb, isNew, onClick."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Banner": {
+        "replaces": []
+      },
+      "BoardPost": {
+        "replaces": []
+      },
+      "CategoryTab": {
+        "replaces": []
+      },
+      "EffectSettingsPanel": {
+        "replaces": []
+      },
+      "EnterGate": {
+        "replaces": []
+      },
+      "FooterPlayer": {
+        "replaces": []
+      },
+      "Frame": {
+        "replaces": []
+      },
+      "LCDCounter": {
+        "replaces": []
+      },
+      "Marquee": {
+        "replaces": []
+      },
+      "NewBadge": {
+        "replaces": []
+      },
+      "Pagination": {
+        "replaces": []
+      },
+      "Photo": {
+        "replaces": []
+      },
+      "PostDetail": {
+        "replaces": []
+      },
+      "Project": {
+        "replaces": []
+      },
+      "SidebarMenuItem": {
+        "replaces": []
+      },
+      "Video": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--blue-100",
+      "--blue-1000",
+      "--blue-200",
+      "--blue-300",
+      "--blue-400",
+      "--blue-50",
+      "--blue-500",
+      "--blue-600",
+      "--blue-700",
+      "--blue-800",
+      "--blue-900",
+      "--color-banner-border",
+      "--color-banner-grad-bottom",
+      "--color-banner-grad-top",
+      "--color-board-accent-text",
+      "--color-board-header-bg",
+      "--color-board-header-text",
+      "--color-board-row-border",
+      "--color-board-row-hover",
+      "--color-construction-bg",
+      "--color-construction-border",
+      "--color-frame-border-inner",
+      "--color-frame-border-outer",
+      "--color-frame-header-bg",
+      "--color-frame-header-text",
+      "--color-lcd-bg",
+      "--color-lcd-fg",
+      "--color-link",
+      "--color-link-hover",
+      "--color-new-badge",
+      "--color-placeholder-stripe-a",
+      "--color-placeholder-stripe-b",
+      "--color-sidebar-strip-bg",
+      "--color-splash-bg",
+      "--color-splash-glow",
+      "--color-surface",
+      "--color-surface-tint",
+      "--color-text-body",
+      "--color-text-faint",
+      "--color-text-muted",
+      "--color-text-secondary",
+      "--content-padding-x",
+      "--fixed-strip-width",
+      "--font-body",
+      "--font-heading",
+      "--font-logo",
+      "--font-ui-mono",
+      "--frame-border-double",
+      "--frame-border-inner",
+      "--frame-border-outer",
+      "--gray-200",
+      "--gray-300",
+      "--gray-400",
+      "--gray-500",
+      "--gray-600",
+      "--gray-700",
+      "--gray-800",
+      "--gray-900",
+      "--green-100",
+      "--green-200",
+      "--green-300",
+      "--green-400",
+      "--green-500",
+      "--green-600",
+      "--green-700",
+      "--green-800",
+      "--lcd-bg",
+      "--lcd-fg",
+      "--letter-wide",
+      "--letter-wider",
+      "--line-body",
+      "--line-tight",
+      "--orange-bg",
+      "--orange-border",
+      "--pink-500",
+      "--radius",
+      "--sidebar-strip",
+      "--sidebar-width",
+      "--space-1",
+      "--space-10",
+      "--space-11",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--splash-glow",
+      "--splash-navy",
+      "--text-body",
+      "--text-body-lg",
+      "--text-caption",
+      "--text-display",
+      "--text-heading",
+      "--text-heading-lg",
+      "--text-heading-sm",
+      "--text-logo",
+      "--text-small",
+      "--white"
+    ],
+    "tokenKinds": {
+      "--blue-50": "color",
+      "--blue-100": "color",
+      "--blue-200": "color",
+      "--blue-300": "color",
+      "--blue-400": "color",
+      "--blue-500": "color",
+      "--blue-600": "color",
+      "--blue-700": "color",
+      "--blue-800": "color",
+      "--blue-900": "color",
+      "--blue-1000": "color",
+      "--sidebar-strip": "color",
+      "--green-100": "color",
+      "--green-200": "color",
+      "--green-300": "color",
+      "--green-400": "color",
+      "--green-500": "color",
+      "--green-600": "color",
+      "--green-700": "color",
+      "--green-800": "color",
+      "--lcd-bg": "color",
+      "--lcd-fg": "color",
+      "--pink-500": "color",
+      "--orange-border": "color",
+      "--orange-bg": "color",
+      "--splash-navy": "color",
+      "--splash-glow": "color",
+      "--gray-900": "color",
+      "--gray-800": "color",
+      "--gray-700": "color",
+      "--gray-600": "color",
+      "--gray-500": "color",
+      "--gray-400": "color",
+      "--gray-300": "color",
+      "--gray-200": "color",
+      "--white": "color",
+      "--color-link": "color",
+      "--color-link-hover": "color",
+      "--color-banner-grad-top": "color",
+      "--color-banner-grad-bottom": "color",
+      "--color-banner-border": "color",
+      "--color-frame-header-bg": "color",
+      "--color-frame-header-text": "font",
+      "--color-frame-border-outer": "color",
+      "--color-frame-border-inner": "color",
+      "--color-sidebar-strip-bg": "color",
+      "--color-text-body": "font",
+      "--color-text-secondary": "font",
+      "--color-text-muted": "font",
+      "--color-text-faint": "font",
+      "--color-placeholder-stripe-a": "color",
+      "--color-placeholder-stripe-b": "color",
+      "--color-board-header-bg": "color",
+      "--color-board-header-text": "font",
+      "--color-board-row-border": "color",
+      "--color-board-row-hover": "color",
+      "--color-board-accent-text": "font",
+      "--color-lcd-bg": "color",
+      "--color-lcd-fg": "color",
+      "--color-new-badge": "color",
+      "--color-construction-border": "color",
+      "--color-construction-bg": "color",
+      "--color-splash-bg": "color",
+      "--color-splash-glow": "color",
+      "--color-surface": "color",
+      "--color-surface-tint": "color",
+      "--font-body": "font",
+      "--font-ui-mono": "font",
+      "--font-heading": "font",
+      "--font-logo": "font",
+      "--text-caption": "font",
+      "--text-small": "font",
+      "--text-body": "font",
+      "--text-body-lg": "font",
+      "--text-heading-sm": "font",
+      "--text-heading": "font",
+      "--text-heading-lg": "font",
+      "--text-display": "font",
+      "--text-logo": "font",
+      "--line-body": "other",
+      "--line-tight": "other",
+      "--letter-wide": "font",
+      "--letter-wider": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--space-11": "spacing",
+      "--sidebar-width": "spacing",
+      "--fixed-strip-width": "spacing",
+      "--content-padding-x": "spacing",
+      "--frame-border-outer": "spacing",
+      "--frame-border-inner": "spacing",
+      "--frame-border-double": "spacing",
+      "--radius": "radius"
+    },
+    "fontFamilies": [
+      "Comic Neue",
+      "Nanum Gothic",
+      "Nanum Myeongjo"
+    ]
+  }
+}

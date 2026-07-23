@@ -1,0 +1,19 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Board: BoardList / PostDetail" subtitle="Green NO/SUBJECT/NAME/DATE/HIT list and opened-post view" -->
+<html><head><link rel="stylesheet" href="../../styles.css"><script src="../../_ds_bundle.js"></script></head>
+<body style="margin:0;background:#fff;font-family:var(--font-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { BoardList, PostDetail } = window.Homepy2000DesignSystem_793dff;
+function Demo(){
+  return <div style={{padding:16,display:'flex',flexDirection:'column',gap:16}}>
+    <BoardList total={24} page={1} totalPages={3} posts={[
+      {no:24,title:'요즘 즐기는 게임 이야기',author:'OOO',date:'26.07.19',views:88,isNew:true},
+      {no:20,title:'새 키보드 개봉기',author:'OOO',date:'26.06.30',views:156},
+      {no:15,title:'아무말 대잔치',author:'OOO',date:'26.06.11',views:63},
+    ]}/>
+    <PostDetail title="요즘 즐기는 게임 이야기" author="OOO" date="26.07.19" views={88} content={'스타듀밸리를 또 시작했다.\n이번엔 꼭 골든 클락을 사보자.'} onBack={()=>{}}/>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>
