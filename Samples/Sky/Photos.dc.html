@@ -45,15 +45,21 @@ a:hover { color: #ff5fa8; }
         <a href="#">Screenshots</a>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
-        <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="8">
-          <div>
-            <div style="height: 110px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 2px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 9px; color: #557; text-align: center;">
-              [ {{ t.label }} ]
+      <div style="display: inline-block; border: 2px solid #999; padding: 6px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #999; border-left: 1px solid #999;">
+          <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="8">
+            <div style="border-right: 1px solid #999; border-bottom: 1px solid #999; padding: 10px;">
+              <div style="width: 130px; height: 100px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 1px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 9px; color: #557; text-align: center;">
+                [ {{ t.label }} ]
+              </div>
+              <div style="font-size: 13px; font-weight: 700; text-align: center; margin-top: 4px; color: #333;">{{ t.title }}</div>
             </div>
-            <div style="font-size: 13px; font-weight: 700; text-align: center; margin-top: 4px; color: #333;">{{ t.title }}</div>
-          </div>
-        </sc-for>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px; font-weight: 700; font-size: 15px;">
+        [1] <a href="#">2</a> <a href="#">3</a> <a href="#">4</a>
       </div>
 
     </div>

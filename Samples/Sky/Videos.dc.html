@@ -40,16 +40,22 @@ a:hover { color: #ff5fa8; }
       <div style="font-size: 22px; font-weight: 700; color: #0d5fc0; margin-bottom: 6px;">✿ Videos</div>
       <div style="font-size: 14px; font-weight: 700; color: #777; margin-bottom: 16px;">click a thumbnail to watch</div>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-        <sc-for list="{{ videos }}" as="v" hint-placeholder-count="6">
-          <div>
-            <div style="height: 130px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 2px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 10px; color: #557; text-align: center; position: relative;">
-              [ video thumbnail ]
-              <div style="position: absolute; width: 0; height: 0; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 18px solid #1a3fd6;"></div>
+      <div style="display: inline-block; border: 2px solid #999; padding: 6px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #999; border-left: 1px solid #999;">
+          <sc-for list="{{ videos }}" as="v" hint-placeholder-count="6">
+            <div style="border-right: 1px solid #999; border-bottom: 1px solid #999; padding: 10px;">
+              <div style="width: 160px; height: 120px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 1px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 10px; color: #557; text-align: center; position: relative;">
+                [ video thumbnail ]
+                <div style="position: absolute; width: 0; height: 0; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 18px solid #1a3fd6;"></div>
+              </div>
+              <div style="font-size: 14px; font-weight: 700; text-align: center; margin-top: 4px; color: #333;">{{ v.title }}</div>
             </div>
-            <div style="font-size: 14px; font-weight: 700; text-align: center; margin-top: 4px; color: #333;">{{ v.title }}</div>
-          </div>
-        </sc-for>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px; font-weight: 700; font-size: 15px;">
+        [1] <a href="#">2</a> <a href="#">3</a>
       </div>
 
     </div>

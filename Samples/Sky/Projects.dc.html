@@ -37,18 +37,33 @@ a:hover { color: #ff5fa8; }
 
     <div style="flex: 1; min-width: 0;">
 
-      <div style="font-size: 22px; font-weight: 700; color: #0d5fc0; margin-bottom: 6px;">✿ Projects</div>
-      <div style="font-size: 14px; font-weight: 700; color: #777; margin-bottom: 16px;">click a thumbnail to open in a new tab</div>
+      <div style="font-size: 22px; font-weight: 700; color: #0d5fc0; margin-bottom: 14px;">✿ Projects</div>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
-          <a href="#" target="_blank" style="text-decoration: none;">
-            <div style="height: 130px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 2px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 10px; color: #557; text-align: center;">
-              [ project thumbnail ]
+      <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+
+        <div style="width: 130px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+            <a href="#" onClick="{{ p.select }}" style="font-size: 15px; font-weight: 700; text-decoration: {{ p.deco }}; color: {{ p.color }};">{{ p.title }}</a>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; flex: 1; min-width: 260px; border: 3px double #6a95c7;">
+          <div style="padding: 14px; width: 180px; flex-shrink: 0; border-right: 3px double #6a95c7;">
+            <div style="font-size: 17px; font-weight: 700; color: #0d5fc0; margin-bottom: 10px;">{{ current.title }}</div>
+            <div style="width: 150px; height: 120px; background: repeating-linear-gradient(45deg, #d6ecff, #d6ecff 10px, #ffffff 10px, #ffffff 20px); border: 2px solid #6a95c7; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 9px; color: #557; text-align: center;">
+              [ project image ]
             </div>
-            <div style="font-size: 14px; font-weight: 700; text-align: center; margin-top: 4px; color: #1f4fd6;">{{ p.title }}</div>
-          </a>
-        </sc-for>
+          </div>
+          <div style="padding: 14px; flex: 1; min-width: 200px;">
+            <div style="font-size: 15px; font-weight: 700; line-height: 1.8; color: #333;">
+              {{ current.desc }}
+            </div>
+            <div style="margin-top: 14px; font-size: 14px; font-weight: 700;">
+              <a href="{{ current.link }}" target="_blank">▶ open project link</a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -59,17 +74,26 @@ a:hover { color: #ff5fa8; }
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  state = { selected: 0 };
+
   renderVals() {
-    return {
-      projects: [
-        { title: 'guestbook script' },
-        { title: 'fan-made mp3 player' },
-        { title: 'html layout collection' },
-        { title: 'cursor trail effect' },
-        { title: 'clock widget' },
-        { title: 'visitor counter cgi' }
-      ]
-    };
+    const data = [
+      { title: 'guestbook script', desc: 'A tiny CGI guestbook I hacked together with a friend. Nothing fancy, just name/message/date ^^', link: '#' },
+      { title: 'fan-made mp3 player', desc: 'Flash-based mp3 player skin I made for my old Cyworld page. Repeat/Random buttons included ㅋㅋ', link: '#' },
+      { title: 'html layout collection', desc: 'A bunch of homepage layout templates I collected and tweaked over the years.', link: '#' },
+      { title: 'cursor trail effect', desc: 'Sparkly mouse trail script, copy-pasted and edited from a webmaster forum lol.', link: '#' },
+      { title: 'clock widget', desc: 'A little JS clock widget with a cutesy font. Used to sit at the bottom of my old page.', link: '#' },
+      { title: 'visitor counter cgi', desc: 'Simple visitor counter perl script, digit images and all.', link: '#' }
+    ];
+
+    const projects = data.map((d, i) => ({
+      title: d.title,
+      select: () => this.setState({ selected: i }),
+      color: i === this.state.selected ? '#ff5fa8' : '#1f4fd6',
+      deco: i === this.state.selected ? 'underline' : 'underline'
+    }));
+
+    return { projects, current: data[this.state.selected] };
   }
 }
 

@@ -31,18 +31,21 @@
 - 상단: 타이틀 로고(이중선 보더 하단) + 사이트 주소 서브텍스트.
 - 좌측: 세로 텍스트 링크 메뉴 (Home / Profile / Notices / Board / Photos / Videos / Projects), 현재 페이지는 핑크(`#ff5fa8`)로 표시.
 - 본문: 화면 전체 폭 사용 (가운데 좁은 컬럼으로 가두지 않음).
-- 이미지 placeholder를 본문 곳곳에 배치 (프로필 사진, 스냅샷 그리드, 게시판 미리보기 썸네일 등).
-- 구분선(`<hr>`, 2px solid `#6a95c7`)을 섹션 사이마다 적극 사용.
+- 이미지 placeholder를 본문 곳곳에 배치 (프로필 사진, 반려동물 사진, 게시판 썸네일, 갤러리 그리드 등).
+- 구분선은 두 종류를 섞어 사용: 섹션 사이 `<hr>`(2px solid `#6a95c7`), 홈 화면처럼 장식적인 곳은 별/꽃 유니코드(✧, ❀) + 얇은 line으로 대체.
+- 홈 화면은 규칙적인 그리드 대신 의도적으로 비대칭 배치(좌우 치우침, 살짝 회전된 사진, 우측 정렬 배너 등)를 사용해 투박한 느낌을 강조.
+- 갤러리류(Photos/Videos)는 바깥 회색 프레임(`border: 2px solid #999`) 안에 셀 경계선(1px solid `#999`)이 있는 표 형태 그리드, 배경은 투명(하늘 배경이 비쳐 보임), 하단에 `[1] 2 3` 형태 페이징 포함.
+- Projects는 좌측 세로 텍스트 링크(프로젝트 목록) + 우측 이중선(`3px double #6a95c7`) 프레임 안에 이미지/설명이 내부 구분선으로 나뉜 상세 패널 (클릭 시 상세 내용 전환, 선택 항목은 핑크로 표시).
 
 ## 5. 사이트 구조 & 페이지
 
-- **Home** (`지수의 하늘정원.dc.html`) — 소개 문구 + 스냅샷 그리드 + 게시판별(Notices/Free Board/Daily Diary) 최신글 미리보기.
+- **Home** (`지수의 하늘정원.dc.html`) — 장식 구분선 + 환영 인사 문구(길게) + 기울어진 캐릭터 사진 + 반려동물(Mongshil) 소개 + 배너/mp3 gif placeholder + 하단 우측 정렬 게시판 링크. 게시판 미리보기 목록/스냅샷 그리드는 제거됨.
 - **Profile** — 프로필 사진, 소개, 좋아하는 것, 스냅샷, 연락처 링크.
 - **Notices** — NO/SUBJECT/DATE/HIT 목록, 게시글 클릭 시 `PostDetail.dc.html`로 이동.
 - **Board** — 카테고리 탭(Free/Diary/Travelogue/Dev Log) + NO/SUBJECT/NAME/DATE/HIT 목록, 상세 페이지 연결.
-- **Photos** — 탭(All/Photos/Illustration/Webtoon/Screenshots) + 썸네일 그리드.
-- **Videos** — 썸네일 그리드 + 재생 아이콘 오버레이(실제 재생 없음).
-- **Projects** — 썸네일 그리드, 새 탭 링크 placeholder.
+- **Photos** — 탭(All/Photos/Illustration/Webtoon/Screenshots) + 표 형태 썸네일 그리드 + 페이징.
+- **Videos** — 표 형태 썸네일 그리드(재생 아이콘 오버레이, 실제 재생 없음) + 페이징.
+- **Projects** — 좌측 프로젝트 목록(클릭으로 선택) + 우측 이중선 프레임 상세 패널(이미지 + 설명 + 링크).
 - **PostDetail** — Notices/Board 공용 상세 페이지. URL 쿼리 `?id=`로 게시글 데이터를 매핑해서 렌더링.
 
 ## 6. 앞으로 확장 가능한 부분 (미구현)
