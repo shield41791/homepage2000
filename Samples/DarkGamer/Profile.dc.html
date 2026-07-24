@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<style>
+body { margin: 0; background: #000; }
+a { color: #66d9ff; text-decoration: none; }
+a:hover { color: #ff66cc; }
+::-webkit-scrollbar { width: 14px; background: #000; }
+::-webkit-scrollbar-thumb { background: #ff9900; border: 1px solid #663300; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background: #000; font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; color: #ddd; padding-bottom: 60px;">
+
+  <div style="display: flex; align-items: flex-end; gap: 10px; padding: 8px 10px 0;">
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <a href="#" onClick="{{ comingSoon }}" style="background: #d9d9d9; border: 1px outset #fff; color: #000; font-size: 10px; font-weight: 700; padding: 2px 6px; text-align: center;">시작페이지로</a>
+      <a href="#" onClick="{{ comingSoon }}" style="background: #d9d9d9; border: 1px outset #fff; color: #000; font-size: 10px; font-weight: 700; padding: 2px 6px; text-align: center;">즐겨찾기추가</a>
+    </div>
+    <a href="Home.dc.html" style="display: block; width: 260px; height: 62px; background: #12245c; border: 4px outset #6688cc; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+      <span style="color: #ffff00; font-size: 24px; font-weight: 700; text-shadow: 2px 2px 0 #000000;">칠흑's 다크로드</span>
+    </a>
+  </div>
+
+  <div style="padding: 10px 14px; border-bottom: 1px solid #333;">
+    <marquee behavior="scroll" direction="left" scrollamount="4" style="background: #0a0a0a; border: 1px solid #334; color: #00ff00; font-family: 'Courier New', monospace; font-size: 13px; padding: 5px 10px;">
+      제 프로필입니다.. 별로 볼 건 없지만 궁금하신 분들은 구경하고 가세요~
+    </marquee>
+  </div>
+
+  <div style="display: flex; align-items: flex-start; gap: 0; margin-top: 4px;">
+
+    <div style="width: 190px; flex-shrink: 0; background: #141414; border-right: 2px solid #3a2a10; padding: 16px 18px; box-sizing: border-box; min-height: 640px;">
+      <div style="color: #ffaa33; font-weight: 800; font-size: 13px; letter-spacing: 2px; margin-bottom: 10px;">MENU</div>
+      <div style="display: flex; flex-direction: column; gap: 9px; font-size: 14px; font-weight: 700; margin-bottom: 20px;">
+        <a href="Home.dc.html" style="color: #cfcfcf;">- 홈</a>
+        <a href="Profile.dc.html" style="color: #ffffff;">- 프로필</a>
+        <a href="Notice.dc.html" style="color: #cfcfcf;">- 공지사항</a>
+        <a href="Board.dc.html" style="color: #cfcfcf;">- 게시판</a>
+        <a href="Photos.dc.html" style="color: #cfcfcf;">- 사진첩</a>
+        <a href="Videos.dc.html" style="color: #cfcfcf;">- 동영상</a>
+        <a href="Projects.dc.html" style="color: #cfcfcf;">- 프로젝트</a>
+      </div>
+      <div style="border-top: 3px double #ff9900; padding-top: 12px; margin-bottom: 16px;">
+        <a href="#" onClick="{{ comingSoon }}" style="display: block; font-size: 13px; font-weight: 700; color: #ffcc66;">✎ 방명록 남기기</a>
+      </div>
+      <div style="border-top: 3px double #ff9900; padding-top: 12px; font-size: 11px; color: #888; line-height: 1.8;">
+        전체회원 : 1,204 명<br/>오늘가입 : 3 명
+      </div>
+    </div>
+
+    <div style="flex: 1; min-width: 0; padding: 20px 24px;">
+
+      <div style="display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 22px;">
+        <div style="width: 160px; height: 200px; flex-shrink: 0; background: repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 10px, #0a0a0a 10px, #0a0a0a 20px); border: 3px solid #665500; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 10px; color: #886600; text-align: center;">
+          [ 프로필 사진 ]
+        </div>
+        <div style="flex: 1; min-width: 240px;">
+          <div style="font-size: 24px; font-weight: 700; color: #ffcc00; margin-bottom: 10px;">칠흑</div>
+          <div style="font-size: 14px; line-height: 2; color: #ddd;">
+            나 이 : 비밀입니다 (^^;)<br/>
+            직 업 : 회사원<br/>
+            게 임 : 다크로드 온라인 (3년째)<br/>
+            길 드 : 혼신<br/>
+            좌우명 : 꾸준히, 즐겁게
+          </div>
+        </div>
+      </div>
+
+      <hr style="border: none; border-top: 2px solid #443300; margin: 18px 0;"/>
+
+      <div style="font-size: 16px; font-weight: 700; color: #ffcc00; margin-bottom: 8px;">자기소개</div>
+      <div style="font-size: 14px; line-height: 1.9; color: #ddd; margin-bottom: 20px;">
+        안녕하세요, 다크로드 온라인을 좋아하는 칠흑입니다.<br/>
+        평범한 회사원이고, 퇴근하고 나서 짬짬이 게임하는 것을 낙으로 삼고 있습니다.<br/>
+        홈페이지도 그런 취미의 연장선으로 만들어봤습니다. 편하게 놀다 가세요.
+      </div>
+
+      <div style="font-size: 16px; font-weight: 700; color: #ffcc00; margin-bottom: 8px;">관심사</div>
+      <div style="font-size: 14px; line-height: 1.9; color: #ddd; margin-bottom: 20px;">
+        - 다크로드 온라인 사냥터 공략 정리<br/>
+        - 오래된 PC게임 다시 해보기<br/>
+        - 저녁에 산책하면서 라디오 듣기
+      </div>
+
+      <div style="font-size: 16px; font-weight: 700; color: #ffcc00; margin-bottom: 8px;">좋아하는 것들</div>
+      <div style="font-size: 14px; line-height: 1.9; color: #ddd; margin-bottom: 20px;">
+        - 늦은 밤 사냥터의 고요함<br/>
+        - 길드원들과의 잡담<br/>
+        - 라면에 계란 두 개
+      </div>
+
+      <div style="font-size: 16px; font-weight: 700; color: #ffcc00; margin-bottom: 8px;">SNS</div>
+      <div style="display: flex; gap: 10px; font-size: 13px; font-weight: 700;">
+        <a href="#" onClick="{{ comingSoon }}" style="background: #1a1a1a; border: 1px solid #555; padding: 5px 10px;">싸이월드</a>
+        <a href="#" onClick="{{ comingSoon }}" style="background: #1a1a1a; border: 1px solid #555; padding: 5px 10px;">네이트온</a>
+        <a href="#" onClick="{{ comingSoon }}" style="background: #1a1a1a; border: 1px solid #555; padding: 5px 10px;">이메일</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: stretch; height: 26px; z-index: 10;">
+    <div style="background: #12245c; border-right: 3px outset #6688cc; color: #ffff00; font-size: 12px; font-weight: 800; display: flex; align-items: center; padding: 0 12px;">공지</div>
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="flex: 1; background: #000; color: #ccc; font-size: 12px; display: flex; align-items: center;">
+      ▶ 다크로드 온라인 정기점검 안내: 매주 목요일 오전 6시~9시&nbsp;&nbsp;&nbsp;&nbsp;▶ 게시판 이용 시 서로 예의를 지켜주세요&nbsp;&nbsp;&nbsp;&nbsp;▶ 홈페이지 방문해주셔서 감사합니다 (_ _)
+    </marquee>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다.'); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
