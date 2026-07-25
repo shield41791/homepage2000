@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { text-decoration: none; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background-color:#ffe1f0;background-image:radial-gradient(circle,#ffffff 1.5px,transparent 2px),radial-gradient(circle,#ffc2e2 1.5px,transparent 2px);background-size:28px 28px,28px 28px;background-position:0 0,14px 14px;font-family:'Gulim','Dotum',sans-serif;padding:22px 0 60px;box-sizing:border-box;">
+  <div style="width:780px;max-width:100%;margin:0 auto;background:#fff9fc;border:3px solid #ff8fc7;box-sizing:border-box;">
+
+    <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
+      <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">소이의 딸기우유</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://strawberrymilk.wo.to *</div>
+    </div>
+
+    <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
+      <a href="Home.dc.html" style="color:#b04fd6;padding:3px 6px;">Home</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Profile.dc.html" style="color:#b04fd6;padding:3px 6px;">Profile</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Notice.dc.html" style="color:#b04fd6;padding:3px 6px;">Notice</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Board.dc.html" style="color:#b04fd6;padding:3px 6px;">Board</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Photos.dc.html" style="color:#b04fd6;padding:3px 6px;">Photos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Videos.dc.html" style="color:#b04fd6;padding:3px 6px;">Videos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Projects.dc.html" style="color:#ff2f8f;background:#ffe3f0;padding:3px 10px;">Projects</a>
+    </div>
+
+    <div style="background:#fff0f8;border-bottom:1px dotted #ffc7e3;padding:5px 10px;">
+      <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#d6368f;font-size:12px;">
+        ♡ 어서오세요~ 소이의 딸기우유에 놀러오신 걸 환영해요 ^^ 방명록에 흔적 남기고 가세요~ ㅋㅋ ♡
+      </marquee>
+    </div>
+
+    <div style="padding:20px 24px;">
+      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ 프로젝트 ✧</div>
+      <div style="font-size:12px;color:#a34c8c;margin-bottom:14px;">썸네일을 클릭하면 새 창에서 링크가 열려요 ^^</div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+          <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer" style="border:2px solid #ff9ecf;background:#fff;display:block;">
+            <div style="width:100%;aspect-ratio:16/9;background:repeating-linear-gradient(45deg,#e3d3ff,#e3d3ff 8px,#f3ecff 8px,#f3ecff 16px);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:9px;color:#8a4fd6;">[ 사이트 캡처 ]</div>
+            <div style="padding:8px 10px;font-size:13px;color:#7a3a63;font-weight:700;">{{ p.title }}</div>
+            <div style="padding:0 10px 10px;font-size:11px;color:#c98cb0;">{{ p.desc }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:14px 10px;border-top:2px dotted #ff9ecf;font-size:11px;color:#b04fd6;">
+      ❀ Copyright(c) 2003 Soi. All rights reserved. ❀
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      projects: [
+        { url: 'https://example.com/strawberrymilk', title: '딸기우유 홈피 (이거!)', desc: '지금 보고 계신 이 홈페이지에요 ㅎㅎ' },
+        { url: 'https://example.com/fan-site', title: '친구랑 만든 팬사이트', desc: '민지랑 같이 만든 좋아하는 가수 팬사이트' },
+        { url: 'https://example.com/skin', title: '미니홈피 스킨 제작', desc: '핑크핑크한 미니홈피 스킨 배포했어요' },
+        { url: 'https://example.com/club', title: '학교 동아리 사이트', desc: '컴퓨터 동아리에서 만든 소개 사이트' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

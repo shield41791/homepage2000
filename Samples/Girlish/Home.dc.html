@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { text-decoration: none; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background-color:#ffe1f0;background-image:radial-gradient(circle,#ffffff 1.5px,transparent 2px),radial-gradient(circle,#ffc2e2 1.5px,transparent 2px);background-size:28px 28px,28px 28px;background-position:0 0,14px 14px;font-family:'Gulim','Dotum',sans-serif;padding:22px 0 60px;box-sizing:border-box;">
+
+  <div style="width:780px;max-width:100%;margin:0 auto;background:#fff9fc;border:3px solid #ff8fc7;box-sizing:border-box;">
+
+    <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
+      <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
+      <span style="position:absolute;bottom:8px;left:44px;font-size:14px;">✧</span>
+      <span style="position:absolute;bottom:12px;right:60px;font-size:16px;">✧</span>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">소이의 딸기우유</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://strawberrymilk.wo.to *</div>
+    </div>
+
+    <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
+      <a href="Home.dc.html" style="color:#ff2f8f;background:#ffe3f0;padding:3px 10px;">Home</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Profile.dc.html" style="color:#b04fd6;padding:3px 6px;">Profile</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Notice.dc.html" style="color:#b04fd6;padding:3px 6px;">Notice</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Board.dc.html" style="color:#b04fd6;padding:3px 6px;">Board</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Photos.dc.html" style="color:#b04fd6;padding:3px 6px;">Photos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Videos.dc.html" style="color:#b04fd6;padding:3px 6px;">Videos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Projects.dc.html" style="color:#b04fd6;padding:3px 6px;">Projects</a>
+    </div>
+
+    <div style="background:#fff0f8;border-bottom:1px dotted #ffc7e3;padding:5px 10px;">
+      <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#d6368f;font-size:12px;">
+        ♡ 어서오세요~ 소이의 딸기우유에 놀러오신 걸 환영해요 ^^ 방명록에 흔적 남기고 가세요~ ㅋㅋ ♡
+      </marquee>
+    </div>
+
+    <div style="display:flex;gap:20px;padding:20px;flex-wrap:wrap;">
+
+      <div style="flex:2;min-width:320px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:120px;height:150px;flex-shrink:0;transform:rotate(-4deg);background:repeating-linear-gradient(45deg,#ffd6ea,#ffd6ea 8px,#ffe9f4 8px,#ffe9f4 16px);border:3px solid #fff;box-shadow:0 0 0 2px #ff9ecf;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#b04fd6;text-align:center;">사진<br/>[소이]</div>
+          <div style="font-size:13px;color:#9c4680;line-height:1.9;">
+            안뇽~*^^* 딸기우유랑 곰돌이 젤리 좋아하는 &lt;b&gt;소이&lt;/b&gt;에요 ㅎㅎ<br/>
+            여긴 그냥 제 잡다한 일상이랑 좋아하는 것들 모아두는 곳이에요.<br/>
+            자주 놀러와주세요~ 방명록도 살짝 남겨주시면 완전 감사 ㅋㅋ<br/>
+            <span style="color:#d6368f;">♡ 오늘의 기분: 딸기맛 기분 ♡</span>
+          </div>
+        </div>
+
+        <div style="margin-top:22px;">
+          <div style="color:#d6368f;font-size:15px;font-weight:700;border-bottom:1px dotted #f0b8d8;padding-bottom:4px;margin-bottom:8px;">✧ 최근 게시판 글 ✧</div>
+          <sc-for list="{{ boardLatest }}" as="b" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px dotted #ffdcef;">
+              <a href="PostView.dc.html?board=board&id={{ b.id }}" style="color:#7a3a63;">
+                <sc-if value="{{ b.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#ff2266;font-weight:800;margin-right:4px;">[N]</span></sc-if>{{ b.title }}
+              </a>
+              <span style="color:#c98cb0;font-size:11px;flex-shrink:0;margin-left:8px;">{{ b.date }}</span>
+            </div>
+          </sc-for>
+          <div style="text-align:right;font-size:11px;margin-top:6px;"><a href="Board.dc.html" style="color:#b04fd6;">게시판 더보기 »</a></div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <div style="color:#d6368f;font-size:15px;font-weight:700;border-bottom:1px dotted #f0b8d8;padding-bottom:4px;margin-bottom:8px;">❀ 공지사항 ❀</div>
+          <sc-for list="{{ noticeLatest }}" as="n" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px dotted #ffdcef;">
+              <a href="PostView.dc.html?board=notice&id={{ n.id }}" style="color:#7a3a63;">
+                <sc-if value="{{ n.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#ff2266;font-weight:800;margin-right:4px;">[N]</span></sc-if>{{ n.title }}
+              </a>
+              <span style="color:#c98cb0;font-size:11px;flex-shrink:0;margin-left:8px;">{{ n.date }}</span>
+            </div>
+          </sc-for>
+          <div style="text-align:right;font-size:11px;margin-top:6px;"><a href="Notice.dc.html" style="color:#b04fd6;">공지사항 더보기 »</a></div>
+        </div>
+
+        <div style="margin-top:22px;padding-top:14px;border-top:2px dotted #ff9ecf;font-size:12px;color:#a34c8c;line-height:1.7;">
+          우리집 강아지 먼지도 소개할게요*^^* 완전 애교쟁이에요 ㅋㅋㅋ
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <div style="width:80px;height:60px;background:repeating-linear-gradient(45deg,#fff3c9,#fff3c9 8px,#fff9e6 8px,#fff9e6 16px);border:2px solid #e0c060;font-family:monospace;font-size:8px;color:#8a6d1a;display:flex;align-items:center;justify-content:center;text-align:center;">먼지 사진1</div>
+            <div style="width:80px;height:60px;background:repeating-linear-gradient(45deg,#fff3c9,#fff3c9 8px,#fff9e6 8px,#fff9e6 16px);border:2px solid #e0c060;font-family:monospace;font-size:8px;color:#8a6d1a;display:flex;align-items:center;justify-content:center;text-align:center;">먼지 사진2</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:12px;">
+        <div style="background:repeating-linear-gradient(90deg,#ffd1ec,#ffd1ec 10px,#ffe9f6 10px,#ffe9f6 20px);border:2px solid #ff8fc7;text-align:center;font-family:'Comic Sans MS',cursive;font-weight:700;color:#ff2f8f;font-size:15px;padding:6px;">Link me♡</div>
+        <div style="border:2px solid #ff9ecf;background:#fff;padding:8px;text-align:center;">
+          <div style="width:100%;height:60px;background:repeating-linear-gradient(45deg,#ffe3f0,#ffe3f0 8px,#fff 8px,#fff 16px);border:1px solid #ff9ecf;font-family:monospace;font-size:9px;color:#b04fd6;display:flex;align-items:center;justify-content:center;">배너 88x31</div>
+          <div style="font-size:11px;color:#b04fd6;margin-top:6px;">please link me!</div>
+        </div>
+
+        <div style="background:repeating-linear-gradient(90deg,#e3d3ff,#e3d3ff 10px,#f3ecff 10px,#f3ecff 20px);border:2px solid #b98fe0;text-align:center;font-family:'Comic Sans MS',cursive;font-weight:700;color:#8a4fd6;font-size:15px;padding:6px;">Guestbook</div>
+        <a href="#" onClick="{{ comingSoon }}" style="display:block;text-align:center;background:#f3ecff;border:2px outset #b98fe0;color:#6a2fa6;font-size:12px;font-weight:700;padding:8px 4px;">✎ 방명록 남기기</a>
+
+        <div style="background:repeating-linear-gradient(90deg,#cdeaff,#cdeaff 10px,#e9f6ff 10px,#e9f6ff 20px);border:2px solid #7ec8f2;text-align:center;font-family:'Comic Sans MS',cursive;font-weight:700;color:#2f8fd6;font-size:15px;padding:6px;">사이트 현황</div>
+        <div style="border:2px solid #7ec8f2;background:#fff;padding:8px 10px;font-size:11px;color:#3a7ab0;line-height:1.9;">
+          게시글 : {{ totalPosts }} 개<br/>
+          사진/그림 : 8 개<br/>
+          누적 방문자 : 5,412 명
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;padding:14px 10px;border-top:2px dotted #ff9ecf;font-size:11px;color:#b04fd6;">
+      ❀ Copyright(c) 2003 Soi. All rights reserved. ❀
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다.'); },
+      totalPosts: 11,
+      boardLatest: [
+        { id: 'b6', date: '11-05', title: '오늘 학교에서 있었던일 ㅋㅋ', isNew: true },
+        { id: 'b5', date: '11-01', title: '요즘 너무 우울해요 ㅠㅠ', isNew: false },
+        { id: 'b4', date: '10-28', title: '새로산 다이어리 자랑*^^*', isNew: false }
+      ],
+      noticeLatest: [
+        { id: 'n5', date: '11-02', title: '레이아웃 살짝 바꿨어요 ㅋㅋ', isNew: true },
+        { id: 'n4', date: '10-20', title: '방명록 자동삭제 테스트중', isNew: false },
+        { id: 'n3', date: '10-11', title: '메신저 아이디 바꿨어요', isNew: false }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

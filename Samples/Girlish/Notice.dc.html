@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { text-decoration: none; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background-color:#ffe1f0;background-image:radial-gradient(circle,#ffffff 1.5px,transparent 2px),radial-gradient(circle,#ffc2e2 1.5px,transparent 2px);background-size:28px 28px,28px 28px;background-position:0 0,14px 14px;font-family:'Gulim','Dotum',sans-serif;padding:22px 0 60px;box-sizing:border-box;">
+  <div style="width:780px;max-width:100%;margin:0 auto;background:#fff9fc;border:3px solid #ff8fc7;box-sizing:border-box;">
+
+    <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
+      <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">소이의 딸기우유</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://strawberrymilk.wo.to *</div>
+    </div>
+
+    <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
+      <a href="Home.dc.html" style="color:#b04fd6;padding:3px 6px;">Home</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Profile.dc.html" style="color:#b04fd6;padding:3px 6px;">Profile</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Notice.dc.html" style="color:#ff2f8f;background:#ffe3f0;padding:3px 10px;">Notice</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Board.dc.html" style="color:#b04fd6;padding:3px 6px;">Board</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Photos.dc.html" style="color:#b04fd6;padding:3px 6px;">Photos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Videos.dc.html" style="color:#b04fd6;padding:3px 6px;">Videos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Projects.dc.html" style="color:#b04fd6;padding:3px 6px;">Projects</a>
+    </div>
+
+    <div style="background:#fff0f8;border-bottom:1px dotted #ffc7e3;padding:5px 10px;">
+      <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#d6368f;font-size:12px;">
+        ♡ 어서오세요~ 소이의 딸기우유에 놀러오신 걸 환영해요 ^^ 방명록에 흔적 남기고 가세요~ ㅋㅋ ♡
+      </marquee>
+    </div>
+
+    <div style="padding:20px 24px;">
+      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ 공지사항 ✧</div>
+
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#e3d3ff;color:#6a2fa6;font-weight:700;">
+            <td style="border:1px solid #c9a8e8;padding:7px 4px;text-align:center;width:50px;">NO</td>
+            <td style="border:1px solid #c9a8e8;padding:7px 8px;">SUBJECT</td>
+            <td style="border:1px solid #c9a8e8;padding:7px 4px;text-align:center;width:80px;">DATE</td>
+            <td style="border:1px solid #c9a8e8;padding:7px 4px;text-align:center;width:60px;">HIT</td>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ notices }}" as="n" hint-placeholder-count="5">
+            <tr style="background:{{ n.rowBg }};">
+              <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#a34c8c;">{{ n.no }}</td>
+              <td style="border:1px solid #eecdec;padding:6px 8px;">
+                <a href="PostView.dc.html?board=notice&id={{ n.id }}" style="color:#7a3a63;">
+                  <sc-if value="{{ n.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#ff2266;font-weight:800;margin-right:4px;">[N]</span></sc-if>{{ n.title }}
+                </a>
+              </td>
+              <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">{{ n.date }}</td>
+              <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">{{ n.hit }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+
+      <div style="text-align:center;margin-top:16px;font-size:12px;color:#b04fd6;">
+        [1]
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:14px 10px;border-top:2px dotted #ff9ecf;font-size:11px;color:#b04fd6;">
+      ❀ Copyright(c) 2003 Soi. All rights reserved. ❀
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      { id: 'n5', date: '11-02', title: '레이아웃 살짝 바꿨어요 ㅋㅋ', isNew: true, hit: 82 },
+      { id: 'n4', date: '10-20', title: '방명록 자동삭제 테스트중', isNew: false, hit: 41 },
+      { id: 'n3', date: '10-11', title: '메신저 아이디 바꿨어요', isNew: false, hit: 55 },
+      { id: 'n2', date: '09-30', title: '홈피 오픈했습니다~', isNew: false, hit: 63 },
+      { id: 'n1', date: '09-30', title: '환영합니다 ^^', isNew: false, hit: 90 }
+    ];
+    const notices = raw.map((n, i) => ({ ...n, no: raw.length - i, rowBg: i % 2 === 0 ? '#fff9fc' : '#fff0f8' }));
+    return { notices };
+  }
+}
+
+</script>
+</body>
+</html>
