@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<style>
+body { margin: 0; background: #7d7862; }
+a { color: #7a4a12; text-decoration: none; }
+a:hover { color: #b5231f; }
+::-webkit-scrollbar { width: 14px; background: #2b2412; }
+::-webkit-scrollbar-thumb { background: #b8952e; border: 1px solid #4a3c1a; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background: repeating-linear-gradient(100deg, #a8a292 0px, #a8a292 2px, #9a9484 2px, #9a9484 4px), repeating-linear-gradient(10deg, #a29c8c 0px, #a29c8c 3px, #948e7c 3px, #948e7c 6px); font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; padding: 20px 0 66px; box-sizing: border-box;">
+
+  <div style="width: 800px; max-width: 100%; margin: 0 auto; background: #a39c88; border: 2px solid #4a3c1a; box-sizing: border-box;">
+
+    <div style="background: repeating-linear-gradient(115deg, #2c3d4a, #2c3d4a 10px, #33465a 10px, #33465a 20px); padding: 10px 16px; display: flex; align-items: center; justify-content: center; gap: 14px;">
+      <div style="width: 100px; height: 78px; flex-shrink: 0; background: repeating-linear-gradient(45deg, #4a2f4a, #4a2f4a 8px, #5c3d5c 8px, #5c3d5c 16px); border: 2px solid #8a742e; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 8px; color: #d9c98a; text-align: center;">돛단배 그림</div>
+      <a href="Home.dc.html" style="text-decoration: none;">
+        <span style="font-size: 42px; font-weight: 700; color: #e2c14a; text-shadow: 3px 3px 0 #16241a; letter-spacing: 1px; font-style: italic;">실피의 아르카디아</span>
+      </a>
+      <div style="width: 100px; height: 78px; flex-shrink: 0; background: repeating-linear-gradient(45deg, #2a3a4a, #2a3a4a 8px, #3a4e5c 8px, #3a4e5c 16px); border: 2px solid #8a742e; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 8px; color: #d9c98a; text-align: center;">탑 그림</div>
+    </div>
+
+    <div style="height: 10px; background: repeating-linear-gradient(45deg, #5a4a1a, #5a4a1a 6px, #8a742e 6px, #8a742e 12px); border-top: 1px solid #3a2e10; border-bottom: 2px solid #3a2e10;"></div>
+
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; background: #3a3220; padding: 9px 10px; border-bottom: 2px solid #1a1508; font-size: 13px; font-weight: 800; letter-spacing: 1px;">
+      <a href="#" onClick="{{ comingSoon }}" style="color: #e2c14a;">지도</a>
+      <a href="#" onClick="{{ comingSoon }}" style="color: #cbb46a;">종족</a>
+      <a href="#" onClick="{{ comingSoon }}" style="color: #cbb46a;">마법서</a>
+      <a href="#" onClick="{{ comingSoon }}" style="color: #cbb46a;">아이템</a>
+      <a href="#" onClick="{{ comingSoon }}" style="color: #cbb46a;">몬스터도감</a>
+      <a href="#" onClick="{{ comingSoon }}" style="color: #cbb46a;">커뮤니티</a>
+    </div>
+
+    <div style="display: flex; justify-content: center; padding: 10px; background: #a39c88; border-bottom: 1px solid #7a745e;">
+      <div style="width: 300px; height: 44px; background: #111; border: 2px solid #b5231f; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 11px; color: #ffcc33; text-align: center;">[ 광고 배너 300x44 ]</div>
+    </div>
+
+    <div style="padding: 8px 14px; background: #2b2412; border-bottom: 2px solid #1a1508;">
+      <marquee behavior="scroll" direction="left" scrollamount="4" style="color: #ffcc33; font-family: 'Courier New', monospace; font-size: 13px;">
+        그동안 만들어본 것들을 모아뒀습니다.. 섬네일 누르면 새 창으로 이동해요~
+      </marquee>
+    </div>
+
+    <div style="display: flex; align-items: flex-start;">
+
+      <div style="width: 200px; flex-shrink: 0; background: #a39c88; border-right: 2px solid #4a3c1a; padding: 14px; box-sizing: border-box; min-height: 640px;">
+        <div style="border: 1px solid #4a3c1a; background: #f3ead0; padding: 10px 12px; margin-bottom: 14px;">
+          <div style="color: #6b4a1f; font-weight: 800; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; border-bottom: 1px solid #a8935a; padding-bottom: 4px;">실피의 아르카디아</div>
+          <div style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">
+            <a href="Home.dc.html" style="color: #3a3020;">홈</a>
+            <a href="Profile.dc.html" style="color: #3a3020;">프로필</a>
+            <a href="Notice.dc.html" style="color: #3a3020;">공지사항</a>
+            <a href="Board.dc.html" style="color: #3a3020;">게시판</a>
+            <a href="Photos.dc.html" style="color: #3a3020;">사진첩</a>
+            <a href="Videos.dc.html" style="color: #3a3020;">동영상</a>
+            <a href="Projects.dc.html" style="color: #7a1010;">프로젝트</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #4a3c1a; background: #f3ead0; padding: 10px 12px; margin-bottom: 14px;">
+          <div style="color: #6b4a1f; font-weight: 800; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; border-bottom: 1px solid #a8935a; padding-bottom: 4px;">사이트 현황</div>
+          <div style="font-size: 11px; color: #6b5a1f; line-height: 1.9;">
+            게시글 : 18 개<br/>
+            사진/그림 : 8 개<br/>
+            누적 방문자 : 27,318 명
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <a href="#" onClick="{{ comingSoon }}" style="display: block; text-align: center; background: repeating-linear-gradient(45deg,#c9b988,#c9b988 6px,#b8a06a 6px,#b8a06a 12px); border: 2px outset #8a742e; color: #3a2e10; font-size: 12px; font-weight: 800; padding: 6px 4px;">✎ 방명록 남기기</a>
+          <a href="#" onClick="{{ comingSoon }}" style="display: block; text-align: center; background: repeating-linear-gradient(45deg,#c9b988,#c9b988 6px,#b8a06a 6px,#b8a06a 12px); border: 2px outset #8a742e; color: #3a2e10; font-size: 12px; font-weight: 800; padding: 6px 4px;">즐겨찾기 추가</a>
+          <a href="#" onClick="{{ comingSoon }}" style="display: block; text-align: center; background: repeating-linear-gradient(45deg,#c9b988,#c9b988 6px,#b8a06a 6px,#b8a06a 12px); border: 2px outset #8a742e; color: #3a2e10; font-size: 12px; font-weight: 800; padding: 6px 4px;">사이트맵</a>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-width: 0; padding: 20px 24px; box-sizing: border-box; background: #a39c88;">
+        <div style="color: #8a6d1a; font-size: 19px; font-weight: 700; margin-bottom: 16px;">실피's 프로젝트</div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+          <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="4">
+            <a href="#" onClick="{{ comingSoon }}" style="display: block; text-decoration: none;">
+              <div style="width: 100%; aspect-ratio: 4/3; background: repeating-linear-gradient(45deg, #c9b988, #c9b988 8px, #b8a06a 8px, #b8a06a 16px); border: 2px solid #6b5a1f; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 10px; color: #4a3c1a; text-align: center;">
+                [ 프로젝트 썸네일 ]
+              </div>
+              <div style="font-size: 13px; color: #3a2e10; text-align: center; margin-top: 4px; font-weight: 700;">{{ pr.title }}</div>
+              <div style="font-size: 11px; color: #6b5a3a; text-align: center;">{{ pr.desc }}</div>
+            </a>
+          </sc-for>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: stretch; height: 28px; z-index: 10;">
+    <div style="background: #1e3a3a; border-right: 3px outset #b8952e; color: #ffd966; font-size: 12px; font-weight: 800; display: flex; align-items: center; padding: 0 12px;">공지</div>
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="flex: 1; background: #2b2412; color: #e8dfc4; font-size: 12px; display: flex; align-items: center;">
+      ▶ 아르카디아 온라인 정기점검 안내: 매주 수요일 오전 7시~10시&nbsp;&nbsp;&nbsp;&nbsp;▶ 게시판 이용 시 서로 예의를 지켜주세요&nbsp;&nbsp;&nbsp;&nbsp;▶ 홈페이지 방문해주셔서 감사합니다 (´ᴗ`)
+    </marquee>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다. 실제로는 새 창으로 이동합니다.'); },
+      projects: [
+        { title: '길드 사이트 만들기', desc: '길드원들과 함께 만든 소개 페이지' },
+        { title: '경험치 계산기', desc: '레벨업 효율 계산용 웹 도구' },
+        { title: '사냥터 지도 정리', desc: '주요 사냥터 위치 정리 페이지' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

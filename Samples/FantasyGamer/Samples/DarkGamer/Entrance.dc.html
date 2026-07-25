@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<style>
+body { margin: 0; background: #000; }
+a { color: #66d9ff; text-decoration: underline; }
+a:hover { color: #ff66cc; }
+@keyframes blinker { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+::-webkit-scrollbar { width: 14px; background: #000; }
+::-webkit-scrollbar-thumb { background: #ff9900; border: 1px solid #663300; }
+</style>
+</helmet>
+
+<div style="position: fixed; inset: 0; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; overflow: hidden;">
+
+  <div style="width: 420px; height: 150px; background: repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 12px, #0a0a0a 12px, #0a0a0a 24px); border: 2px solid #665500; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 11px; color: #886600; text-align: center; margin-bottom: 22px;">
+    [ 대문 이미지 / 로고 그림 자리 ]
+  </div>
+
+  <div style="font-family: 'Times New Roman', serif; font-size: 46px; font-weight: 700; color: #ffff00; text-shadow: 3px 3px 0 #ff0000; letter-spacing: -1px; margin-bottom: 4px;">
+    ▶ 칠흑의 다크로드 ◀
+  </div>
+  <div style="font-size: 12px; color: #00ff00; font-family: 'Courier New', monospace; letter-spacing: 1px; margin-bottom: 26px;">
+    -.-.-.-.-.-.-.-.-.-.- darklord.wo.to -.-.-.-.-.-.-.-.-.-.-
+  </div>
+
+  <div style="font-size: 15px; color: #dddddd; line-height: 1.9; text-align: center; max-width: 520px; margin-bottom: 30px;">
+    안녕하세요. 다크로드 온라인을 좋아하는 사람이 만든 개인 홈페이지입니다.<br/>
+    게임 관련 소식과 이런저런 이야기를 편하게 남겨두는 공간이니, 편하게 둘러보고 가세요.
+  </div>
+
+  <a href="Home.dc.html" style="display: inline-block; padding: 10px 40px; background: #ff0000; border: 4px outset #ff8888; color: #ffff00; font-size: 22px; font-weight: 800; letter-spacing: 2px; text-decoration: none;">
+    ENTER!!
+  </a>
+
+  <div style="margin-top: 34px; background: #000; border: 1px solid #ff9900; padding: 10px 20px; font-family: 'Courier New', monospace; font-size: 13px; color: #ffb347; text-align: center; line-height: 1.8;">
+    오늘 방문자 : <span style="color: #ffcc33; letter-spacing: 2px;">000027</span> 명<br/>
+    총&nbsp;&nbsp;방문자 : <span style="color: #ffcc33; letter-spacing: 2px;">018,452</span> 명
+  </div>
+
+  <div style="margin-top: 18px; font-size: 12px; color: #66aacc;">
+    <span style="animation: blinker 1.4s step-start infinite;">♬</span> BGM 자동재생 중 (하데스 테마) &nbsp;|&nbsp; 1024x768 해상도 권장
+  </div>
+
+  <div style="position: absolute; bottom: 14px; font-size: 11px; color: #444;">
+    Copyright(c) 2002 칠흑. All rights reserved.
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>
