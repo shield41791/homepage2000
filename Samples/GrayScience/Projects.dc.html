@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000cc; text-decoration: underline; }
+a:hover { color: #cc2200; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background-color: #c6c6c6; background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1px, transparent 4px); font-family: 'Times New Roman', Times, serif; color: #223; padding-bottom: 30px;">
+
+  <div style="text-align: center; padding: 18px 10px 12px; border-bottom: 4px double #7a7a7a; background: linear-gradient(180deg,#e6e6e6,#b8b8b8);">
+    <a href="Home.dc.html" style="text-decoration: none;">
+      <div style="display: inline-block; font-family: 'Arial Black', Arial, sans-serif; font-size: 42px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(180deg,#a9c0e8 0%, #3d5686 55%, #16233f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(255,255,255,0.6);">
+        MR. TURNER'S SCIENCE CORNER
+      </div>
+    </a>
+    <div style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #4a4a4a; margin-top: 4px;">✦ mrturner.hometown.net ✦ Physical Science &amp; Chemistry — Lincoln High School ✦</div>
+  </div>
+
+  <div style="max-width: 900px; margin: 18px auto 0; display: flex; background: #d6d6d6; border-width: 2px; border-style: outset; border-color: #fff #808080 #808080 #fff;">
+
+    <div style="width: 128px; flex-shrink: 0; display: flex; flex-direction: column; gap: 7px; padding: 14px 10px;">
+      <a href="Home.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">HOME</a>
+      <a href="Profile.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PROFILE</a>
+      <a href="Notice.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">NOTICE</a>
+      <a href="Board.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">BOARD</a>
+      <a href="Photos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PHOTOS</a>
+      <a href="Videos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">VIDEOS</a>
+      <a href="Projects.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#e0949c,#9c2c38); border-width: 2px; border-style: outset; border-color: #ffd9dd #601018 #601018 #ffd9dd;">PROJECTS</a>
+    </div>
+
+    <div style="flex: 1; min-width: 0; background: #ececec; border-left-width: 2px; border-left-style: inset; border-left-color: #808080; padding: 22px 26px;">
+
+      <div style="font-family: Arial, sans-serif; font-weight: 700; font-size: 17px; color: #1c355f; margin-bottom: 14px;">PROJECTS &amp; LINKS</div>
+
+      <div style="border: 2px solid #999; padding: 8px; background: transparent;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #999;">
+          <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="6">
+            <a href="{{ pr.url }}" target="_blank" rel="noopener" style="background: #ececec; padding: 10px; text-decoration: none; display: block;">
+              <div style="width: 100%; aspect-ratio: 4/3; background: repeating-linear-gradient(45deg, #dcdcdc, #dcdcdc 8px, #f4f4f4 8px, #f4f4f4 16px); border: 1px solid #999; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 9px; color: #555; text-align: center;">
+                [ site preview ]
+              </div>
+              <div style="font-size: 13px; color: #223; margin-top: 6px; font-weight: 700;">{{ pr.title }}</div>
+              <div style="font-size: 11px; color: #777;">{{ pr.desc }}</div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 14px auto 0; text-align: center; font-size: 11px; color: #555;">Best viewed at 800x600 · Netscape Navigator 4.0+ / IE 5.0+ · Last updated 2004.02.03</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      projects: [
+        { title: 'Lincoln HS Science Dept.', desc: 'Official department page', url: 'https://example.com/lincoln-science' },
+        { title: 'Science Olympiad Team', desc: 'Our team roster &amp; schedule', url: 'https://example.com/sci-olympiad' },
+        { title: 'My Chemistry Blog', desc: 'Notes &amp; demo write-ups', url: 'https://example.com/chem-blog' },
+        { title: 'Astronomy Club Sign-up', desc: 'Join our stargazing nights', url: 'https://example.com/astro-club' },
+        { title: 'Class Resource Wiki', desc: 'Study guides &amp; handouts', url: 'https://example.com/resource-wiki' },
+        { title: "Purdue Chem Dept.", desc: 'My alma mater', url: 'https://example.com/purdue-chem' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000cc; text-decoration: underline; }
+a:hover { color: #cc2200; }
+@keyframes blinker { 50% { opacity: 0.55; } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background-color: #c6c6c6; background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1px, transparent 4px); display: flex; align-items: center; justify-content: center; font-family: 'Times New Roman', Times, serif;">
+
+  <div style="background: linear-gradient(180deg,#e6e6e6,#b0b0b0); border-width: 3px; border-style: outset; border-color: #fff #808080 #808080 #fff; padding: 36px 50px; text-align: center; max-width: 560px;">
+
+    <div style="font-family: 'Arial Black', Arial, sans-serif; font-size: 38px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(180deg,#a9c0e8 0%, #3d5686 55%, #16233f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(255,255,255,0.6); line-height: 1.15;">
+      MR. TURNER'S<br/>SCIENCE CORNER
+    </div>
+
+    <div style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #4a4a4a; margin-top: 6px;">✦ mrturner.hometown.net ✦</div>
+
+    <div style="margin: 20px 0; border-top: 3px double #888;"></div>
+
+    <div style="font-size: 16px; font-weight: 700; color: #223; line-height: 1.6;">
+      Welcome to my little corner of the Web!<br/>
+      Come on in and look around. ^_^
+    </div>
+
+    <div style="margin: 22px 0;">
+      <div style="width: 140px; height: 90px; margin: 0 auto; background: repeating-linear-gradient(45deg, #dcdcdc, #dcdcdc 10px, #f4f4f4 10px, #f4f4f4 20px); border: 2px solid #888; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 9px; color: #555; text-align: center;">
+        [ front page photo ]
+      </div>
+    </div>
+
+    <a href="Home.dc.html" style="display: inline-block; padding: 10px 46px; font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 900; letter-spacing: 2px; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 3px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2; animation: blinker 1.4s step-start infinite;">
+      ENTER
+    </a>
+
+    <div style="margin: 22px 0 4px;">
+      <div style="display: inline-flex; gap: 14px; background: #111; border: 3px outset #888; padding: 8px 16px; font-family: 'Courier New', monospace;">
+        <div style="text-align: center;">
+          <div style="font-size: 9px; color: #7fbf7f; letter-spacing: 1px;">TODAY</div>
+          <div style="font-size: 20px; color: #33ff66; letter-spacing: 3px; font-weight: 700;">000042</div>
+        </div>
+        <div style="width: 1px; background: #444;"></div>
+        <div style="text-align: center;">
+          <div style="font-size: 9px; color: #7fbf7f; letter-spacing: 1px;">TOTAL</div>
+          <div style="font-size: 20px; color: #33ff66; letter-spacing: 3px; font-weight: 700;">018374</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; color: #555; margin-top: 10px;">Best viewed at 800x600 · Netscape Navigator 4.0+ / IE 5.0+</div>
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>

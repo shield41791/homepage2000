@@ -19,21 +19,22 @@ a:hover { color: #ff5fa8; }
 
   <div style="text-align: center; padding: 20px 10px 10px; border-bottom: 3px double #6a95c7;">
     <a href="지수의 하늘정원.dc.html" style="display: inline-block; font-family: 'Times New Roman', Times, serif; font-size: 46px; font-weight: 700; color: #111; text-shadow: 2px 2px 0 #fff, 4px 4px 4px rgba(0,0,0,0.2); text-decoration: none;">
-      Jisu's Sky Garden
+      Steph's BSB Obsession
     </a>
-    <div style="font-size: 13px; font-weight: 700; color: #2255aa; margin-top: 2px;">zisu.homepy.to&nbsp; · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘</div>
+    <div style="font-size: 13px; font-weight: 700; color: #2255aa; margin-top: 2px;">steph_luvs_bsb.homepy.to&nbsp; · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘ · ∘</div>
   </div>
 
   <div style="display: flex; gap: 24px; align-items: stretch; margin-top: 16px; padding: 0 24px;">
     <div style="width: 120px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 6px; border-right: 3px double #6a95c7; padding-right: 16px;">
-      <a href="지수의 하늘정원.dc.html" style="font-size: 15px; font-weight: 700;">Home</a>
-      <a href="Profile.dc.html" style="font-size: 15px; font-weight: 700;">Profile</a>
-      <a href="Notices.dc.html" style="font-size: 15px; font-weight: 700;">Notices</a>
-      <a href="Board.dc.html" style="font-size: 15px; font-weight: 700;">Board</a>
-      <a href="Photos.dc.html" style="font-size: 15px; font-weight: 700;">Photos</a>
-      <a href="Videos.dc.html" style="font-size: 15px; font-weight: 700;">Videos</a>
-      <div style="padding: 8px 10px; padding: 8px 10px;"><a href="Projects.dc.html" style="font-size: 15px; font-weight: 700; color: #ff5fa8;">Projects</a></div>
+      <a href="지수의 하늘정원.dc.html" style="font-size: 19px; font-weight: 700;">Home</a>
+      <a href="Profile.dc.html" style="font-size: 19px; font-weight: 700;">Profile</a>
+      <a href="Notices.dc.html" style="font-size: 19px; font-weight: 700;">Notices</a>
+      <a href="Board.dc.html" style="font-size: 19px; font-weight: 700;">Board</a>
+      <a href="Photos.dc.html" style="font-size: 19px; font-weight: 700;">Photos</a>
+      <a href="Videos.dc.html" style="font-size: 19px; font-weight: 700;">Videos</a>
+      <a href="Projects.dc.html" style="font-size: 19px; font-weight: 700; color: #ff5fa8;">Projects</a>
     </div>
+
     <div style="flex: 1; min-width: 0;">
 
       <div style="font-size: 22px; font-weight: 700; color: #0d5fc0; margin-bottom: 14px;">✿ Projects</div>
@@ -42,7 +43,7 @@ a:hover { color: #ff5fa8; }
 
         <div style="width: 130px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
           <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
-            <a href="#" onClick="{{ p.select }}" style="font-size: 15px; font-weight: 700; text-decoration: {{ p.deco }}; color: {{ p.color }};">{{ p.title }}</a>
+            <a href="#" onClick="{{ p.select }}" style="font-size: 15px; font-weight: 700; text-decoration: underline; color: {{ p.color }};">{{ p.title }}</a>
           </sc-for>
         </div>
 
@@ -77,19 +78,18 @@ class Component extends DCLogic {
 
   renderVals() {
     const data = [
-      { title: 'guestbook script', desc: 'A tiny CGI guestbook I hacked together with a friend. Nothing fancy, just name/message/date ^^', link: '#' },
-      { title: 'fan-made mp3 player', desc: 'Flash-based mp3 player skin I made for my old Cyworld page. Repeat/Random buttons included ㅋㅋ', link: '#' },
-      { title: 'html layout collection', desc: 'A bunch of homepage layout templates I collected and tweaked over the years.', link: '#' },
-      { title: 'cursor trail effect', desc: 'Sparkly mouse trail script, copy-pasted and edited from a webmaster forum lol.', link: '#' },
-      { title: 'clock widget', desc: 'A little JS clock widget with a cutesy font. Used to sit at the bottom of my old page.', link: '#' },
-      { title: 'visitor counter cgi', desc: 'Simple visitor counter perl script, digit images and all.', link: '#' }
+      { title: 'lyrics archive', desc: 'Every song lyrics page I could find/type out myself, organized by album ^^', link: '#' },
+      { title: 'wallpaper pack', desc: 'Desktop wallpapers I made in Paint Shop Pro from magazine scans, 800x600 sized.', link: '#' },
+      { title: 'buddy icon collection', desc: 'AIM buddy icons I made/collected, tiny but so much work went into these lol.', link: '#' },
+      { title: 'fan fiction', desc: "A few stories I wrote, don't judge me too hard ㅠㅠ rated PG I promise.", link: '#' },
+      { title: 'tour date tracker', desc: 'A page I update by hand every time new tour dates get announced.', link: '#' },
+      { title: 'quiz: which one are you', desc: 'A silly little quiz script my friend helped me code, find out which one matches you!', link: '#' }
     ];
 
     const projects = data.map((d, i) => ({
       title: d.title,
       select: () => this.setState({ selected: i }),
-      color: i === this.state.selected ? '#ff5fa8' : '#1f4fd6',
-      deco: i === this.state.selected ? 'underline' : 'underline'
+      color: i === this.state.selected ? '#ff5fa8' : '#1f4fd6'
     }));
 
     return { projects, current: data[this.state.selected] };

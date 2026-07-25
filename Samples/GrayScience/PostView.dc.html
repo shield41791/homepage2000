@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000cc; text-decoration: underline; }
+a:hover { color: #cc2200; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background-color: #c6c6c6; background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1px, transparent 4px); font-family: 'Times New Roman', Times, serif; color: #223; padding-bottom: 30px;">
+
+  <div style="text-align: center; padding: 18px 10px 12px; border-bottom: 4px double #7a7a7a; background: linear-gradient(180deg,#e6e6e6,#b8b8b8);">
+    <a href="Home.dc.html" style="text-decoration: none;">
+      <div style="display: inline-block; font-family: 'Arial Black', Arial, sans-serif; font-size: 42px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(180deg,#a9c0e8 0%, #3d5686 55%, #16233f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(255,255,255,0.6);">
+        MR. TURNER'S SCIENCE CORNER
+      </div>
+    </a>
+    <div style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #4a4a4a; margin-top: 4px;">✦ mrturner.hometown.net ✦ Physical Science &amp; Chemistry — Lincoln High School ✦</div>
+  </div>
+
+  <div style="max-width: 900px; margin: 18px auto 0; display: flex; background: #d6d6d6; border-width: 2px; border-style: outset; border-color: #fff #808080 #808080 #fff;">
+
+    <div style="width: 128px; flex-shrink: 0; display: flex; flex-direction: column; gap: 7px; padding: 14px 10px;">
+      <a href="Home.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">HOME</a>
+      <a href="Profile.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PROFILE</a>
+      <a href="Notice.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">NOTICE</a>
+      <a href="Board.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">BOARD</a>
+      <a href="Photos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PHOTOS</a>
+      <a href="Videos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">VIDEOS</a>
+      <a href="Projects.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PROJECTS</a>
+    </div>
+
+    <div style="flex: 1; min-width: 0; background: #ececec; border-left-width: 2px; border-left-style: inset; border-left-color: #808080; padding: 22px 26px;">
+
+      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; color: #888; margin-bottom: 6px;">{{ post.cat }}</div>
+      <div style="font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; color: #1c355f; border-bottom: 2px solid #7a94c2; padding-bottom: 10px;">{{ post.title }}</div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; color: #777; padding: 8px 0 16px; border-bottom: 1px dotted #aaa;">
+        <span>by {{ post.name }}</span>
+        <span>{{ post.date }} · Hit {{ post.hit }}</span>
+      </div>
+
+      <sc-if value="{{ post.hasImage }}" hint-placeholder-val="{{ false }}">
+        <div style="margin: 18px 0;">
+          <div style="width: 260px; height: 180px; background: repeating-linear-gradient(45deg, #dcdcdc, #dcdcdc 10px, #f4f4f4 10px, #f4f4f4 20px); border: 2px solid #888; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 10px; color: #555; text-align: center;">
+            [ {{ post.imageLabel }} ]
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="font-size: 15px; line-height: 1.9; white-space: pre-line; margin: 16px 0 24px;">{{ post.body }}</div>
+
+      <div style="text-align: center;">
+        <a href="{{ post.backHref }}" style="display: inline-block; padding: 6px 20px; font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">← LIST</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 14px auto 0; text-align: center; font-size: 11px; color: #555;">Best viewed at 800x600 · Netscape Navigator 4.0+ / IE 5.0+ · Last updated 2004.02.03</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const POSTS = {
+  'notice-1': { cat: 'NOTICE', title: 'Field trip permission slips due', name: 'mrturner', date: '01.20', hit: 96, backHref: 'Notice.dc.html', body: "Hi all - just a reminder that permission slips for the Museum of Science and Industry field trip are due back to me by this Friday. No slip, no trip! Forms are on the front table, extra copies by the door.\n\nSee you in class,\nMr. Turner" },
+  'notice-2': { cat: 'NOTICE', title: 'Science fair sign-up sheet is up', name: 'mrturner', date: '01.28', hit: 121, backHref: 'Notice.dc.html', body: "The sign-up sheet for this year's science fair is posted outside room 214. Projects are due March 15th. Come see me during office hours if you need topic ideas - I've got a list a mile long." },
+  'notice-3': { cat: 'NOTICE', title: 'Friday quiz moved to Monday', date: '02.03', hit: 88, backHref: 'Notice.dc.html', body: "Since we ran out of time covering chapter 6, I'm pushing Friday's quiz to Monday instead. Use the extra weekend to review your notes on chemical bonding!" },
+  'notice-4': { cat: 'NOTICE', title: 'Lab safety goggles - bring your own from now on', name: 'mrturner', date: '01.12', hit: 143, backHref: 'Notice.dc.html', body: "We're out of clean spare goggles, so starting next week please bring your own pair to every lab day. They sell cheap ones at the supply store on 5th street." },
+  'notice-5': { cat: 'NOTICE', title: 'Grades posted for semester 1 finals', name: 'mrturner', date: '12.20', hit: 210, backHref: 'Notice.dc.html', body: "Final grades for semester 1 are posted in the portal. Great job this semester, everyone - proud of how far the class has come!" },
+  'notice-6': { cat: 'NOTICE', title: 'Welcome back! Class syllabus attached', name: 'mrturner', date: '09.03', hit: 175, backHref: 'Notice.dc.html', body: "Welcome to another year of Physical Science / Chemistry! Syllabus and lab schedule are up on the wall by the door. Looking forward to a great year." },
+  'board-1': { cat: 'BOARD - Free Talk', title: 'First post! Welcome to my board', name: 'mrturner', date: '01.15', hit: 201, backHref: 'Board.dc.html', body: "Hey everyone, decided to finally get a little message board going on my page. Feel free to post whatever - questions about class, science news you found cool, anything really. Just keep it civil ^^" },
+  'board-2': { cat: 'BOARD - Free Talk', title: 'Anyone else watch the eclipse last night??', name: 'mrturner', date: '01.30', hit: 152, backHref: 'Board.dc.html', body: "That lunar eclipse was incredible! Set up the telescope in the backyard and got a pretty good look. Extra credit for anyone who watched and can tell me why the moon looked reddish :)" },
+  'board-3': { cat: 'BOARD - Free Talk', title: "Egg drop project photos - some didn't survive lol", name: 'mrturner', date: '02.02', hit: 87, backHref: 'Board.dc.html', hasImage: true, imageLabel: 'egg drop wreckage photo', body: "Attached a couple pics from the egg drop contest. Group 4's contraption held up great, group 2's... did not. RIP little eggy, you will be remembered." },
+  'board-4': { cat: 'BOARD - Classroom Diary', title: 'Long day of grading labs, coffee #4', name: 'mrturner', date: '01.25', hit: 44, backHref: 'Board.dc.html', body: "Stack of lab reports on my desk isn't getting any shorter. Send coffee." },
+  'board-5': { cat: 'BOARD - Classroom Diary', title: 'New seating chart posted', name: 'mrturner', date: '01.10', hit: 60, backHref: 'Board.dc.html', body: "New seating chart is up for 3rd period. Sorry to the folks I split up, we'll rotate again next month." },
+  'board-6': { cat: 'BOARD - Field Trip Log', title: 'Museum of Science and Industry trip recap', name: 'mrturner', date: '01.18', hit: 98, backHref: 'Board.dc.html', hasImage: true, imageLabel: 'museum group photo', body: "Great trip yesterday - the coal mine exhibit was a hit as usual. Thanks to the parent volunteers who came along, couldn't do it without you." },
+  'board-7': { cat: 'BOARD - Field Trip Log', title: 'Planetarium field trip pics coming soon', name: 'mrturner', date: '12.14', hit: 71, backHref: 'Board.dc.html', body: "Still waiting on the disposable camera film to develop (yes, I still use those). Will post pics once they're back!" },
+  'board-8': { cat: 'BOARD - Experiment Log', title: 'Volcano demo went a little too well', name: 'mrturner', date: '11.02', hit: 189, backHref: 'Board.dc.html', hasImage: true, imageLabel: 'volcano demo photo', body: "Note to self: half the baking soda next time. Room still smells a little like vinegar. Kids loved it though." },
+  'photo-1': { cat: 'PHOTOS', title: 'Class of 04', name: 'mrturner', date: '09.05', hit: 30, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'class photo', body: "3rd period, first week of school. Great group this year." },
+  'photo-2': { cat: 'PHOTOS', title: 'Room 214', name: 'mrturner', date: '09.02', hit: 21, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'classroom photo', body: "My classroom, freshly decorated for the new year." },
+  'photo-3': { cat: 'PHOTOS', title: 'Volcano demo', name: 'mrturner', date: '11.02', hit: 54, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'volcano demo photo', body: "Baking soda volcano mid-eruption. Smelled like vinegar for a week." },
+  'photo-4': { cat: 'PHOTOS', title: 'Egg drop', name: 'mrturner', date: '02.02', hit: 40, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'egg drop contraptions', body: "Group contraptions lined up before the big drop." },
+  'photo-5': { cat: 'PHOTOS', title: 'Dry ice fun', name: 'mrturner', date: '10.14', hit: 37, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'dry ice bubbles photo', body: "Dry ice bubble demo, always a crowd favorite." },
+  'photo-6': { cat: 'PHOTOS', title: 'Museum trip', name: 'mrturner', date: '01.18', hit: 29, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'museum group photo', body: "The whole class outside the Museum of Science and Industry." },
+  'photo-7': { cat: 'PHOTOS', title: 'Planetarium', name: 'mrturner', date: '12.14', hit: 33, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'planetarium photo', body: "Planetarium field trip, the star show was a huge hit." },
+  'photo-8': { cat: 'PHOTOS', title: 'Eclipse night', name: 'mrturner', date: '01.29', hit: 61, backHref: 'Photos.dc.html', hasImage: true, imageLabel: 'eclipse photo', body: "Set the telescope up in the backyard for the lunar eclipse." }
+};
+class Component extends DCLogic {
+  state = { id: 'notice-1' };
+  componentDidMount() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id && POSTS[id]) this.setState({ id });
+  }
+  renderVals() {
+    return { post: POSTS[this.state.id] || POSTS['notice-1'] };
+  }
+}
+
+</script>
+</body>
+</html>

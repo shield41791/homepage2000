@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000cc; text-decoration: underline; }
+a:hover { color: #cc2200; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background-color: #c6c6c6; background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0, rgba(255,255,255,0.35) 1px, transparent 1px, transparent 4px); font-family: 'Times New Roman', Times, serif; color: #223; padding-bottom: 30px;">
+
+  <div style="text-align: center; padding: 18px 10px 12px; border-bottom: 4px double #7a7a7a; background: linear-gradient(180deg,#e6e6e6,#b8b8b8);">
+    <a href="Home.dc.html" style="text-decoration: none;">
+      <div style="display: inline-block; font-family: 'Arial Black', Arial, sans-serif; font-size: 42px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(180deg,#a9c0e8 0%, #3d5686 55%, #16233f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(255,255,255,0.6);">
+        MR. TURNER'S SCIENCE CORNER
+      </div>
+    </a>
+    <div style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #4a4a4a; margin-top: 4px;">✦ mrturner.hometown.net ✦ Physical Science &amp; Chemistry — Lincoln High School ✦</div>
+  </div>
+
+  <div style="max-width: 900px; margin: 18px auto 0; display: flex; background: #d6d6d6; border-width: 2px; border-style: outset; border-color: #fff #808080 #808080 #fff;">
+
+    <div style="width: 128px; flex-shrink: 0; display: flex; flex-direction: column; gap: 7px; padding: 14px 10px;">
+      <a href="Home.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">HOME</a>
+      <a href="Profile.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PROFILE</a>
+      <a href="Notice.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">NOTICE</a>
+      <a href="Board.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#e0949c,#9c2c38); border-width: 2px; border-style: outset; border-color: #ffd9dd #601018 #601018 #ffd9dd;">BOARD</a>
+      <a href="Photos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PHOTOS</a>
+      <a href="Videos.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">VIDEOS</a>
+      <a href="Projects.dc.html" style="display: block; text-align: center; padding: 8px 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: linear-gradient(180deg,#9db3d9,#3d5686); border-width: 2px; border-style: outset; border-color: #d8e2f2 #16233f #16233f #d8e2f2;">PROJECTS</a>
+    </div>
+
+    <div style="flex: 1; min-width: 0; background: #ececec; border-left-width: 2px; border-left-style: inset; border-left-color: #808080; padding: 22px 26px;">
+
+      <div style="display: flex; gap: 18px; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 14px; flex-wrap: wrap;">
+        <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
+          <a href="#" onClick="{{ selectCategory }}" data-cat="{{ c }}" style="color: {{ c === activeCategory ? '#9c2c38' : '#223' }}; text-decoration: {{ c === activeCategory ? 'underline' : 'none' }};">{{ c }}</a>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; color: #1c355f; border-bottom: 2px solid #7a94c2; padding: 6px 0;">
+        <div style="width: 50px;">NO</div>
+        <div style="flex: 1;">SUBJECT</div>
+        <div style="width: 100px;">NAME</div>
+        <div style="width: 90px;">DATE</div>
+        <div style="width: 60px; text-align: right;">HIT</div>
+      </div>
+
+      <sc-for list="{{ visiblePosts }}" as="p" hint-placeholder-count="6">
+        <div style="display: flex; font-size: 15px; border-bottom: 1px solid #ccc; padding: 9px 0;">
+          <div style="width: 50px; color: #555;">{{ p.no }}</div>
+          <div style="flex: 1;">
+            <sc-if value="{{ p.isNew }}" hint-placeholder-val="{{ false }}"><span style="color: #dd2222; font-weight: 700;">[N]&nbsp;</span></sc-if>
+            <a href="PostView.dc.html?id={{ p.id }}" style="color: #223;">{{ p.title }}</a>
+          </div>
+          <div style="width: 100px; color: #777;">{{ p.name }}</div>
+          <div style="width: 90px; color: #777;">{{ p.date }}</div>
+          <div style="width: 60px; text-align: right; color: #777;">{{ p.hit }}</div>
+        </div>
+      </sc-for>
+
+      <div style="text-align: center; margin-top: 18px; font-family: Arial, sans-serif; font-weight: 700; font-size: 14px;">
+        [1] <a href="#">2</a> <a href="#">3</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 14px auto 0; text-align: center; font-size: 11px; color: #555;">Best viewed at 800x600 · Netscape Navigator 4.0+ / IE 5.0+ · Last updated 2004.02.03</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeCategory: 'Free Talk' };
+  posts = [
+    { no: 8, id: 'board-3', title: "Egg drop project photos - some didn't survive lol", name: 'mrturner', date: '02.02', hit: 87, isNew: true, cat: 'Free Talk' },
+    { no: 7, id: 'board-2', title: 'Anyone else watch the eclipse last night??', name: 'mrturner', date: '01.30', hit: 152, isNew: false, cat: 'Free Talk' },
+    { no: 6, id: 'board-1', title: 'First post! Welcome to my board', name: 'mrturner', date: '01.15', hit: 201, isNew: false, cat: 'Free Talk' },
+    { no: 5, id: 'board-4', title: 'Long day of grading labs, coffee #4', name: 'mrturner', date: '01.25', hit: 44, isNew: false, cat: 'Classroom Diary' },
+    { no: 4, id: 'board-5', title: 'New seating chart posted', name: 'mrturner', date: '01.10', hit: 60, isNew: false, cat: 'Classroom Diary' },
+    { no: 3, id: 'board-6', title: 'Museum of Science and Industry trip recap', name: 'mrturner', date: '01.18', hit: 98, isNew: false, cat: 'Field Trip Log' },
+    { no: 2, id: 'board-7', title: 'Planetarium field trip pics coming soon', name: 'mrturner', date: '12.14', hit: 71, isNew: false, cat: 'Field Trip Log' },
+    { no: 1, id: 'board-8', title: 'Volcano demo went a little too well', name: 'mrturner', date: '11.02', hit: 189, isNew: false, cat: 'Experiment Log' }
+  ];
+  selectCategory = (e) => {
+    e.preventDefault();
+    this.setState({ activeCategory: e.currentTarget.getAttribute('data-cat') });
+  };
+  renderVals() {
+    return {
+      categories: ['Free Talk', 'Classroom Diary', 'Field Trip Log', 'Experiment Log'],
+      activeCategory: this.state.activeCategory,
+      selectCategory: this.selectCategory,
+      visiblePosts: this.posts.filter(p => p.cat === this.state.activeCategory)
+    };
+  }
+}
+
+</script>
+</body>
+</html>
