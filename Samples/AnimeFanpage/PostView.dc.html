@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000ee; text-decoration: underline; }
+a:hover { color: #cc0000; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;font-family:'Times New Roman',Times,serif;color:#000;">
+
+  <div style="background:#cc0000;padding:14px 16px;">
+    <a href="Home.dc.html" style="text-decoration:none;"><span style="font-family:'Times New Roman',Times,serif;font-style:italic;font-weight:bold;font-size:36px;color:#0000ff;">Anime Overload</span></a>
+    <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;margin-left:10px;">http://www.geocities.com/Tokyo/Towers/4477</span>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td width="150" valign="top" style="background:#cce0f5;border-right:1px solid #000;padding:14px 10px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;color:#000080;margin-bottom:10px;">PLACES TO GO:</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:2;">
+          <a href="Home.dc.html">Home</a><br/>
+          <a href="Profile.dc.html">Profile</a><br/>
+          <a href="Notice.dc.html" style="color:{{ navColors.notice }};">Notice</a><br/>
+          <a href="Board.dc.html" style="color:{{ navColors.board }};">Board</a><br/>
+          <a href="Photos.dc.html" style="color:{{ navColors.photos }};">Photos</a><br/>
+          <a href="Videos.dc.html">Videos</a><br/>
+          <a href="Projects.dc.html">Projects</a>
+        </div>
+      </td>
+      <td valign="top" style="padding:18px 22px;">
+
+        <font size="5"><b>{{ post.title }}</b></font><br/>
+        <font face="Arial" size="2" color="#555">{{ post.name }} &nbsp;|&nbsp; {{ post.date }} &nbsp;|&nbsp; hits: {{ post.hit }}</font>
+        <hr/>
+
+        <sc-if value="{{ post.image }}" hint-placeholder-val="{{ false }}">
+          <div style="width:360px;height:270px;border:1px solid #000;margin-bottom:14px;">
+            <image-slot id="{{ post.slotId }}" shape="rect" placeholder="post image"></image-slot>
+          </div>
+        </sc-if>
+
+        <font size="3" style="line-height:1.9;white-space:pre-line;">{{ post.body }}</font>
+
+        <br/><br/>
+        <div align="right"><a href="{{ post.backHref }}">« back to list</a></div>
+
+      </td>
+    </tr>
+  </table>
+
+  <div style="text-align:center;padding:10px;font-size:11px;color:#555;background:#eee;border-top:1px solid #000;">
+    Copyright(c) 2002 Dave. All rights reserved.
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const params = new URLSearchParams(window.location.search);
+    const board = params.get('board') || 'notice';
+    const id = params.get('id') || '';
+
+    const data = {
+      notice: [
+        { id: 'n5', date: '2002-11-02', title: 'redid the layout, tell me what u think', hit: 92, body: "Been up all night in Frontpage but finally got the new layout done!! Way more colors than before lol. Let me know what you guys think, hit up my guestbook." },
+        { id: 'n4', date: '2002-10-20', title: 'guestbook spam problem, sorry if ur post vanished', hit: 47, body: "Some jerk kept spamming my guestbook with ads so I had to delete a bunch of entries. If yours got deleted by accident I'm really sorry, just post again!" },
+        { id: 'n3', date: '2002-10-11', title: 'new AIM sn, updated on profile page', hit: 61, body: "Got locked out of my old AIM account so I made a new screen name. Check the profile page for the updated info. Hit me up!" },
+        { id: 'n2', date: '2002-09-30', title: 'site is finally up!!', hit: 133, body: "After like 2 weeks of messing with html the site is finally live! Still adding stuff so check back often." },
+        { id: 'n1', date: '2002-09-28', title: 'welcome to anime overload', hit: 210, body: "Hey everyone, welcome to my new anime page! Gonna be posting reviews, fanart, AMVs and whatever else. Enjoy your stay ^_^" }
+      ],
+      board: [
+        { id: 'b6', name: 'dave', date: '2002-11-05', title: 'just finished evangelion again and im not okay', hit: 88, body: "Rewatched the whole series plus End of Evangelion this weekend and I am WRECKED. That ending messes me up every single time. Anyone else feel like this after watching it??" },
+        { id: 'b5', name: 'dave', date: '2002-11-01', title: 'why do so many dubs mess up the names', hit: 41, body: "Not to start drama but why do dubbing companies keep changing character names?? Sub > dub for me, fight me in the guestbook lol" },
+        { id: 'b4', name: 'dave', date: '2002-10-28', title: 'my gundam wing figure collection (pics soon)', hit: 55, body: "Finally got my hands on a Wing Zero model kit! Gonna post pics once I get it built. Spent way too much allowance on this hobby lol" },
+        { id: 'b3', name: 'dave', date: '2002-10-15', title: 'sketch of spike i did in class', hit: 63, body: "Was bored in history class so I doodled Spike Spiegel in the margins of my notebook. Not bad if I say so myself, check the photos page." },
+        { id: 'b2', name: 'dave', date: '2002-10-02', title: 'anyone going to the con next month?', hit: 30, body: "Trying to figure out if anyone from around here is going to the anime con next month. Would be cool to meet up!" },
+        { id: 'b1', name: 'dave', date: '2002-09-30', title: 'first post, say hi!', hit: 97, body: "Board's officially open! Say hi, tell me what anime you're into right now. I'll start: currently rewatching Trigun for like the 4th time." }
+      ],
+      photos: [
+        { id: 'p1', name: 'dave', date: '2002-09-15', title: 'me at anime con', hit: 120, image: true, slotId: 'post-photo-1', body: "Me and my buddy Marco at the con last spring. Had an awesome time, definitely going again next year." },
+        { id: 'p2', name: 'dave', date: '2002-09-18', title: 'my figure shelf', hit: 95, image: true, slotId: 'post-photo-2', body: "My growing figure collection. Getting kind of out of control but I regret nothing." },
+        { id: 'p3', name: 'dave', date: '2002-09-22', title: 'spike sketch', hit: 44, image: true, slotId: 'post-photo-3', body: "The Spike sketch from history class I mentioned on the board. Pencil and a lot of patience." },
+        { id: 'p4', name: 'dave', date: '2002-09-25', title: 'evangelion doodle', hit: 58, image: true, slotId: 'post-photo-4', body: "Quick doodle of Unit-01. Coloring it took forever with markers." },
+        { id: 'p5', name: 'dave', date: '2002-10-01', title: 'trigun wallpaper', hit: 66, image: true, slotId: 'post-photo-5', body: "Found this on an old forum and saved it as my desktop background for like a year straight." },
+        { id: 'p6', name: 'dave', date: '2002-10-05', title: 'gundam wing wallpaper', hit: 61, image: true, slotId: 'post-photo-6', body: "1024x768 so it fit my monitor perfectly back in the day." },
+        { id: 'p7', name: 'dave', date: '2002-10-08', title: 'shonen jump scan', hit: 73, image: true, slotId: 'post-photo-7', body: "Scanned a page from my Shonen Jump subscription, quality isn't great but you get the idea." },
+        { id: 'p8', name: 'dave', date: '2002-10-10', title: 'manga volume cover scan', hit: 50, image: true, slotId: 'post-photo-8', body: "One of my favorite covers from my manga shelf." }
+      ]
+    };
+
+    const list = data[board] || data.notice;
+    const post = list.find(p => p.id === id) || list[0];
+    const backHrefMap = { notice: 'Notice.dc.html', board: 'Board.dc.html', photos: 'Photos.dc.html' };
+    const navColors = {
+      notice: board === 'notice' ? '#cc0000' : '#0000ee',
+      board: board === 'board' ? '#cc0000' : '#0000ee',
+      photos: board === 'photos' ? '#cc0000' : '#0000ee'
+    };
+
+    return {
+      post: { ...post, backHref: backHrefMap[board] || 'Notice.dc.html' },
+      navColors
+    };
+  }
+}
+
+</script>
+</body>
+</html>

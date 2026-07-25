@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;font-family:'Times New Roman',Times,serif;color:#000;text-align:center;padding:40px 20px;box-sizing:border-box;">
+
+  <div style="width:300px;height:220px;margin:0 auto 10px;border:1px solid #000;">
+    <image-slot id="entrance-splash" shape="rect" placeholder="drop your fave anime splash art here"></image-slot>
+  </div>
+
+  <font face="Times New Roman" size="7" color="#cc0000"><i><b>Anime Overload</b></i></font><br/>
+  <font face="Arial" size="1" color="#333">http://www.geocities.com/Tokyo/Towers/4477</font>
+
+  <br/><br/>
+  <font size="3">
+  Hey, welcome to my anime page! Come on in and check it out.<br/>
+  Please sign my guestbook before you leave ^_^
+  </font>
+  <br/><br/>
+
+  <a href="Home.dc.html" style="font-size:22px;font-style:italic;font-weight:bold;">Come Inside!!!</a>
+
+  <br/><br/>
+  <table align="center" cellpadding="4" cellspacing="0"><tr><td>
+  <font face="Courier New" size="2" color="#33ff33" style="background:#000;padding:6px 12px;">Today's visitors: 000058</font>
+  </td></tr><tr><td>
+  <font face="Courier New" size="2" color="#33ff33" style="background:#000;padding:6px 12px;">Total visitors: 027,915</font>
+  </td></tr></table>
+
+  <br/>
+  <font size="2" color="#333"><span style="animation:blink 1.2s step-start infinite;">♪</span> now playing: tank! (cowboy bebop) &nbsp;|&nbsp; best viewed 800x600</font>
+  <br/><br/>
+  <font size="1" color="#666">Copyright(c) 2002 Dave. All rights reserved.</font>
+</div>
+
+</x-dc>
+</body>
+</html>

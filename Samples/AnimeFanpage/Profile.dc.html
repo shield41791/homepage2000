@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000ee; text-decoration: underline; }
+a:hover { color: #cc0000; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;font-family:'Times New Roman',Times,serif;color:#000;">
+
+  <div style="background:#cc0000;padding:14px 16px;">
+    <a href="Home.dc.html" style="text-decoration:none;"><span style="font-family:'Times New Roman',Times,serif;font-style:italic;font-weight:bold;font-size:36px;color:#0000ff;">Anime Overload</span></a>
+    <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;margin-left:10px;">http://www.geocities.com/Tokyo/Towers/4477</span>
+  </div>
+
+  <div style="padding:3px 10px;background:#000;">
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#33ff33;font-size:12px;font-family:'Courier New',monospace;">
+      Welcome to Anime Overload!! Sign my guestbook before you leave ^_^ New fanart in the gallery! Hit me up on AIM: dbzfan2001
+    </marquee>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td width="150" valign="top" style="background:#cce0f5;border-right:1px solid #000;padding:14px 10px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;color:#000080;margin-bottom:10px;">PLACES TO GO:</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:2;">
+          <a href="Home.dc.html">Home</a><br/>
+          <a href="Profile.dc.html" style="color:#cc0000;font-weight:bold;">Profile</a><br/>
+          <a href="Notice.dc.html">Notice [N]</a><br/>
+          <a href="Board.dc.html">Board [N]</a><br/>
+          <a href="Photos.dc.html">Photos</a><br/>
+          <a href="Videos.dc.html">Videos</a><br/>
+          <a href="Projects.dc.html">Projects</a>
+        </div>
+        <hr/>
+        <div style="width:100%;height:90px;border:1px solid #000;"><image-slot id="profile-sidebar-pic" shape="rect" placeholder="anime pic"></image-slot></div>
+      </td>
+      <td valign="top" style="padding:16px 20px;">
+
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td style="width:150px;"><div style="width:140px;height:170px;border:1px solid #000;"><image-slot id="profile-photo" shape="rect" placeholder="Dave's photo"></image-slot></div></td>
+          <td style="padding-left:14px;vertical-align:top;">
+            <font face="Times New Roman" size="6" color="#cc0000"><i><b>Dave Callahan</b></i></font><br/><br/>
+            <font size="3">
+            Age: 19 &nbsp;|&nbsp; Location: Ohio, USA<br/>
+            AIM: dbzfan2001 &nbsp;|&nbsp; ICQ: 118820234<br/>
+            Status: <i>rewatching Cowboy Bebop for the 6th time</i>
+            </font>
+          </td>
+        </tr></table>
+
+        <br/>
+        <font face="Arial" size="3" color="#000080"><b>About Me</b></font><hr size="1"/>
+        <font size="3">
+        What's up. I'm a sophomore studying computer science, but honestly I spend more time thinking about anime than about my classes lol.<br/>
+        Got into anime back in middle school watching Toonami after school, and it's been downhill ever since. Now I own way too many DVDs and a shelf of figures I definitely can't afford.
+        </font>
+
+        <br/><br/>
+        <table cellpadding="0" cellspacing="0" width="100%"><tr>
+          <td valign="top" style="width:50%;">
+            <font face="Arial" size="2" color="#000080"><b>Favorite Anime</b></font><hr size="1"/>
+            <font size="3">
+            - Cowboy Bebop<br/>
+            - Neon Genesis Evangelion<br/>
+            - Trigun<br/>
+            - Gundam Wing<br/>
+            - Rurouni Kenshin
+            </font>
+          </td>
+          <td valign="top">
+            <font face="Arial" size="2" color="#000080"><b>Other Things I Like</b></font><hr size="1"/>
+            <font size="3">
+            - Manga collecting (Shonen Jump subscriber!)<br/>
+            - Fansubs &amp; anime conventions<br/>
+            - Making AMVs in my spare time<br/>
+            - Fighting games (Tekken, Street Fighter)
+            </font>
+          </td>
+        </tr></table>
+
+        <br/>
+        <font face="Arial" size="2" color="#000080"><b>Snapshots</b></font><hr size="1"/>
+        <div style="width:90px;height:70px;border:1px solid #000;display:inline-block;margin-right:6px;"><image-slot id="profile-snap-1" shape="rect" placeholder="pic 1"></image-slot></div>
+        <div style="width:90px;height:70px;border:1px solid #000;display:inline-block;margin-right:6px;"><image-slot id="profile-snap-2" shape="rect" placeholder="pic 2"></image-slot></div>
+        <div style="width:90px;height:70px;border:1px solid #000;display:inline-block;margin-right:6px;"><image-slot id="profile-snap-3" shape="rect" placeholder="pic 3"></image-slot></div>
+        <div style="width:90px;height:70px;border:1px solid #000;display:inline-block;"><image-slot id="profile-snap-4" shape="rect" placeholder="pic 4"></image-slot></div>
+
+        <br/><br/>
+        <font face="Arial" size="2" color="#000080"><b>Contact &amp; Links</b></font><hr size="1"/>
+        <font size="3">
+        AIM: dbzfan2001<br/>
+        Email: daveoverload@hotmail.com<br/>
+        Guestbook: <a href="#" onClick="{{ comingSoon }}">sign it here</a>
+        </font>
+
+      </td>
+    </tr>
+  </table>
+
+  <div style="text-align:center;padding:10px;font-size:11px;color:#555;background:#eee;border-top:1px solid #000;">
+    Copyright(c) 2002 Dave. All rights reserved.
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { comingSoon: (e) => { e.preventDefault(); window.alert('Guestbook coming soon! Working on the CGI script lol'); } };
+  }
+}
+
+</script>
+</body>
+</html>

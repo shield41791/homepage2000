@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000ee; text-decoration: underline; }
+a:hover { color: #cc0000; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;font-family:'Times New Roman',Times,serif;color:#000;">
+
+  <div style="background:#cc0000;padding:14px 16px;">
+    <a href="Home.dc.html" style="text-decoration:none;"><span style="font-family:'Times New Roman',Times,serif;font-style:italic;font-weight:bold;font-size:36px;color:#0000ff;">Anime Overload</span></a>
+    <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;margin-left:10px;">http://www.geocities.com/Tokyo/Towers/4477</span>
+  </div>
+
+  <div style="padding:3px 10px;background:#000;">
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#33ff33;font-size:12px;font-family:'Courier New',monospace;">
+      Welcome to Anime Overload!! Sign my guestbook before you leave ^_^ New fanart in the gallery! Hit me up on AIM: dbzfan2001
+    </marquee>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td width="150" valign="top" style="background:#cce0f5;border-right:1px solid #000;padding:14px 10px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;color:#000080;margin-bottom:10px;">PLACES TO GO:</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:2;">
+          <a href="Home.dc.html">Home</a><br/>
+          <a href="Profile.dc.html">Profile</a><br/>
+          <a href="Notice.dc.html">Notice</a><br/>
+          <a href="Board.dc.html">Board</a><br/>
+          <a href="Photos.dc.html" style="color:#cc0000;font-weight:bold;">Photos</a><br/>
+          <a href="Videos.dc.html">Videos</a><br/>
+          <a href="Projects.dc.html">Projects</a>
+        </div>
+      </td>
+      <td valign="top" style="padding:16px 20px;">
+
+        <font face="Times New Roman" size="6" color="#cc0000"><i><b>Photo Gallery</b></i></font>
+        <hr/>
+
+        <font face="Arial" size="2">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+          [ <a href="#" onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</a> ]
+        </sc-for>
+        </font>
+        <br/><br/>
+
+        <table cellpadding="8" cellspacing="0" style="border-collapse:collapse;">
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="2">
+            <tr>
+              <sc-for list="{{ row }}" as="cell" hint-placeholder-count="4">
+                <td style="border:1px solid #999;text-align:center;vertical-align:top;width:150px;">
+                  <sc-if value="{{ cell }}" hint-placeholder-val="{{ false }}">
+                    <a href="PostView.dc.html?board=photos&id={{ cell.id }}" style="text-decoration:none;">
+                      <div style="width:130px;height:100px;border:1px solid #000;"><image-slot id="{{ cell.slotId }}" shape="rect" placeholder="{{ cell.categoryLabel }}"></image-slot></div>
+                      <font size="2" color="#000">{{ cell.title }}</font>
+                    </a>
+                  </sc-if>
+                </td>
+              </sc-for>
+            </tr>
+          </sc-for>
+        </table>
+        <br/>
+        <div align="center">[1]</div>
+
+      </td>
+    </tr>
+  </table>
+
+  <div style="text-align:center;padding:10px;font-size:11px;color:#555;background:#eee;border-top:1px solid #000;">
+    Copyright(c) 2002 Dave. All rights reserved.
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 'all' };
+  renderVals() {
+    const raw = [
+      { id: 'p1', category: 'photo', categoryLabel: 'photo', title: 'me at anime con', slotId: 'photo-1' },
+      { id: 'p2', category: 'photo', categoryLabel: 'photo', title: 'my figure shelf', slotId: 'photo-2' },
+      { id: 'p3', category: 'fanart', categoryLabel: 'fanart', title: 'spike sketch', slotId: 'photo-3' },
+      { id: 'p4', category: 'fanart', categoryLabel: 'fanart', title: 'evangelion doodle', slotId: 'photo-4' },
+      { id: 'p5', category: 'wallpaper', categoryLabel: 'wallpaper', title: 'trigun wallpaper', slotId: 'photo-5' },
+      { id: 'p6', category: 'wallpaper', categoryLabel: 'wallpaper', title: 'gundam wing wallpaper', slotId: 'photo-6' },
+      { id: 'p7', category: 'scan', categoryLabel: 'scan', title: 'shonen jump scan', slotId: 'photo-7' },
+      { id: 'p8', category: 'scan', categoryLabel: 'scan', title: 'manga volume cover scan', slotId: 'photo-8' }
+    ];
+    const filter = this.state.filter;
+    const filtered = filter === 'all' ? raw : raw.filter(p => p.category === filter);
+    const rows = [];
+    for (let i = 0; i < filtered.length; i += 4) rows.push(filtered.slice(i, i + 4));
+    if (rows.length && rows[rows.length - 1].length < 4) {
+      while (rows[rows.length - 1].length < 4) rows[rows.length - 1].push(null);
+    }
+    const tabDefs = [
+      { key: 'all', label: 'ALL' },
+      { key: 'photo', label: 'PHOTOS' },
+      { key: 'fanart', label: 'FANART' },
+      { key: 'wallpaper', label: 'WALLPAPERS' },
+      { key: 'scan', label: 'SCANS' }
+    ];
+    const tabs = tabDefs.map(t => ({
+      label: t.label,
+      onClick: (e) => { e.preventDefault(); this.setState({ filter: t.key }); },
+      style: t.key === filter ? 'color:#cc0000;font-weight:bold;' : 'color:#0000ee;'
+    }));
+    return { tabs, rows };
+  }
+}
+
+</script>
+</body>
+</html>

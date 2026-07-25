@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { color: #0000ee; text-decoration: underline; }
+a:hover { color: #cc0000; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;font-family:'Times New Roman',Times,serif;color:#000;">
+
+  <div style="background:#cc0000;padding:14px 16px;">
+    <a href="Home.dc.html" style="text-decoration:none;"><span style="font-family:'Times New Roman',Times,serif;font-style:italic;font-weight:bold;font-size:36px;color:#0000ff;">Anime Overload</span></a>
+    <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;margin-left:10px;">http://www.geocities.com/Tokyo/Towers/4477</span>
+  </div>
+
+  <div style="padding:3px 10px;background:#000;">
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#33ff33;font-size:12px;font-family:'Courier New',monospace;">
+      Welcome to Anime Overload!! Sign my guestbook before you leave ^_^ New fanart in the gallery! Hit me up on AIM: dbzfan2001
+    </marquee>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td width="150" valign="top" style="background:#cce0f5;border-right:1px solid #000;padding:14px 10px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;color:#000080;margin-bottom:10px;">PLACES TO GO:</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:2;">
+          <a href="Home.dc.html" style="color:#cc0000;font-weight:bold;">Home</a><br/>
+          <a href="Profile.dc.html">Profile</a><br/>
+          <a href="Notice.dc.html">Notice [N]</a><br/>
+          <a href="Board.dc.html">Board [N]</a><br/>
+          <a href="Photos.dc.html">Photos</a><br/>
+          <a href="Videos.dc.html">Videos</a><br/>
+          <a href="Projects.dc.html">Projects</a>
+        </div>
+        <hr/>
+        <div style="width:100%;height:90px;border:1px solid #000;"><image-slot id="home-sidebar-pic" shape="rect" placeholder="anime pic"></image-slot></div>
+      </td>
+      <td valign="top" style="padding:16px 20px;">
+
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td style="width:110px;"><div style="width:100px;height:130px;border:1px solid #000;"><image-slot id="home-avatar" shape="rect" placeholder="Dave's pic"></image-slot></div></td>
+          <td style="padding-left:12px;font-size:14px;line-height:1.6;vertical-align:top;">
+            Hey what's up, I'm <b>Dave</b> - 19, from Ohio, and a certified anime junkie since Toonami hooked me in 7th grade.<br/>
+            This is my page for reviews, fanart, AMVs and general otaku rambling.<br/>
+            <i>Currently obsessing over: Cowboy Bebop rewatch</i>
+          </td>
+        </tr></table>
+
+        <br/>
+        <font face="Arial" size="3" color="#000080"><b>Latest Board Posts</b></font><hr size="1"/>
+        <sc-for list="{{ boardLatest }}" as="b" hint-placeholder-count="3">
+          <div style="font-size:13px;padding:2px 0;">
+            <sc-if value="{{ b.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#cc0000;font-weight:bold;">[N] </span></sc-if>
+            <a href="PostView.dc.html?board=board&id={{ b.id }}">{{ b.title }}</a>
+            <span style="color:#666;font-size:11px;"> - {{ b.date }}</span>
+          </div>
+        </sc-for>
+        <div style="font-size:11px;margin-top:4px;"><a href="Board.dc.html">more posts »</a></div>
+
+        <br/>
+        <font face="Arial" size="3" color="#000080"><b>Notices</b></font><hr size="1"/>
+        <sc-for list="{{ noticeLatest }}" as="n" hint-placeholder-count="3">
+          <div style="font-size:13px;padding:2px 0;">
+            <sc-if value="{{ n.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#cc0000;font-weight:bold;">[N] </span></sc-if>
+            <a href="PostView.dc.html?board=notice&id={{ n.id }}">{{ n.title }}</a>
+            <span style="color:#666;font-size:11px;"> - {{ n.date }}</span>
+          </div>
+        </sc-for>
+        <div style="font-size:11px;margin-top:4px;"><a href="Notice.dc.html">more notices »</a></div>
+
+        <br/>
+        <table cellpadding="4" cellspacing="0" style="border:1px solid #000;">
+          <tr><td style="background:#cccccc;font-family:Arial;font-size:12px;font-weight:bold;" colspan="2">AFFILIATES</td></tr>
+          <tr><td style="width:90px;height:31px;border:1px solid #999;"><image-slot id="affiliate-1" shape="rect" placeholder="88x31"></image-slot></td>
+              <td style="width:90px;height:31px;border:1px solid #999;"><image-slot id="affiliate-2" shape="rect" placeholder="88x31"></image-slot></td></tr>
+        </table>
+        <br/>
+        <a href="#" onClick="{{ comingSoon }}">✎ sign my guestbook</a>
+        <br/><br/>
+        <font face="Arial" size="1" color="#000">Total posts: {{ totalPosts }} &nbsp; Pics/art: 8 &nbsp; Visitors: 27,915</font>
+
+      </td>
+    </tr>
+  </table>
+
+  <div style="text-align:center;padding:10px;font-size:11px;color:#555;background:#eee;border-top:1px solid #000;">
+    Copyright(c) 2002 Dave. All rights reserved.
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('Guestbook coming soon! Working on the CGI script lol'); },
+      totalPosts: 14,
+      boardLatest: [
+        { id: 'b6', date: '11-05', title: 'just finished evangelion again and im not okay', isNew: true },
+        { id: 'b5', date: '11-01', title: 'anyone got the Trigun OST mp3s??', isNew: false },
+        { id: 'b4', date: '10-28', title: 'my gundam wing figure collection (pics soon)', isNew: false }
+      ],
+      noticeLatest: [
+        { id: 'n5', date: '11-02', title: 'redid the layout, tell me what u think', isNew: true },
+        { id: 'n4', date: '10-20', title: 'guestbook spam problem, sorry if ur post vanished', isNew: false },
+        { id: 'n3', date: '10-11', title: 'new AIM sn, updated on profile page', isNew: false }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
