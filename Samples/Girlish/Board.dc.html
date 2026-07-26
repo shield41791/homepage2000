@@ -20,8 +20,8 @@ a { text-decoration: none; }
     <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
       <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
       <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
-      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">소이의 딸기우유</div></a>
-      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://strawberrymilk.wo.to *</div>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">Soi's Moonlight Diary</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://moonprism.wo.to *</div>
     </div>
 
     <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
@@ -36,12 +36,12 @@ a { text-decoration: none; }
 
     <div style="background:#fff0f8;border-bottom:1px dotted #ffc7e3;padding:5px 10px;">
       <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#d6368f;font-size:12px;">
-        ♡ 어서오세요~ 소이의 딸기우유에 놀러오신 걸 환영해요 ^^ 방명록에 흔적 남기고 가세요~ ㅋㅋ ♡
+        ♡ welcome~ so glad you stopped by Soi's Moonlight Diary ^^ leave your mark in the guestbook plz~ haha ♡
       </marquee>
     </div>
 
     <div style="padding:20px 24px;">
-      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ 게시판 ✧</div>
+      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ Board ✧</div>
 
       <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
         <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
@@ -68,7 +68,7 @@ a { text-decoration: none; }
                   <sc-if value="{{ p.isNew }}" hint-placeholder-val="{{ false }}"><span style="color:#ff2266;font-weight:800;margin-right:4px;">[N]</span></sc-if>[{{ p.categoryLabel }}] {{ p.title }}
                 </a>
               </td>
-              <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">소이</td>
+              <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">Soi</td>
               <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">{{ p.date }}</td>
               <td style="border:1px solid #eecdec;padding:6px 4px;text-align:center;color:#c98cb0;">{{ p.hit }}</td>
             </tr>
@@ -93,21 +93,21 @@ class Component extends DCLogic {
   state = { filter: 'all' };
   renderVals() {
     const raw = [
-      { id: 'b6', category: 'free', categoryLabel: '자유', date: '11-05', title: '오늘 학교에서 있었던일 ㅋㅋ', isNew: true, hit: 71 },
-      { id: 'b5', category: 'diary', categoryLabel: '일기', date: '11-01', title: '요즘 너무 우울해요 ㅠㅠ', isNew: false, hit: 38 },
-      { id: 'b4', category: 'free', categoryLabel: '자유', date: '10-28', title: '새로산 다이어리 자랑*^^*', isNew: false, hit: 64 },
-      { id: 'b3', category: 'travel', categoryLabel: '여행기', date: '10-15', title: '지난 주말 대구 다녀온 후기', isNew: false, hit: 52 },
-      { id: 'b2', category: 'diary', categoryLabel: '일기', date: '10-02', title: '일기 쓰기 다짐', isNew: false, hit: 29 },
-      { id: 'b1', category: 'free', categoryLabel: '자유', date: '09-30', title: '첫 글이에요~', isNew: false, hit: 80 }
+      { id: 'b6', category: 'free', categoryLabel: 'Free', date: '11-05', title: 'Finished my Sailor Moon rerun marathon haha', isNew: true, hit: 71 },
+      { id: 'b5', category: 'diary', categoryLabel: 'Diary', date: '11-01', title: 'Cried my eyes out at the Wedding Peach finale T_T', isNew: false, hit: 38 },
+      { id: 'b4', category: 'free', categoryLabel: 'Free', date: '10-28', title: 'Scored Sailor Moon stickers at the stationery shop*^^*', isNew: false, hit: 64 },
+      { id: 'b3', category: 'travel', categoryLabel: 'Trip log', date: '10-15', title: 'Went manga-cafe hopping and borrowed 3 shoujo manga', isNew: false, hit: 52 },
+      { id: 'b2', category: 'diary', categoryLabel: 'Diary', date: '10-02', title: 'Vowing to memorize all the Sailor Moon transformation lines haha', isNew: false, hit: 29 },
+      { id: 'b1', category: 'free', categoryLabel: 'Free', date: '09-30', title: 'My first post~', isNew: false, hit: 80 }
     ];
     const filter = this.state.filter;
     const filtered = filter === 'all' ? raw : raw.filter(p => p.category === filter);
     const visiblePosts = filtered.map((p, i) => ({ ...p, no: filtered.length - i, rowBg: i % 2 === 0 ? '#fff9fc' : '#fff0f8' }));
     const cats = [
-      { key: 'all', label: '전체' },
-      { key: 'free', label: '자유' },
-      { key: 'diary', label: '일기' },
-      { key: 'travel', label: '여행기' }
+      { key: 'all', label: 'All' },
+      { key: 'free', label: 'Free' },
+      { key: 'diary', label: 'Diary' },
+      { key: 'travel', label: 'Trip log' }
     ];
     const categories = cats.map(c => ({
       label: c.label,

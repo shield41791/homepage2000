@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; background: #000; }
+a { color: #66ccff; text-decoration: none; }
+a:hover { color: #ff66cc; }
+::-webkit-scrollbar { width: 14px; background: #000; }
+::-webkit-scrollbar-thumb { background: #6a0dad; border: 1px solid #2a0a3a; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background: #000; font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; color: #ddd; padding-bottom: 60px;">
+
+  <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px 0;">
+    <a href="Home.dc.html" style="display: block; width: 260px; height: 58px; background: repeating-linear-gradient(-45deg, #180a20, #180a20 8px, #0a0410 8px, #0a0410 16px); border: 4px outset #6a0dad; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+      <span style="color: #ffcc00; font-size: 21px; font-weight: 700; text-shadow: 2px 2px 0 #000000;">흑월's 테네브리스</span>
+    </a>
+    <div style="font-size: 11px; color: #7a5a99; font-family: 'Courier New', monospace;">tenebris.wo.to</div>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background: #2a0e1a; border-top: 2px solid #6a0dad; border-bottom: 2px solid #6a0dad; margin-top: 8px;">
+    <tr>
+      <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #eeeeee; white-space: nowrap;">
+        <a href="Home.dc.html" style="color: #cccccc;">홈</a> | 
+        <a href="Profile.dc.html" style="color: #cccccc;">프로필</a> | 
+        <a href="Notice.dc.html" style="color: #cccccc;">공지사항</a> | 
+        <a href="Board.dc.html" style="color: #cccccc;">게시판</a> | 
+        <a href="Photos.dc.html" style="color: #ffcc00;">사진첩</a> | 
+        <a href="GameGuide.dc.html" style="color: #cccccc;">게임가이드</a> | 
+        <a href="GuildInfo.dc.html" style="color: #cccccc;">문파정보</a>
+      </td>
+    </tr>
+  </table>
+
+  <div style="padding: 10px 14px; border-bottom: 1px solid #333;">
+    <marquee behavior="scroll" direction="left" scrollamount="4" style="background: #0a0a0a; border: 1px solid #334; color: #00ff88; font-family: 'Courier New', monospace; font-size: 13px; padding: 5px 10px;">
+      사진첩입니다.. 게임하면서 찍은 스샷이랑 이런저런 그림들 모아뒀어요~
+    </marquee>
+  </div>
+
+  <div style="padding: 20px 24px;">
+
+    <div style="color: #ffcc00; font-size: 19px; font-weight: 700; margin-bottom: 12px;">흑월's 사진첩</div>
+
+    <div style="display: flex; gap: 16px; font-size: 14px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+      <a href="#" onClick="{{ selectTab }}" data-tab="all" style="color: {{ tabColor.all }};">ALL</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="photo" style="color: {{ tabColor.photo }};">사진</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="illust" style="color: {{ tabColor.illust }};">일러스트</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="webtoon" style="color: {{ tabColor.webtoon }};">웹툰</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="screenshot" style="color: {{ tabColor.screenshot }};">스크린샷</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+      <sc-for list="{{ currentPhotos }}" as="p" hint-placeholder-count="8">
+        <a href="PostView.dc.html?board=photo&id={{ p.id }}" style="display: block; text-decoration: none;">
+          <div style="width: 100%; aspect-ratio: 1; background: repeating-linear-gradient(-45deg, #180a20, #180a20 8px, #0a0410 8px, #0a0410 16px); border: 2px solid #6a0dad; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 10px; color: #7a5a99; text-align: center;">
+            [ {{ p.label }} ]
+          </div>
+          <div style="font-size: 12px; color: #ccc; text-align: center; margin-top: 4px;">{{ p.title }}</div>
+        </a>
+      </sc-for>
+    </div>
+
+  </div>
+
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: stretch; height: 26px; z-index: 10;">
+    <div style="background: #4a0e6a; border-right: 3px outset #a066cc; color: #ffcc00; font-size: 12px; font-weight: 800; display: flex; align-items: center; padding: 0 12px;">공지</div>
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="flex: 1; background: #000; color: #ccc; font-size: 12px; display: flex; align-items: center;">
+      ▶ 테네브리스 온라인 정기점검 안내: 매주 목요일 오전 6시~9시&nbsp;&nbsp;&nbsp;&nbsp;▶ 게시판 이용 시 서로 예의를 지켜주세요&nbsp;&nbsp;&nbsp;&nbsp;▶ 홈페이지 방문해주셔서 감사합니다 (_ _)
+    </marquee>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PHOTOS = [
+  { id: 'p1', cat: 'photo', label: '사진', title: '사냥터 인증샷' },
+  { id: 'p2', cat: 'photo', label: '사진', title: '문파 모임날' },
+  { id: 'p3', cat: 'illust', label: '일러스트', title: '캐릭터 팬아트' },
+  { id: 'p4', cat: 'illust', label: '일러스트', title: '문파 마크 그려봄' },
+  { id: 'p5', cat: 'webtoon', label: '웹툰', title: '사냥 실패담 4컷' },
+  { id: 'p6', cat: 'webtoon', label: '웹툰', title: '초보 시절 이야기' },
+  { id: 'p7', cat: 'screenshot', label: '스크린샷', title: '3차 전직 순간' },
+  { id: 'p8', cat: 'screenshot', label: '스크린샷', title: '보스 레이드 클리어' }
+];
+class Component extends DCLogic {
+  state = { tab: 'all' };
+  renderVals() {
+    const tab = this.state.tab;
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다.'); },
+      selectTab: (e) => { e.preventDefault(); this.setState({ tab: e.currentTarget.dataset.tab }); },
+      tabColor: {
+        all: tab === 'all' ? '#ffcc00' : '#aaaaaa',
+        photo: tab === 'photo' ? '#ffcc00' : '#aaaaaa',
+        illust: tab === 'illust' ? '#ffcc00' : '#aaaaaa',
+        webtoon: tab === 'webtoon' ? '#ffcc00' : '#aaaaaa',
+        screenshot: tab === 'screenshot' ? '#ffcc00' : '#aaaaaa'
+      },
+      currentPhotos: tab === 'all' ? PHOTOS : PHOTOS.filter(p => p.cat === tab)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; background: #000; }
+a { color: #66ccff; text-decoration: none; }
+a:hover { color: #ff66cc; }
+::-webkit-scrollbar { width: 14px; background: #000; }
+::-webkit-scrollbar-thumb { background: #6a0dad; border: 1px solid #2a0a3a; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background: #000; font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; color: #ddd; padding-bottom: 60px;">
+
+  <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px 0;">
+    <a href="Home.dc.html" style="display: block; width: 260px; height: 58px; background: repeating-linear-gradient(-45deg, #180a20, #180a20 8px, #0a0410 8px, #0a0410 16px); border: 4px outset #6a0dad; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+      <span style="color: #ffcc00; font-family: 'Batang', serif; font-size: 21px; font-weight: 700; text-shadow: 2px 2px 0 #000000;">흑월's 테네브리스</span>
+    </a>
+    <div style="font-size: 11px; color: #7a5a99; font-family: 'Courier New', monospace;">tenebris.wo.to</div>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background: #2a0e1a; border-top: 2px solid #6a0dad; border-bottom: 2px solid #6a0dad; margin-top: 8px;">
+    <tr>
+      <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #eeeeee; white-space: nowrap;">
+        <a href="Home.dc.html" style="color: #cccccc;">홈</a> | 
+        <a href="Profile.dc.html" style="color: #cccccc;">프로필</a> | 
+        <a href="Notice.dc.html" style="color: #ffcc00;">공지사항</a> | 
+        <a href="Board.dc.html" style="color: #cccccc;">게시판</a> | 
+        <a href="Photos.dc.html" style="color: #cccccc;">사진첩</a> | 
+        <a href="GameGuide.dc.html" style="color: #cccccc;">게임가이드</a> | 
+        <a href="GuildInfo.dc.html" style="color: #cccccc;">문파정보</a>
+      </td>
+    </tr>
+  </table>
+
+  <div style="padding: 10px 14px; border-bottom: 1px solid #333;">
+    <marquee behavior="scroll" direction="left" scrollamount="4" style="background: #0a0a0a; border: 1px solid #334; color: #00ff88; font-family: 'Courier New', monospace; font-size: 13px; padding: 5px 10px;">
+      공지사항 게시판입니다.. 중요한 소식은 이곳에 모아두었으니 자주 확인해주세요~
+    </marquee>
+  </div>
+
+  <div style="padding: 16px 20px;">
+    <div style="color: #ffcc00; font-size: 19px; font-weight: 800; margin-bottom: 4px;">흑월's 공지사항</div>
+    <div style="font-size: 12px; color: #888; margin-bottom: 10px;">total : {{ notices.length }} articles : 1/1</div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+      <tr style="background: #6a0dad; border: 2px solid #000000;">
+        <td width="50" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; padding: 8px 6px; border: 2px solid #000;">번호</td>
+        <td style="font-weight: 800; font-size: 13px; color: #ffffff; padding: 8px 6px; border: 2px solid #000;">제목</td>
+        <td width="90" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; padding: 8px 6px; border: 2px solid #000;">이름</td>
+        <td width="90" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; padding: 8px 6px; border: 2px solid #000;">날짜</td>
+        <td width="70" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; padding: 8px 6px; border: 2px solid #000;">조회</td>
+      </tr>
+      <sc-for list="{{ notices }}" as="n" hint-placeholder-count="6">
+        <tr style="border-bottom: 1px solid #222;">
+          <td align="center" style="color: {{ n.noColor }}; font-weight: 700; font-size: 14px; padding: 9px 6px;">{{ n.noLabel }}</td>
+          <td style="font-size: 14px; padding: 9px 6px;">
+            <sc-if value="{{ n.isNew }}" hint-placeholder-val="{{ false }}"><span style="color: #ff5555; font-weight: 800; margin-right: 4px;">[N]</span></sc-if>
+            <a href="PostView.dc.html?board=notice&id={{ n.id }}" style="color: #e6e6e6; font-weight: 700;">{{ n.title }}</a>
+          </td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ n.author }}</td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ n.date }}</td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ n.hit }}</td>
+        </tr>
+      </sc-for>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px; font-weight: 700; font-size: 14px; color: #ccc;">[1]</div>
+  </div>
+
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: stretch; height: 26px; z-index: 10;">
+    <div style="background: #4a0e6a; border-right: 3px outset #a066cc; color: #ffcc00; font-size: 12px; font-weight: 800; display: flex; align-items: center; padding: 0 12px;">공지</div>
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="flex: 1; background: #000; color: #ccc; font-size: 12px; display: flex; align-items: center;">
+      ▶ 테네브리스 온라인 정기점검 안내: 매주 목요일 오전 6시~9시&nbsp;&nbsp;&nbsp;&nbsp;▶ 게시판 이용 시 서로 예의를 지켜주세요&nbsp;&nbsp;&nbsp;&nbsp;▶ 홈페이지 방문해주셔서 감사합니다 (_ _)
+    </marquee>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다.'); },
+      notices: [
+        { id: 'n0', no: 0, noLabel: '공지', noColor: '#ff8844', author: '흑월', date: '06-01', hit: 512, isNew: false, title: '게시판 이용 안내 (필독)' },
+        { id: 'n3', no: 3, noLabel: '3', noColor: '#888', author: '흑월', date: '07-20', hit: 88, isNew: true, title: '홈페이지 레이아웃을 조금 손봤습니다' },
+        { id: 'n2', no: 2, noLabel: '2', noColor: '#888', author: '흑월', date: '07-05', hit: 143, isNew: false, title: '방명록 스팸 관련 안내' },
+        { id: 'n1', no: 1, noLabel: '1', noColor: '#888', author: '흑월', date: '06-28', hit: 231, isNew: false, title: '새로 시작하는 마음으로 다시 열었습니다' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

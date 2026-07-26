@@ -20,8 +20,8 @@ a { text-decoration: none; }
     <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
       <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
       <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
-      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">소이의 딸기우유</div></a>
-      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://strawberrymilk.wo.to *</div>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">Soi's Moonlight Diary</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://moonprism.wo.to *</div>
     </div>
 
     <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
@@ -36,12 +36,12 @@ a { text-decoration: none; }
 
     <div style="background:#fff0f8;border-bottom:1px dotted #ffc7e3;padding:5px 10px;">
       <marquee behavior="scroll" direction="left" scrollamount="3" style="color:#d6368f;font-size:12px;">
-        ♡ 어서오세요~ 소이의 딸기우유에 놀러오신 걸 환영해요 ^^ 방명록에 흔적 남기고 가세요~ ㅋㅋ ♡
+        ♡ welcome~ so glad you stopped by Soi's Moonlight Diary ^^ leave your mark in the guestbook plz~ haha ♡
       </marquee>
     </div>
 
     <div style="padding:20px 24px;">
-      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ 사진첩 ✧</div>
+      <div style="font-family:'Comic Sans MS',cursive;font-size:20px;color:#ff2f8f;font-weight:700;margin-bottom:12px;">✧ Photo Album ✧</div>
 
       <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
         <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
@@ -87,14 +87,14 @@ class Component extends DCLogic {
   state = { filter: 'all' };
   renderVals() {
     const raw = [
-      { id: 'p1', category: 'photo', categoryLabel: '사진', title: '소이 셀카*^^*' },
-      { id: 'p2', category: 'photo', categoryLabel: '사진', title: '먼지랑 같이' },
-      { id: 'p3', category: 'illust', categoryLabel: '일러스트', title: '낙서 하나' },
-      { id: 'p4', category: 'illust', categoryLabel: '일러스트', title: '좋아하는 캐릭터 그려봄' },
-      { id: 'p5', category: 'webtoon', categoryLabel: '웹툰', title: '짧은 만화 1화' },
-      { id: 'p6', category: 'webtoon', categoryLabel: '웹툰', title: '짧은 만화 2화' },
-      { id: 'p7', category: 'screenshot', categoryLabel: '스크린샷', title: '좋아하는 게임 캡처' },
-      { id: 'p8', category: 'screenshot', categoryLabel: '스크린샷', title: '예쁜 배경화면 캡처' }
+      { id: 'p1', category: 'photo', categoryLabel: 'Photo', title: 'Soi selfie*^^*' },
+      { id: 'p2', category: 'photo', categoryLabel: 'Photo', title: 'My Sailor Moon cosplay attempt!' },
+      { id: 'p3', category: 'illust', categoryLabel: 'Illustration', title: 'Drew Sailor Moon' },
+      { id: 'p4', category: 'illust', categoryLabel: 'Illustration', title: 'Wedding Peach fan art' },
+      { id: 'p5', category: 'webtoon', categoryLabel: 'Webtoon', title: 'Short comic ep. 1' },
+      { id: 'p6', category: 'webtoon', categoryLabel: 'Webtoon', title: 'Short comic ep. 2' },
+      { id: 'p7', category: 'screenshot', categoryLabel: 'Screenshot', title: 'Sailor Moon key scene capture' },
+      { id: 'p8', category: 'screenshot', categoryLabel: 'Screenshot', title: 'Pretty wallpaper capture' }
     ];
     const filter = this.state.filter;
     const filtered = filter === 'all' ? raw : raw.filter(p => p.category === filter);
@@ -105,10 +105,10 @@ class Component extends DCLogic {
     }
     const tabDefs = [
       { key: 'all', label: 'ALL' },
-      { key: 'photo', label: '사진' },
-      { key: 'illust', label: '일러스트' },
-      { key: 'webtoon', label: '웹툰' },
-      { key: 'screenshot', label: '스크린샷' }
+      { key: 'photo', label: 'Photo' },
+      { key: 'illust', label: 'Illustration' },
+      { key: 'webtoon', label: 'Webtoon' },
+      { key: 'screenshot', label: 'Screenshot' }
     ];
     const tabs = tabDefs.map(t => ({
       label: t.label,

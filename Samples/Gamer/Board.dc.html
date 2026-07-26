@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; background: #000; }
+a { color: #66ccff; text-decoration: none; }
+a:hover { color: #ff66cc; }
+::-webkit-scrollbar { width: 14px; background: #000; }
+::-webkit-scrollbar-thumb { background: #6a0dad; border: 1px solid #2a0a3a; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; background: #000; font-family: 'Batang', 'BatangChe', 'Times New Roman', serif; color: #ddd; padding-bottom: 60px;">
+
+  <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px 0;">
+    <a href="Home.dc.html" style="display: block; width: 260px; height: 58px; background: repeating-linear-gradient(-45deg, #180a20, #180a20 8px, #0a0410 8px, #0a0410 16px); border: 4px outset #6a0dad; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+      <span style="color: #ffcc00; font-size: 21px; font-weight: 700; text-shadow: 2px 2px 0 #000000;">흑월's 테네브리스</span>
+    </a>
+    <div style="font-size: 11px; color: #7a5a99; font-family: 'Courier New', monospace;">tenebris.wo.to</div>
+  </div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background: #2a0e1a; border-top: 2px solid #6a0dad; border-bottom: 2px solid #6a0dad; margin-top: 8px;">
+    <tr>
+      <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #eeeeee; white-space: nowrap;">
+        <a href="Home.dc.html" style="color: #cccccc;">홈</a> | 
+        <a href="Profile.dc.html" style="color: #cccccc;">프로필</a> | 
+        <a href="Notice.dc.html" style="color: #cccccc;">공지사항</a> | 
+        <a href="Board.dc.html" style="color: #ffcc00;">게시판</a> | 
+        <a href="Photos.dc.html" style="color: #cccccc;">사진첩</a> | 
+        <a href="GameGuide.dc.html" style="color: #cccccc;">게임가이드</a> | 
+        <a href="GuildInfo.dc.html" style="color: #cccccc;">문파정보</a>
+      </td>
+    </tr>
+  </table>
+
+  <div style="padding: 10px 14px; border-bottom: 1px solid #333;">
+    <marquee behavior="scroll" direction="left" scrollamount="4" style="background: #0a0a0a; border: 1px solid #334; color: #00ff88; font-family: 'Courier New', monospace; font-size: 13px; padding: 5px 10px;">
+      자유롭게 이야기 나누는 게시판입니다.. 사냥터 정보나 잡담, 신세한탄 모두 환영합니다~
+    </marquee>
+  </div>
+
+  <div style="padding: 16px 20px;">
+    <div style="color: #ffcc00; font-size: 19px; font-weight: 800; margin-bottom: 10px;">흑월's 게시판</div>
+
+    <div style="display: flex; gap: 18px; font-size: 14px; font-weight: 800; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+      <a href="#" onClick="{{ selectTab }}" data-tab="free" style="color: {{ tabColor.free }};">자유게시판</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="info" style="color: {{ tabColor.info }};">사냥터정보</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="trade" style="color: {{ tabColor.trade }};">거래게시판</a>
+      <a href="#" onClick="{{ selectTab }}" data-tab="diary" style="color: {{ tabColor.diary }};">일기장(넋두리)</a>
+    </div>
+
+    <div style="font-size: 12px; color: #888; margin-bottom: 10px;">total : {{ currentPosts.length }} articles : 1/1</div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+      <tr>
+        <td width="50" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; background: #6a0dad; padding: 8px 6px; border: 2px solid #000;">번호</td>
+        <td style="font-weight: 800; font-size: 13px; color: #ffffff; background: #6a0dad; padding: 8px 6px; border: 2px solid #000;">제목</td>
+        <td width="90" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; background: #6a0dad; padding: 8px 6px; border: 2px solid #000;">이름</td>
+        <td width="90" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; background: #6a0dad; padding: 8px 6px; border: 2px solid #000;">날짜</td>
+        <td width="70" align="center" style="font-weight: 800; font-size: 13px; color: #ffffff; background: #6a0dad; padding: 8px 6px; border: 2px solid #000;">조회</td>
+      </tr>
+      <sc-for list="{{ currentPosts }}" as="p" hint-placeholder-count="6">
+        <tr style="border-bottom: 1px solid #222;">
+          <td align="center" style="color: #888; font-weight: 700; font-size: 14px; padding: 9px 6px;">{{ p.no }}</td>
+          <td style="font-size: 14px; padding: 9px 6px;">
+            <sc-if value="{{ p.isNew }}" hint-placeholder-val="{{ false }}"><span style="color: #ff5555; font-weight: 800; margin-right: 4px;">[N]</span></sc-if>
+            <a href="PostView.dc.html?board=board&id={{ p.id }}" style="color: #e6e6e6; font-weight: 700;">{{ p.title }}</a>
+          </td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ p.author }}</td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ p.date }}</td>
+          <td align="center" style="color: #999; font-size: 14px; padding: 9px 6px;">{{ p.hit }}</td>
+        </tr>
+      </sc-for>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px; font-weight: 700; font-size: 14px; color: #ccc;">[1]</div>
+  </div>
+
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: stretch; height: 26px; z-index: 10;">
+    <div style="background: #4a0e6a; border-right: 3px outset #a066cc; color: #ffcc00; font-size: 12px; font-weight: 800; display: flex; align-items: center; padding: 0 12px;">공지</div>
+    <marquee behavior="scroll" direction="left" scrollamount="3" style="flex: 1; background: #000; color: #ccc; font-size: 12px; display: flex; align-items: center;">
+      ▶ 테네브리스 온라인 정기점검 안내: 매주 목요일 오전 6시~9시&nbsp;&nbsp;&nbsp;&nbsp;▶ 게시판 이용 시 서로 예의를 지켜주세요&nbsp;&nbsp;&nbsp;&nbsp;▶ 홈페이지 방문해주셔서 감사합니다 (_ _)
+    </marquee>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const POSTS = {
+  free: [
+    { no: 5, id: 'f5', author: '흑월', date: '07-22', hit: 61, isNew: true, title: '오늘도 사냥터에서 있었던 일' },
+    { no: 4, id: 'f4', author: '초록달팽이', date: '07-20', hit: 39, isNew: false, title: '다들 주말에 뭐 하시나요' },
+    { no: 3, id: 'f3', author: '흑월', date: '07-18', hit: 84, isNew: false, title: '드디어 3차 전직했습니다' },
+    { no: 2, id: 'f2', author: '떠도는바람', date: '07-14', hit: 52, isNew: false, title: '오랜만에 들어왔는데 반갑네요' },
+    { no: 1, id: 'f1', author: '흑월', date: '07-11', hit: 97, isNew: false, title: '새 장비 하나 맞췄어요' }
+  ],
+  info: [
+    { no: 3, id: 'i3', author: '흑월', date: '07-19', hit: 143, isNew: true, title: '심연의 균열 몹 위치 정리' },
+    { no: 2, id: 'i2', author: '수련생', date: '07-15', hit: 121, isNew: false, title: '초보자용 사냥터 추천 부탁드려요' },
+    { no: 1, id: 'i1', author: '흑월', date: '07-08', hit: 205, isNew: false, title: '스킬 트리 키우는 순서 정리 (개인 의견)' }
+  ],
+  trade: [
+    { no: 2, id: 't2', author: '장비수집가', date: '07-17', hit: 38, isNew: false, title: '방어구 세트 팝니다' },
+    { no: 1, id: 't1', author: '흑월', date: '07-09', hit: 44, isNew: false, title: '골드 시세 아시는 분?' }
+  ],
+  diary: [
+    { no: 3, id: 'd3', author: '흑월', date: '07-23', hit: 71, isNew: true, title: '[일기] 오늘도 야근하고 PC방行' },
+    { no: 2, id: 'd2', author: '흑월', date: '07-21', hit: 88, isNew: false, title: '[일기] 새벽 3시, PC방에서' },
+    { no: 1, id: 'd1', author: '흑월', date: '07-13', hit: 66, isNew: false, title: '[일기] 이번 생에 3차 전직은 글렀나 싶었는데' }
+  ]
+};
+class Component extends DCLogic {
+  state = { tab: 'free' };
+  renderVals() {
+    return {
+      comingSoon: (e) => { e.preventDefault(); window.alert('아직 준비중인 페이지입니다.'); },
+      selectTab: (e) => { e.preventDefault(); this.setState({ tab: e.currentTarget.dataset.tab }); },
+      tabColor: {
+        free: this.state.tab === 'free' ? '#ffcc00' : '#aaaaaa',
+        info: this.state.tab === 'info' ? '#ffcc00' : '#aaaaaa',
+        trade: this.state.tab === 'trade' ? '#ffcc00' : '#aaaaaa',
+        diary: this.state.tab === 'diary' ? '#ffcc00' : '#aaaaaa'
+      },
+      currentPosts: POSTS[this.state.tab]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

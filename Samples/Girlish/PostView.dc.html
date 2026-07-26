@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body { margin: 0; }
+a { text-decoration: none; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background-color:#ffe1f0;background-image:radial-gradient(circle,#ffffff 1.5px,transparent 2px),radial-gradient(circle,#ffc2e2 1.5px,transparent 2px);background-size:28px 28px,28px 28px;background-position:0 0,14px 14px;font-family:'Gulim','Dotum',sans-serif;padding:22px 0 60px;box-sizing:border-box;">
+  <div style="width:780px;max-width:100%;margin:0 auto;background:#fff9fc;border:3px solid #ff8fc7;box-sizing:border-box;">
+
+    <div style="height:130px;background:repeating-linear-gradient(90deg,#ffd1ec 0,#ffd1ec 20px,#ffe9f6 20px,#ffe9f6 40px,#e3d3ff 40px,#e3d3ff 60px,#cfeaff 60px,#cfeaff 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <span style="position:absolute;top:10px;left:16px;font-size:20px;">✧</span>
+      <span style="position:absolute;top:14px;right:20px;font-size:16px;">❀</span>
+      <a href="Home.dc.html"><div style="font-family:'Comic Sans MS','Gungsuh',cursive;font-size:50px;font-weight:700;color:#ff2f8f;-webkit-text-stroke:2px #fff;text-shadow:4px 4px 0 #ffb3da;letter-spacing:1px;">Soi's Moonlight Diary</div></a>
+      <div style="font-family:'Courier New',monospace;font-size:12px;color:#b04fd6;letter-spacing:1px;margin-top:4px;">* http://moonprism.wo.to *</div>
+    </div>
+
+    <div style="background:#fff;border-top:2px dotted #ff9ecf;border-bottom:2px dotted #ff9ecf;padding:9px 6px;display:flex;justify-content:center;align-items:center;gap:2px;flex-wrap:wrap;font-size:13px;font-weight:700;">
+      <a href="Home.dc.html" style="color:#b04fd6;padding:3px 6px;">Home</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Profile.dc.html" style="color:#b04fd6;padding:3px 6px;">Profile</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Notice.dc.html" style="color:{{ navColors.notice }};padding:3px 6px;">Notice</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Board.dc.html" style="color:{{ navColors.board }};padding:3px 6px;">Board</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Photos.dc.html" style="color:{{ navColors.photos }};padding:3px 6px;">Photos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Videos.dc.html" style="color:#b04fd6;padding:3px 6px;">Videos</a><span style="color:#f0b8d8;">::::</span>
+      <a href="Projects.dc.html" style="color:#b04fd6;padding:3px 6px;">Projects</a>
+    </div>
+
+    <div style="padding:22px 26px;">
+      <div style="border-bottom:2px dotted #f0b8d8;padding-bottom:12px;margin-bottom:16px;">
+        <div style="font-size:19px;color:#7a3a63;font-weight:700;">{{ post.title }}</div>
+        <div style="font-size:12px;color:#c98cb0;margin-top:6px;">
+          {{ post.name }} &nbsp;|&nbsp; {{ post.date }} &nbsp;|&nbsp; views {{ post.hit }}
+        </div>
+      </div>
+
+      <sc-if value="{{ post.image }}" hint-placeholder-val="{{ false }}">
+        <div style="width:100%;max-width:420px;margin:0 auto 18px;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,#ffd6ea,#ffd6ea 8px,#ffe9f4 8px,#ffe9f4 16px);border:2px solid #ff9ecf;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:#b04fd6;">
+          [ {{ post.title }} image ]
+        </div>
+      </sc-if>
+
+      <div style="font-size:14px;color:#7a3a63;line-height:2;min-height:120px;white-space:pre-line;">{{ post.body }}</div>
+
+      <div style="margin-top:26px;text-align:right;">
+        <a href="{{ post.backHref }}" style="color:#b04fd6;font-size:12px;font-weight:700;">« back to list</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:14px 10px;border-top:2px dotted #ff9ecf;font-size:11px;color:#b04fd6;">
+      ❀ Copyright(c) 2003 Soi. All rights reserved. ❀
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const params = new URLSearchParams(window.location.search);
+    const board = params.get('board') || 'notice';
+    const id = params.get('id') || '';
+
+    const data = {
+      notice: [
+        { id: 'n5', date: '2003-11-02', title: 'Changed the skin to a moonlight prism theme haha', hit: 82, body: "Tweaked the page background after a while~ made it sparkle more like Sailor Moon, what do you think?? hope you like it hehe" },
+        { id: 'n4', date: '2003-10-20', title: 'Testing auto-delete for guestbook spam', hit: 41, body: "Weird spam ads kept showing up in the guestbook so I'm testing an auto-delete feature. Sorry if your comment disappeared T_T" },
+        { id: 'n3', date: '2003-10-11', title: 'Changed my messenger ID', hit: 55, body: 'Had some issues with my old ID so I made a new messenger ID~ check my Profile for details!' },
+        { id: 'n2', date: '2003-09-30', title: 'My page is now open~', hit: 63, body: 'My homepage is finally open!! Will fill it in little by little hehe come visit often~' },
+        { id: 'n1', date: '2003-09-30', title: 'Welcome ^^', hit: 90, body: 'Welcome to my little homepage~ look around and enjoy ♡' }
+      ],
+      board: [
+        { id: 'b6', name: 'Soi', date: '2003-11-05', title: 'Finished my Sailor Moon rerun marathon haha', hit: 71, body: "Cable's been airing Sailor Moon reruns since yesterday so I stayed up all night watching lol still so good no matter how many times I watch it!\nTotally swooned again at the Tuxedo Mask scene hehe" },
+        { id: 'b5', name: 'Soi', date: '2003-11-01', title: 'Cried my eyes out at the Wedding Peach finale T_T', hit: 38, body: "I couldn't stop crying watching the Wedding Peach ending T_T\nhas anyone else seen Wedding Peach? I want to talk about it..." },
+        { id: 'b4', name: 'Soi', date: '2003-10-28', title: 'Scored Sailor Moon stickers at the stationery shop*^^*', hit: 64, body: "Went to the stationery shop and found a Sailor Moon sticker set, bought it right away!! Covered my diary in them hehe love it so much♡" },
+        { id: 'b3', name: 'Soi', date: '2003-10-15', title: 'Went manga-cafe hopping and borrowed 3 shoujo manga', hit: 52, body: 'Went manga-cafe hopping with a friend this weekend~ borrowed 3 shoujo manga volumes I had not read, so excited \u3145\u3145' },
+        { id: 'b2', name: 'Soi', date: '2003-10-02', title: 'Vowing to memorize all the Sailor Moon transformation lines haha', hit: 29, body: "From now on I'm gonna memorize every Sailor Moon transformation line! already excited just thinking about it haha" },
+        { id: 'b1', name: 'Soi', date: '2003-09-30', title: 'My first post~', hit: 80, body: "First post on the board*^^* gonna post lots about Sailor Moon and Wedding Peach from now on~ nice to meet you!" }
+      ],
+      photos: [
+        { id: 'p1', name: 'Soi', date: '2003-09-15', title: 'Soi selfie*^^*', hit: 120, image: true, body: 'Took a selfie after a while hehe a bit awkward but I kinda like it so here it is~' },
+        { id: 'p2', name: 'Soi', date: '2003-09-18', title: 'My Sailor Moon cosplay attempt!', hit: 95, image: true, body: 'Tried a Sailor Moon cosplay with a friend at the school festival! super embarrassing but fun hehe' },
+        { id: 'p3', name: 'Soi', date: '2003-09-22', title: 'Drew Sailor Moon', hit: 44, image: true, body: 'Was bored so I drew Sailor Moon. not great but be nice about it haha' },
+        { id: 'p4', name: 'Soi', date: '2003-09-25', title: 'Wedding Peach fan art', hit: 58, image: true, body: "Drew the Wedding Peach I've been obsessed with lately! coloring took forever T_T" },
+        { id: 'p5', name: 'Soi', date: '2003-10-01', title: 'Short comic ep. 1', hit: 66, image: true, body: 'A short comic I drew, episode 1~ will keep working on the next one!' },
+        { id: 'p6', name: 'Soi', date: '2003-10-05', title: 'Short comic ep. 2', hit: 61, image: true, body: 'Finished episode 2! the story is getting a little out of hand lol' },
+        { id: 'p7', name: 'Soi', date: '2003-10-08', title: 'Sailor Moon key scene capture', hit: 73, image: true, body: "Last night's episode had such an iconic scene so I captured it! isn't it just so moving?" },
+        { id: 'p8', name: 'Soi', date: '2003-10-10', title: 'Pretty wallpaper capture', hit: 50, image: true, body: 'Found such a pretty wallpaper online and saved it~ you should all use it too!' }
+      ]
+    };
+
+    const list = data[board] || data.notice;
+    const post = list.find(p => p.id === id) || list[0];
+    const backHrefMap = { notice: 'Notice.dc.html', board: 'Board.dc.html', photos: 'Photos.dc.html' };
+    const navColors = {
+      notice: board === 'notice' ? '#ff2f8f' : '#b04fd6',
+      board: board === 'board' ? '#ff2f8f' : '#b04fd6',
+      photos: board === 'photos' ? '#ff2f8f' : '#b04fd6'
+    };
+
+    return {
+      post: { ...post, backHref: backHrefMap[board] || 'Notice.dc.html' },
+      navColors
+    };
+  }
+}
+
+</script>
+</body>
+</html>
